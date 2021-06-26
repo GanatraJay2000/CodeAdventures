@@ -1,0 +1,57 @@
+select[multiple] {
+    padding-right: 0;
+    height: 10rem;
+    width:100%;
+    border-radius: 4px;
+    border-color: $grey-light;
+    outline: none !important;
+    box-shadow:none !important;
+}
+select[option]:focus-visible{
+    border:initial;
+    outline:none;
+}
+select[multiple]:focus{
+    outline: none !important;
+    box-shadow:none !important;
+}
+
+select[multiple] {
+    cursor: pointer;
+}
+select[multiple] option {
+    white-space: normal;
+    padding:0.3rem;
+}
+
+/* width */
+select[multiple]::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+select[multiple]::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+select[multiple]::-webkit-scrollbar-thumb {
+    background: #ccc; 
+  }
+  
+  /* Handle on hover */
+select[multiple]::-webkit-scrollbar-thumb:hover {
+    background: #bbb; 
+}
+
+
+select[multiple] option:hover{
+    background: linear-gradient($color, $color);
+    color:white;  
+}
+select[multiple] option:focus,
+select[multiple] option:active,
+select[multiple] option:checked {
+  background: linear-gradient($grey-light, $grey-light);
+  color:white;
+}

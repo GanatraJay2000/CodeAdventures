@@ -1,0 +1,216 @@
+.app {
+  display: flex;
+}
+.sidebar-wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+.content-wrapper{
+    width:100%;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+.navbar{
+  background-color:$color;
+}
+.sidebar {
+  background-color: $color;
+  width: 260px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: white 2.5px solid;
+  box-shadow: 2px 0px 2px #33333333 !important;
+  overflow-x: hidden;
+}
+
+/* width */
+.sidebar::-webkit-scrollbar {
+  width: 0px;
+}
+.sidebar,
+.sidebar * {
+  transition: 0.4s;
+  transform: rotateZ(0);
+}
+.side-min .sidebar {
+  width: 80px;
+}
+
+.sidebar .title {
+  color: $color;
+  color: white;
+  height: 56px;
+  width: 100%;
+  text-align: center;
+  display: grid;
+  place-content: center;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 20px;
+}
+.sidebar li {
+  list-style: none;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+.sidebar li a {
+  color: #c1c1c1 !important;
+  color: white !important;
+  // color:$color-lighter !important;
+  text-decoration: none;
+  font-size: 1.2em;
+  position: relative;
+  white-space: nowrap;
+  width: 100%;
+  font-weight: 500;
+}
+.sidebar li a .side-text {
+  display: inline-block;
+  position: relative;
+  transform: translate(0px, 0%);
+  opacity: 1;
+  visibility: visible;
+  // transition:0.5s ease-in !important;
+}
+// .side-min, .sidebar li {
+//     // text-align: center;
+// }
+.side-min .sidebar li a {
+  font-size: 1.2em;
+  text-align: center;
+}
+.sidebar li:hover a::before,
+.sidebar li a.currentPage::before {
+  position: absolute;
+  top: 60%;
+  left: -40px;
+  display: block;
+  content: "";
+  width: 250px;
+  height: 45px;
+  border-radius: 0 50px 50px 0;
+  transform: translate(0%, -50%);
+  background-color: #33333333;
+  box-shadow: 0px 3px 3px #33333333 inset;
+  border-left:20px solid white;
+  z-index: 0;
+}
+.sidebar li a.currentPage::before {
+  background-color: $color-light;
+  border: 1.5px solid white;
+  box-shadow: none;
+}
+
+.sidebar li a i,
+.sidebar li a .side-text {
+  position: relative;
+  z-index: 1;
+}
+
+.side-min .sidebar li {
+  // text-align:center;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+.side-min .sidebar li {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.side-min .sidebar li a i {
+  font-size: 1.25em;
+  margin: 0 auto;
+}
+
+.side-min .sidebar li a.currentPage::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  content: "";
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $color-light;
+  z-index: 0;
+  border: 1.5px solid white;
+}
+
+.side-min .sidebar li a .side-text {
+  position: absolute;
+  background-color: transparent;
+  // border: 2px solid white;
+  // border-radius: 5px;
+  white-space: nowrap;
+  z-index: 1;
+  // padding:7px 15px 9px;
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(50px, 0%);
+}
+
+.side-hr {
+  background-color: $color-lighter;
+  // background-color:white;
+  margin: 0px 15px;
+}
+.side-hr-full {
+  background-color: $color-lighter;
+  // background-color:white;
+  margin: 15px 0px;
+}
+#sideOpener {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+// .transition.stra.navbar-brand{
+//     transition: 0.35s;
+// }
+
+@media screen and (max-width: 786px) {
+  .sidebar {
+    margin-left: -260px;
+    box-shadow: none !important;
+  }
+  .sidebar li a .side-text {
+    opacity: 0;
+  }
+  .side-min .sidebar {
+    margin-left: 0px;
+  }
+  .sidebar li a {
+    font-size: 0.8em;
+  }
+  .side-min .sidebar li a i {
+    font-size: 1.2em;
+  }
+  .side-min .sidebar li {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  .sidebar li:hover a {
+    color: white !important;
+  }
+
+  .side-min .sidebar li:hover a .side-text {
+    opacity: 1;
+    visibility: visible;
+    left: 37px;
+  }
+  .sidebar li a .side-text {
+    display: none;
+  }
+  .sidebar li a.currentPage::before {
+    background-color: transparent;
+    border: 0px;
+  }
+}

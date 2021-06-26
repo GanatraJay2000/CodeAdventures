@@ -1,0 +1,7 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "twbs/bootstrap": "5.0.2",
+        "components/jquery": "^3.5"
+    }
+}
