@@ -12,10 +12,11 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS users (
     name varchar(255) NOT NULL,
     username varchar(255) NOT NULL UNIQUE,
     access_level varchar(255) NOT NULL,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    otp varchar(255) DEFAULT 0
 )");
 if(!$create){print_r($conn->error);die();}
 
 $su = password_hash($_ENV['PASS_DEFAULT'], PASSWORD_DEFAULT);
-$create=$conn->query("INSERT IGNORE INTO users VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 3, '$su');");
+$create=$conn->query("INSERT IGNORE INTO users VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 3, '$su', 00);");
 if(!$create){print_r($conn->error);die();}
