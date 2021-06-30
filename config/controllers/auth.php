@@ -16,11 +16,11 @@ function addUser($name, $email, $type, $password){
     else return($conn->error);
 }
 
-function updateUser($id, $name){
+function updateUser($id, $field, $value){
     global $conn;    
-    $update = $conn->query("UPDATE users SET name='$name' WHERE id='$id';");        
-    if($update) return ["true", $name];
-    else return ["false", $name, $conn->error, "danger"];
+    $update = $conn->query("UPDATE users SET {$field}='{$value}' WHERE id='$id';");
+    if($update) return ["true", "Updated Successfully"];
+    else return ["false", $conn->error, "danger"];
 }
 
 function deleteUser($id){
