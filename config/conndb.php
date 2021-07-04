@@ -7,6 +7,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+//Users Table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS users (
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
@@ -24,14 +25,11 @@ if(!$create){print_r($conn->error);die();}
 
 
 //zone table
-$create = $conn->query("CREATE TABLE IF NOT EXISTS zones(
+$create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) NOT NULL,
-    detailed_address varchar(255),
-    town varchar(255),
-    city varchar(255),
-    main_branch_id INT(6) NOT NULL,
-    FOREIGN KEY(`main_branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE
+    name varchar(255) NOT NULL,   
+    main_branch_id INT(6)
+    -- FOREIGN KEY(`main_branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE
  )");
  if(!$create){print_r($conn->error);die();}
     
@@ -75,7 +73,7 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS hubs(
 if(!$create){print_r($conn->error);die();}
 
 //atm sites
-$create = $conn->query("CREATE TABLE IF NOT EXISTS atmsites(
+$create = $conn->query("CREATE TABLE IF NOT EXISTS sites(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     detailed_address varchar(255),
@@ -137,12 +135,14 @@ if(!$create){print_r($conn->error);die();}
 
 
 //transactions table
-$create = $conn->query("CREATE TABLE IF NOT EXISTS transaction(
+$create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     emp_id INT(6),
     FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE,
     vehicle_id INT(6),
     FOREIGN KEY(`vehicle_id`) REFERENCES vehicles(`id`) ON DELETE CASCADE,
+    site_id INT(6),
+    FOREIGN KEY(`site_id`) REFERENCES sites(`id`) ON DELETE CASCADE,
     amt_transfered BIGINT(10) UNSIGNED,
     vehicle_start_km varchar(255),
     vehicle_end_km varchar(255),
@@ -150,5 +150,3 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS transaction(
 )");
 if(!$create){print_r($conn->error);die();}
    
-
-

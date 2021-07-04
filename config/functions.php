@@ -32,6 +32,13 @@ function getAttrArray($arr, $attr, $removeDuplicates=false){
 }
 
 
+function getBindString($ch){
+    $type = gettype($ch)[0];
+    if($type !== 's' && $type !== 'i' && $type !== 'd') $type='s';
+    return $type;
+}
+
+
 function getNumAccess($access_level){
     $access = 0;
     switch($access_level){
