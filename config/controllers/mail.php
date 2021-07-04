@@ -16,9 +16,9 @@ $mail->SMTPAuth = true;
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
-$mail->Username = 'ganatrajay2000@gmail.com'; // YOUR gmail email
+$mail->Username = $_ENV['MAIL_USERNAME']; // YOUR gmail email
 $mail->Password = $_ENV['MAIL_PASSWORD']; // YOUR gmail password
 
 // Sender and recipient settings
-$mail->setFrom('ganatrajay2000@gmail.com', 'Sender Name');
-$mail->addReplyTo('ganatrajay2000@gmail.com', 'Sender Name'); // to set the reply to
+$mail->setFrom($_ENV['MAIL_USERNAME'], $_ENV['APP_NAME']);
+$mail->addReplyTo($_ENV['MAIL_USERNAME'], $_ENV['APP_NAME']); // to set the reply to
