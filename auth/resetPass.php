@@ -5,7 +5,8 @@ require('../config/config.php');
 if(!isset($_POST['username']))$_SESSION['alert']="Please Enter an Email Id First";
 else{
     $email = $_POST['username'];
-    $user = getUser($email);    
+    $user = getUser($email);   
+    $_SESSION['currentUser'] = $user; 
     if(!$user)$_SESSION['alert']="No Such User exists!";
     else{
     $otp = rand ( 10000 , 99999 );
