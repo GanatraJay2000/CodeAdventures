@@ -39,9 +39,7 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
 $create = $conn->query("CREATE TABLE IF NOT EXISTS regions(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
-    detailed_address varchar(255),
-    town varchar(255),
-    city varchar(255),
+    main_branch_id INT(6),
     zone_id INT(6) NOT NULL,
     FOREIGN KEY(`zone_id`) REFERENCES zones(`id`) ON DELETE CASCADE
 )");
