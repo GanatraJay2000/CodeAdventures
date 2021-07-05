@@ -27,7 +27,7 @@ if(!$create){print_r($conn->error);die();}
 //zone table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) NOT NULL,   
+    name varchar(255) UNIQUE NOT NULL,   
     main_branch_id INT(6)
     -- FOREIGN KEY(`main_branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE
  )");

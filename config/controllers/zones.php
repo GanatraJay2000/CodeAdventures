@@ -2,9 +2,9 @@
 
 function addZone($data){
     global $conn;        
-    $query = $conn->prepare("INSERT INTO `zones`(name, detailed_address, town, city, main_branch_id) VALUES(?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name)");
+    $query = $conn->prepare("INSERT INTO `zones`(name, main_branch_id) VALUES(?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name), main_branch_id=VALUES(main_branch_id)");
     if(!$query) return [false, "Please contact Admin!: ".$conn->error];
-    $query->bind_param("ssssi", $data['name'],$data['detailed_address'], $data['town'], $data['city'], $data['main_branch_id']);
+    $query->bind_param("si", $data['name'], $data['main_branch_id']);
     $query->execute();        
     if(!empty($query->error)) return [false, $query->error];
     else return [true, "Zone Added Successfully!"];    
