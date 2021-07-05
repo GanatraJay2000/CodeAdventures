@@ -41,7 +41,7 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS regions(
     name varchar(255) NOT NULL,
     main_branch_id INT(6),
     zone_id INT(6) NOT NULL,
-    FOREIGN KEY(`zone_id`) REFERENCES zones(`id`) ON DELETE CASCADE
+    FOREIGN KEY(`zone_id`) REFERENCES zones(`id`) ON DELETE CASCADE    
 )");
 if(!$create){print_r($conn->error);die();}
 
@@ -54,7 +54,7 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS branches(
     town varchar(255),
     city varchar(255),
     region_id INT(6) NOT NULL,
-    FOREIGN KEY(`region_id`) REFERENCES regions(`id`) ON DELETE CASCADE
+    FOREIGN KEY(`region_id`) REFERENCES regions(`id`) ON DELETE CASCADE    
 )");
 if(!$create){print_r($conn->error);die();}
 

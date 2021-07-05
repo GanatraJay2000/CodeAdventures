@@ -12,7 +12,7 @@ require_once('../config/config.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBLS Portal | KJSIEIT</title>
+    <title>AMS Portal | CMS</title>
     <link rel="stylesheet" href="../styles/styles.css" class="css">
 </head>
 

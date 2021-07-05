@@ -11526,11 +11526,11 @@ fieldset:disabled .btn {
 }
 
 .navbar {
-  background-color: #173891;
+  background-color: #283136;
 }
 
 .sidebar {
-  background-color: #173891;
+  background-color: #283136;
   width: 260px;
   position: -webkit-sticky;
   position: sticky;
@@ -11560,7 +11560,7 @@ fieldset:disabled .btn {
 }
 
 .sidebar .title {
-  color: #173891;
+  color: #283136;
   color: white;
   height: 56px;
   width: 100%;
@@ -11626,7 +11626,7 @@ fieldset:disabled .btn {
 }
 
 .sidebar li a.currentPage::before {
-  background-color: #143eb4;
+  background-color: #5265f7;
   border: 1.5px solid white;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -11665,7 +11665,7 @@ fieldset:disabled .btn {
   border-radius: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: #143eb4;
+  background-color: #5265f7;
   z-index: 0;
   border: 1.5px solid white;
 }
@@ -11683,12 +11683,12 @@ fieldset:disabled .btn {
 }
 
 .side-hr {
-  background-color: #083dce;
+  background-color: #c6cdff;
   margin: 0px 15px;
 }
 
 .side-hr-full {
-  background-color: #083dce;
+  background-color: #c6cdff;
   margin: 15px 0px;
 }
 
