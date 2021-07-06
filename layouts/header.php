@@ -21,12 +21,12 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="<?= $preUrl."portal/change-password.php" ?>">
+                            <a class="dropdown-item" href="<?= $preUrl . "portal/change-password.php" ?>">
                                 <i class="fas fa-unlock-alt me-1"></i>Change Password
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="<?= $preUrl."auth/logout.php" ?>">
+                            <a class="dropdown-item" href="<?= $preUrl . "auth/logout.php" ?>">
                                 <i class="fas fa-sign-out-alt me-1"></i>Logout
                             </a>
                         </li>
