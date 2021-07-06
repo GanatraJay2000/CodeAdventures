@@ -11748,6 +11748,37 @@ html, body {
   width: 100%;
 }
 
+body {
+  background-color: #fafafa !important;
+}
+
+.sh {
+  -webkit-box-shadow: 0px 0px .5rem #33333311;
+          box-shadow: 0px 0px .5rem #33333311;
+}
+
+.sh-dark {
+  -webkit-box-shadow: 0px 0px .5rem #33333322;
+          box-shadow: 0px 0px .5rem #33333322;
+}
+
+.sh-darker {
+  -webkit-box-shadow: 0px 0px .5rem #33333333;
+          box-shadow: 0px 0px .5rem #33333333;
+}
+
+.rounded-sm {
+  border-radius: 0.5rem;
+}
+
+.rounded-md {
+  border-radius: 0.75rem;
+}
+
+.rounded-lg {
+  border-radius: 1rem;
+}
+
 .not-on-desktop {
   display: none;
 }
@@ -11762,6 +11793,10 @@ html, body {
   }
   .not-on-mobile {
     display: none;
+  }
+  .content > .sh-darker, .content > .sh-dark, .content > .sh {
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
 }
 /*# sourceMappingURL=styles.css.map */
