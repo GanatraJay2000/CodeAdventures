@@ -13,19 +13,19 @@ require_once('../config/config.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMS Portal | CMS</title>
-    <link rel="stylesheet" href="../styles/styles.css" class="css">
+    <link rel="stylesheet" href="<?= $preUrl ?>styles/styles.css" class="css">
 </head>
 
 <body>
     <div class="app side-min">
-        <?php require($preUrl.'layouts/sidebar.php'); ?>
+        <?php require($preUrl . 'layouts/sidebar.php'); ?>
         <div class="content-wrapper">
-            <?php require($preUrl.'layouts/header.php'); ?>
+            <?php require($preUrl . 'layouts/header.php'); ?>
             <div class="content p-md-5 p-0">
 
             </div>
             <div class="mb-0 mt-auto">
-                <?php require($preUrl.'layouts/footer.php'); ?>
+                <?php require($preUrl . 'layouts/footer.php'); ?>
             </div>
         </div>
     </div>
@@ -33,9 +33,9 @@ require_once('../config/config.php');
 
     <script src="<?= $bJs ?>"></script>
     <script src="<?= $jquery ?>"></script>
-    <script src="<?php echo $preUrl."scripts/sidebar.js" ?>"></script>
+    <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     </script>
 </body>
 

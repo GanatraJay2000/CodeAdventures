@@ -99,7 +99,7 @@ if(!isset($_SESSION['alert']))$_SESSION['alert']="";
 
                 <div class="pt-2 my-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="email" class="form-control 
+                    <input type="email" class="form-control" 
                         id=" username" name="username" aria-describedby="usernameFeedback" required>
                     <div id="usernameFeedback" class="invalid-feedback">
                         Enter a valid Email Address!!
