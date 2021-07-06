@@ -5,7 +5,7 @@ require('../config/config.php');
 if(!isset($_POST['username']))$_SESSION['alert']="Please Enter an Email Id First";
 else{
     $email = $_POST['username'];
-    $user = getUser($email);   
+    $user = getUser("username", $email);   
     $_SESSION['currentUser'] = $user; 
     if(!$user)$_SESSION['alert']="No Such User exists!";
     else{
@@ -36,15 +36,6 @@ else{
 }
 }
 }
-
-
-// $mail->MsgHTML($text); 
-// if(!$mail->Send()) {
-//   echo "Error while sending Email.";
-//   var_dump($mail);
-// } else {
-//   echo "Email sent successfully";
-// }
 if(!isset($_SESSION['alert']))$_SESSION['alert']="";
 ?>
 

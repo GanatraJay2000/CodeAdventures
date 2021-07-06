@@ -4,7 +4,7 @@ if(isset($_POST['otp'])){
     $otp = $_POST['otp'];
     $id = $_SESSION['resetPass']['user'];
     // print_r($id);
-    $user = getUser($id);
+    $user = getUser("username", $id);
     if($otp === $user['otp']){
         header('Location: ./setNewPass.php');
     }else{
@@ -67,7 +67,7 @@ if(!isset($_SESSION['alert']))$_SESSION['alert']="";
                 <div class="pt-2 my-3">
                     <label for="otp" class="form-label">OTP</label>
                     <input type="number" class="form-control 
-                        id="otp" name="otp" aria-describedby="otpFeedback" required>
+                        id=" otp" name="otp" aria-describedby="otpFeedback" required>
                     <div id="otpFeedback" class="invalid-feedback">
                         Enter a valid OTP!!
                     </div>

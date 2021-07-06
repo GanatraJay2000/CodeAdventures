@@ -46,11 +46,11 @@ function deleteZone($id){
 }
 
 
-function getZone($id){
+function getZone($field, $value){
     global $conn;
-    $query = $conn->prepare("SELECT * from `zones` WHERE id=?");
+    $query = $conn->prepare("SELECT * from `zones` WHERE {$field}=?");
     if(!$query) return [false, "Please contact Admin!: ".$conn->error];
-    $query->bind_param("i", $id);
+    $query->bind_param("i", $value);
     $query->execute();
     $query = $query->get_result();
     if($query->num_rows == 0) return [false, "No Such Zone"];

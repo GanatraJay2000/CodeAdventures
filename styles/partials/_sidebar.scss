@@ -12,10 +12,10 @@
     flex-direction: column;
 }
 .navbar{
-  background-color:$color;
+  background:$color;
 }
 .sidebar {
-  background-color: $color;
+  background: $color;
   width: 260px;
   position: sticky;
   top: 0;
@@ -94,13 +94,13 @@
   height: 45px;
   border-radius: 0 50px 50px 0;
   transform: translate(0%, -50%);
-  background-color: #33333333;
+  background: #384146;
   box-shadow: 0px 3px 3px #33333333 inset;
   border-left:20px solid white;
   z-index: 0;
 }
 .sidebar li a.currentPage::before {
-  background-color: $color-light;
+  background: $color-light;
   border: 1.5px solid white;
   box-shadow: none;
 }
@@ -137,14 +137,14 @@
   height: 45px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  background-color: $color-light;
+  background: $color-light;
   z-index: 0;
   border: 1.5px solid white;
 }
 
 .side-min .sidebar li a .side-text {
   position: absolute;
-  background-color: transparent;
+  background: transparent;
   // border: 2px solid white;
   // border-radius: 5px;
   white-space: nowrap;
@@ -157,17 +157,17 @@
 }
 
 .side-hr {
-  background-color: $color-lighter;
-  // background-color:white;
+  background: $color-lighter;
+  // background:white;
   margin: 0px 15px;
 }
 .side-hr-full {
-  background-color: $color-lighter;
-  // background-color:white;
+  background: $color-lighter;
+  // background:white;
   margin: 15px 0px;
 }
 #sideOpener {
-  background-color: transparent;
+  background: transparent;
   box-shadow: none;
   border: none;
 }
@@ -210,7 +210,7 @@
     display: none;
   }
   .sidebar li a.currentPage::before {
-    background-color: transparent;
+    background: transparent;
     border: 0px;
   }
 }

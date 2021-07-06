@@ -11526,11 +11526,11 @@ fieldset:disabled .btn {
 }
 
 .navbar {
-  background-color: #283136;
+  background: #283136;
 }
 
 .sidebar {
-  background-color: #283136;
+  background: #283136;
   width: 260px;
   position: -webkit-sticky;
   position: sticky;
@@ -11618,7 +11618,7 @@ fieldset:disabled .btn {
   border-radius: 0 50px 50px 0;
   -webkit-transform: translate(0%, -50%);
           transform: translate(0%, -50%);
-  background-color: #33333333;
+  background: #384146;
   -webkit-box-shadow: 0px 3px 3px #33333333 inset;
           box-shadow: 0px 3px 3px #33333333 inset;
   border-left: 20px solid white;
@@ -11626,7 +11626,7 @@ fieldset:disabled .btn {
 }
 
 .sidebar li a.currentPage::before {
-  background-color: #5265f7;
+  background: linear-gradient(45deg, rgba(223, 48, 100, 0.9) 0, rgba(200, 55, 111, 0.9) 25%, rgba(147, 72, 133, 0.9) 51%, rgba(96, 86, 153, 0.9) 76%, rgba(61, 99, 169, 0.9) 100%);
   border: 1.5px solid white;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -11665,14 +11665,14 @@ fieldset:disabled .btn {
   border-radius: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: #5265f7;
+  background: linear-gradient(45deg, rgba(223, 48, 100, 0.9) 0, rgba(200, 55, 111, 0.9) 25%, rgba(147, 72, 133, 0.9) 51%, rgba(96, 86, 153, 0.9) 76%, rgba(61, 99, 169, 0.9) 100%);
   z-index: 0;
   border: 1.5px solid white;
 }
 
 .side-min .sidebar li a .side-text {
   position: absolute;
-  background-color: transparent;
+  background: transparent;
   white-space: nowrap;
   z-index: 1;
   color: white;
@@ -11683,17 +11683,17 @@ fieldset:disabled .btn {
 }
 
 .side-hr {
-  background-color: #c6cdff;
+  background: #c6cdff;
   margin: 0px 15px;
 }
 
 .side-hr-full {
-  background-color: #c6cdff;
+  background: #c6cdff;
   margin: 15px 0px;
 }
 
 #sideOpener {
-  background-color: transparent;
+  background: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
   border: none;
@@ -11733,7 +11733,7 @@ fieldset:disabled .btn {
     display: none;
   }
   .sidebar li a.currentPage::before {
-    background-color: transparent;
+    background: transparent;
     border: 0px;
   }
 }

@@ -1,7 +1,7 @@
 <?php
-function getUser($email){
+function getUser($field, $value){
     global $conn;
-    $verify = $conn->query("SELECT * from users where username='$email';");
+    $verify = $conn->query("SELECT * from users where {$field}='{$value}';");
     if($verify->num_rows > 0){
         $row = $verify->fetch_assoc();        
         return $row;        

@@ -21,6 +21,14 @@ $allPages = [
         "access"=>1,
         "visible"=>true,
     ],
+    [
+        "title"=>"Users",
+        "class"=>"users",
+        "icon"=>"fas fa-user",
+        "link"=>$preUrl."portal/home.php",
+        "access"=>1,
+        "visible"=>true,
+    ],
 ];
 $bJs = $preUrl.'vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
 $jquery = $preUrl.'vendor/components/jquery/jquery.min.js';

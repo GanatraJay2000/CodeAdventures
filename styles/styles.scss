@@ -1,6 +1,7 @@
 
 $color:#283136;
 $color-light:#5265f7;
+$color-light:linear-gradient(45deg, rgba(223, 48, 100, 0.9) 0, rgba(200, 55, 111, 0.9) 25%, rgba(147, 72, 133, 0.9) 51%, rgba(96, 86, 153, 0.9) 76%, rgba(61, 99, 169, 0.9) 100%);
 $color-lighter:#c6cdff;
 $color-darker:#1a3170;
 @import "../vendor/twbs/bootstrap/scss/bootstrap.scss";

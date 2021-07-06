@@ -30,7 +30,7 @@ if(!$conn){
     $_SESSION["loginFeedback"]["data"]["alert"] = "Connection to database not possible";
     goBack();
 }else{
-    $user = getUser($username);    
+    $user = getUser("username", $username);    
     if($user === false) {
         $_SESSION["loginFeedback"]["is"] = "danger";
         $_SESSION["loginFeedback"]["data"] = [
