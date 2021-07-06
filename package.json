@@ -1,0 +1,23 @@
+{
+  "name": "codeadventures",
+  "version": "1.0.0",
+  "description": "Create a problem statement given by CMS to create a portal during a Coding Marathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch styles -o styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GanatraJay2000/CodeAdventures.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GanatraJay2000/CodeAdventures/issues"
+  },
+  "homepage": "https://github.com/GanatraJay2000/CodeAdventures#readme",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
