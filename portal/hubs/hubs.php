@@ -1,14 +1,15 @@
 <?php
 require_once('../../config/config.php');
-$zones = getZones();
-$hasZones = false;
-if (!$zones[0]) $_SESSION['alert']['danger'] = "No zones found!!";
+$hubs = getHubs();
+$hasHubs = false;
+if (!$hubs[0]) $_SESSION['alert']['danger'] = "No hubs found!!";
 else {
-    $zones = $zones[1];
-    $hasZones = true;
+    $hubs = $hubs[1];
+    $hasHubs = true;
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +32,11 @@ else {
                 <div class="rounded-md bg-white sh-darker border-0 p-md-5 p-3 ">
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h1 class="">Zones</h1>
+                        <h1 class="">Hubs</h1>
                         <div class="">
-                            <a href="./add-zone.php" class="btn btn-primary px-4">
+                            <a href="./add-hub.php" class="btn btn-primary px-4">
                                 <i class="fas fa-plus   me-4 "></i>
-                                Add Zone
+                                Add Hub
                             </a>
                         </div>
                     </div>
@@ -45,34 +46,40 @@ else {
                             <thead class="table">
                                 <tr>
                                     <th>Id</th>
-                                    <th width="50%">Name</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Town</th>
+                                    <th>City</th>
                                     <th>Branch Id</th>
                                     <th width="1px">Edit</th>
                                     <th width="1px">Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($hasZones) {
-                                    foreach ($zones as $zone) { ?>
+                                <?php if ($hasHubs) {
+                                    foreach ($hubs as $hub) { ?>
                                         <tr>
-                                            <td><?= $zone['id'] ?></td>
+                                            <td><?= $hub['id'] ?></td>
                                             <td>
-                                                <form action="./view-zone.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $zone['id'] ?>">
-                                                    <button class="btn"><?= $zone['name'] ?></button>
+                                                <form action="./view-hub.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $hub['id'] ?>">
+                                                    <button class="btn"><?= $hub['name'] ?></button>
                                                 </form>
                                             </td>
-                                            <td><?= $zone['main_branch_id'] ?></td>
+                                            <td><?= $hub['detailed_address'] ?></td>
+                                            <td><?= $hub['town'] ?></td>
+                                            <td><?= $hub['city'] ?></td>
+                                            <td><?= $hub['branch_id'] ?></td>
                                             <td>
-                                                <form action="./edit-zone.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $zone['id'] ?>">
+                                                <form action="./edit-hub.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $hub['id'] ?>">
                                                     <button class="btn btn-warning btn-sm">Edit</button>
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="./actions/delete-zone.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $zone['id'] ?>">
-                                                    <button onclick="return confirm('Are you sure you want to delete this zone?')" class="btn btn-danger btn-sm">Delete</button>
+                                                <form action="./actions/delete-hub.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $hub['id'] ?>">
+                                                    <button onclick="return confirm('Are you sure you want to delete this hub?')" class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
