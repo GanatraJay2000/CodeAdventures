@@ -90,7 +90,7 @@
 .sidebar li:hover a::before,
 .sidebar li a.currentPage::before {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: -40px;
   display: block;
   content: "";
@@ -136,7 +136,7 @@
 
 .side-min .sidebar li a.currentPage::before {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   display: block;
   content: "";

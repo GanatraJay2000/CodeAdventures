@@ -8,9 +8,9 @@ if (!isset($_POST['id'])) {
 
 $id = $_POST['id'];
 $name = $_POST['zoneName'];
-$main_branch_id = $_POST['branchId'];
+$main_branch_id = empty($_POST['branchId']) ? null : $_POST['branchId'];
 
-$edit = updateZone(
+$edit = $zone->update(
       ['id', $id],
       [
             'name' => $name,

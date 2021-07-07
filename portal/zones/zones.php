@@ -1,6 +1,6 @@
 <?php
 require_once('../../config/config.php');
-$zones = getZones();
+$zones = $zone->get();
 $hasZones = false;
 if (!$zones[0]) $_SESSION['alert']['danger'] = "No zones found!!";
 else {
@@ -54,28 +54,30 @@ else {
                             <tbody>
                                 <?php if ($hasZones) {
                                     foreach ($zones as $zone) { ?>
-                                        <tr>
-                                            <td><?= $zone['id'] ?></td>
-                                            <td>
-                                                <form action="./view-zone.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $zone['id'] ?>">
-                                                    <button class="btn"><?= $zone['name'] ?></button>
-                                                </form>
-                                            </td>
-                                            <td><?= $zone['main_branch_id'] ?></td>
-                                            <td>
-                                                <form action="./edit-zone.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $zone['id'] ?>">
-                                                    <button class="btn btn-warning btn-sm">Edit</button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action="./actions/delete-zone.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $zone['id'] ?>">
-                                                    <button onclick="return confirm('Are you sure you want to delete this zone?')" class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td><?= $zone['id'] ?></td>
+                                    <td>
+                                        <form action="./view-zone.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $zone['id'] ?>">
+                                            <button class="btn"><?= $zone['name'] ?></button>
+                                        </form>
+                                    </td>
+                                    <td><?= $zone['main_branch_id'] ?></td>
+                                    <td>
+                                        <form action="./edit-zone.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $zone['id'] ?>">
+                                            <button class="btn btn-warning btn-sm">Edit</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="./actions/delete-zone.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $zone['id'] ?>">
+                                            <button
+                                                onclick="return confirm('Are you sure you want to delete this zone?')"
+                                                class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
                                 <?php }
                                 } ?>
                             </tbody>
@@ -94,15 +96,15 @@ else {
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-        $(document).ready(function() {
-            $('#example').DataTable({
-                columnDefs: [{
-                    orderable: false,
-                    targets: [-1, -2]
-                }]
-            });
+    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+    $(document).ready(function() {
+        $('#example').DataTable({
+            columnDefs: [{
+                orderable: false,
+                targets: [-1, -2]
+            }]
         });
+    });
     </script>
 
     <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>

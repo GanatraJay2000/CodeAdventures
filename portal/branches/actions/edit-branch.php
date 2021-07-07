@@ -6,14 +6,14 @@ if (!isset($_POST['id'])) {
       header('Location: ../add-branch.php');
 }
 
-
+$id = $_POST['id'];
 $name = $_POST['branchName'];
 $detailed_address = $_POST['detailedAddress'];
 $town = $_POST['town'];
 $city = $_POST['city'];
 $region_id = $_POST['regionId'];
 
-$edit = updateBranch(
+$edit = $branch->update(
       ['id', $id],
       [
             'name' => $name,

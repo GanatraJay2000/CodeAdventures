@@ -1,7 +1,7 @@
 <?php
 require('../../config/config.php');
 if (!isset($_POST['id'])) header('Location: ./branches.php');
-$branch = getBranch('id', $_POST['id']);
+$branch = $branch->find('id', $_POST['id']);
 if (!$branch[0]) {
     $_SESSION['alert']['danger'] = $branch[1];
     header('Location: ./branches.php');
@@ -36,23 +36,28 @@ $branch = $branch[1];
 
                             <div class="col-md-12">
                                 <label for="branchName" class="form-label">Branch Name</label>
-                                <input required type="text" value="<?= $branch['name'] ?>" name="branchName" class="form-control" id="branchName">
+                                <input required type="text" value="<?= $branch['name'] ?>" name="branchName"
+                                    class="form-control" id="branchName">
                             </div>
                             <div class="col-md-12">
                                 <label for="detailedAddress" class="form-label">Detailed Address</label>
-                                <input required type="text" value="<?= $branch['detailed_address']  ?>" name="detailedAddress" class="form-control" id="detailedAddress">
+                                <input required type="text" value="<?= $branch['detailed_address']  ?>"
+                                    name="detailedAddress" class="form-control" id="detailedAddress">
                             </div>
                             <div class="col-md-6">
                                 <label for="town" class="form-label">Town</label>
-                                <input required type="text" value="<?= $branch['town'] ?>" name="town" class="form-control" id="town">
+                                <input required type="text" value="<?= $branch['town'] ?>" name="town"
+                                    class="form-control" id="town">
                             </div>
                             <div class="col-md-6">
                                 <label for="city" class="form-label">City</label>
-                                <input required type="text" value="<?= $branch['city'] ?>" name="city" class="form-control" id="city">
+                                <input required type="text" value="<?= $branch['city'] ?>" name="city"
+                                    class="form-control" id="city">
                             </div>
                             <div class="col-md-12">
                                 <label for="regionId" class="form-label">Region Id</label>
-                                <input type="text" value="<?= $branch['region_id'] ?>" name="regionId" class="form-control" id="regionId">
+                                <input type="text" value="<?= $branch['region_id'] ?>" name="regionId"
+                                    class="form-control" id="regionId">
                             </div>
 
                             <div class="col-12 ">
@@ -74,7 +79,7 @@ $branch = $branch[1];
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     </script>
 </body>
 

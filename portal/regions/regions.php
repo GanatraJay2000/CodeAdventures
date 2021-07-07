@@ -1,12 +1,20 @@
 <?php
 require_once('../../config/config.php');
-$regions = getRegions();
+$regions = select([
+    "select" => ["regions.id", "regions.name", "zones.name as zone"],
+    "from" => "regions",
+    "join" => [
+        [
+            "table" => "zones",
+            "on" => "zones.id = regions.zone_id",
+        ]
+    ],
+]);
 $hasRegions = false;
 if (!$regions[0]) $_SESSION['alert']['danger'] = "No regions found!!";
 else {
-      $regions = $regions[1];
-      $hasRegions = true;
-      
+    $regions = $regions[1];
+    $hasRegions = true;
 }
 
 ?>
@@ -35,7 +43,7 @@ else {
                         <h1 class="">Regions</h1>
                         <div class="">
                             <a href="./add-region.php" class="btn btn-primary px-4">
-                                <i class="fas fa-plus me-4 "></i>
+                                <i class="fas fa-plus me-2 "></i>
                                 Add Region
                             </a>
                         </div>
@@ -54,7 +62,7 @@ else {
                             </thead>
                             <tbody>
                                 <?php if ($hasRegions) {
-                                                      foreach ($regions as $region) { ?>
+                                    foreach ($regions as $region) { ?>
                                 <tr>
                                     <td><?= $region['id'] ?></td>
                                     <td>
@@ -62,25 +70,9 @@ else {
                                             <input type="hidden" name="id" value="<?= $region['id'] ?>">
                                             <button class="btn"><?= $region['name'] ?></button>
                                         </form>
-
                                     </td>
                                     <td>
-                                        <?php 
-                                            $zone_name = getZone('id',$region['zone_id']);
-                                            // print_r($zone);
-                                            if(!$zone_name[0]) { 
-                                                
-                                        ?>
-                                            <?"-"?>
-                                        <?php        
-                                            }
-                                            else{
-                                            
-                                        ?>
-                                            <?=$zone_name[1]['name']?>
-                                        <?php
-                                            }
-                                        ?>
+                                        <?= $region['zone']; ?>
                                     </td>
                                     <td>
                                         <form action="./edit-region.php" method="POST">
@@ -98,7 +90,7 @@ else {
                                     </td>
                                 </tr>
                                 <?php }
-                                                } ?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>

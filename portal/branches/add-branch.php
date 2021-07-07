@@ -32,7 +32,8 @@ require_once('../../config/config.php');
                             </div>
                             <div class="col-md-12">
                                 <label for="detailedAddress" class="form-label">Detailed Address</label>
-                                <input required type="text" name="detailedAddress" class="form-control" id="detailedAddress">
+                                <input required type="text" name="detailedAddress" class="form-control"
+                                    id="detailedAddress">
                             </div>
                             <div class="col-md-6">
                                 <label for="town" class="form-label">Town</label>
@@ -66,7 +67,7 @@ require_once('../../config/config.php');
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     </script>
 </body>
 

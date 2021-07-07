@@ -6,13 +6,14 @@ if (!isset($_POST['id'])) {
       header('Location: ../add-hub.php');
 }
 
+$id = $_POST['id'];
 $name = $_POST['hubName'];
 $detailed_address = $_POST['detailedAddress'];
 $town = $_POST['town'];
 $city = $_POST['city'];
 $branch_id = $_POST['branchId'];
 
-$edit = updateHub(
+$edit = $hub->update(
       ['id', $id],
       [
             'name' => $name,
@@ -22,7 +23,7 @@ $edit = updateHub(
             'branch_id' => $branch_id
       ]
 );
-
+// print_r($edit);
 if (!$edit[0]) {
       $_SESSION['alert']['danger'] = $edit[1];
       header('Location: ../edit-hub.php');

@@ -1,12 +1,6 @@
 <?php
 require_once("./config/config.php");
 
-$hub = new Hub();
-print_r($hub->get([
-    ["name", "=", "J"]
-])[1]);
-
-sp();
 ?>
 <a href="./auth/login.php">Login</a>
 <?php

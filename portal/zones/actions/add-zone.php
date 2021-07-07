@@ -8,9 +8,8 @@ if (!isset($_POST['zoneName'])) {
 
 
 $name = $_POST['zoneName'];
-$main_branch_id = $_POST['branchId'];
-
-$add = addZone([
+$main_branch_id = empty($_POST['branchId']) ? null : $_POST['branchId'];
+$add = $zone->add([
       'name' => $name,
       'main_branch_id' => $main_branch_id
 ]);

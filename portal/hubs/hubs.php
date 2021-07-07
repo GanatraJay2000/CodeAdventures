@@ -1,6 +1,6 @@
 <?php
 require_once('../../config/config.php');
-$hubs = getHubs();
+$hubs = $hub->get();
 $hasHubs = false;
 if (!$hubs[0]) $_SESSION['alert']['danger'] = "No hubs found!!";
 else {
@@ -35,7 +35,7 @@ else {
                         <h1 class="">Hubs</h1>
                         <div class="">
                             <a href="./add-hub.php" class="btn btn-primary px-4">
-                                <i class="fas fa-plus   me-4 "></i>
+                                <i class="fas fa-plus   me-2 "></i>
                                 Add Hub
                             </a>
                         </div>
@@ -58,31 +58,33 @@ else {
                             <tbody>
                                 <?php if ($hasHubs) {
                                     foreach ($hubs as $hub) { ?>
-                                        <tr>
-                                            <td><?= $hub['id'] ?></td>
-                                            <td>
-                                                <form action="./view-hub.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $hub['id'] ?>">
-                                                    <button class="btn"><?= $hub['name'] ?></button>
-                                                </form>
-                                            </td>
-                                            <td><?= $hub['detailed_address'] ?></td>
-                                            <td><?= $hub['town'] ?></td>
-                                            <td><?= $hub['city'] ?></td>
-                                            <td><?= $hub['branch_id'] ?></td>
-                                            <td>
-                                                <form action="./edit-hub.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $hub['id'] ?>">
-                                                    <button class="btn btn-warning btn-sm">Edit</button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action="./actions/delete-hub.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $hub['id'] ?>">
-                                                    <button onclick="return confirm('Are you sure you want to delete this hub?')" class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td><?= $hub['id'] ?></td>
+                                    <td>
+                                        <form action="./view-hub.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $hub['id'] ?>">
+                                            <button class="btn"><?= $hub['name'] ?></button>
+                                        </form>
+                                    </td>
+                                    <td><?= $hub['detailed_address'] ?></td>
+                                    <td><?= $hub['town'] ?></td>
+                                    <td><?= $hub['city'] ?></td>
+                                    <td><?= $hub['branch_id'] ?></td>
+                                    <td>
+                                        <form action="./edit-hub.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $hub['id'] ?>">
+                                            <button class="btn btn-warning btn-sm">Edit</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="./actions/delete-hub.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $hub['id'] ?>">
+                                            <button
+                                                onclick="return confirm('Are you sure you want to delete this hub?')"
+                                                class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
                                 <?php }
                                 } ?>
                             </tbody>
@@ -101,15 +103,15 @@ else {
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-        $(document).ready(function() {
-            $('#example').DataTable({
-                columnDefs: [{
-                    orderable: false,
-                    targets: [-1, -2]
-                }]
-            });
+    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+    $(document).ready(function() {
+        $('#example').DataTable({
+            columnDefs: [{
+                orderable: false,
+                targets: [-1, -2]
+            }]
         });
+    });
     </script>
 
     <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>

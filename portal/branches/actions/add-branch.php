@@ -13,7 +13,7 @@ $town = $_POST['town'];
 $city = $_POST['city'];
 $region_id = $_POST['regionId'];
 
-$add = addBranch([
+$add = $branch->add([
       'name' => $name,
       'detailed_address' => $detailed_address,
       'town' => $town,

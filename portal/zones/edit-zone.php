@@ -1,10 +1,10 @@
 <?php
 require('../../config/config.php');
 if (!isset($_POST['id'])) header('Location: ./zones.php');
-$zone = getZone('id', $_POST['id']);
+$zone = $zone->find('id', $_POST['id']);
 if (!$zone[0]) {
-      $_SESSION['alert']['danger'] = $zone[1];
-      header('Location: ./zones.php');
+    $_SESSION['alert']['danger'] = $zone[1];
+    header('Location: ./zones.php');
 }
 $zone = $zone[1];
 

@@ -7975,7 +7975,7 @@ fieldset:disabled .btn {
 .sidebar li:hover a::before,
 .sidebar li a.currentPage::before {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: -40px;
   display: block;
   content: "";
@@ -8015,7 +8015,7 @@ fieldset:disabled .btn {
 
 .side-min .sidebar li a.currentPage::before {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   display: block;
   content: "";
@@ -8116,6 +8116,9 @@ body * {
 
 .table-responsive .col-sm-12 {
   padding: 0 !important; }
+
+td {
+  vertical-align: middle; }
 
 @media screen and (max-width: 768px) {
   .not-on-desktop {
