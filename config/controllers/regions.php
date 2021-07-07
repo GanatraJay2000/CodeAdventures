@@ -3,9 +3,9 @@
 function addRegion($data)
 {
     global $conn;
-    $query = $conn->prepare("INSERT INTO `regions`(name, zone_id, main_branch_id) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name), zone_id=VALUES(zone_id), main_branch_id=VALUES(main_branch_id)");
+    $query = $conn->prepare("INSERT INTO `regions`(name, zone_id, detailed_address, phone_no) VALUES(?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name), zone_id=VALUES(zone_id), detailed_address=VALUES(detailed_address), phone_no=VALUES(phone_no)");
     if (!$query) return [false, "Please contact Admin!: " . $conn->error];
-    $query->bind_param("sii", $data['name'], $data['zone_id'], $data['main_branch_id']);
+    $query->bind_param("sisi", $data['name'], $data['zone_id'], $data['detailed_address'], $data['phone_no']);
     $query->execute();
     if (!empty($query->error)) return [false, $query->error];
     else return [true, "Region Added Successfully!"];
@@ -80,3 +80,6 @@ function getRegions($conf = [])
     }
     return [true, $regions];
 }
+
+
+//to get the zones of each region
