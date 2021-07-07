@@ -1,7 +1,10 @@
 <?php
 require_once("./config/config.php");
 
-
+$hub = new Hub();
+print_r($hub->get([
+    ["name", "=", "J"]
+])[1]);
 
 sp();
 ?>
@@ -12,29 +15,28 @@ sp();
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 /* 
 
-print_r(addZone([// Add an object whose attributes are
-    'name'=>'NW',     
+$zone = new Zone(); <<<<<<<<<<<<<<<<<------ Add before all Functions
+
+print_r($zone->add([
+    "name" => "Jay",
+    "main_branch_id" => 134
 ]));
 
 
-print_r(updateZone(
-    [ // Find the object where field,value
-        'id','3'
-    ],
-    [ // and make these updates
-        'name'=>'Eastern',        
-        'main_branch_id'=>'178342'
-    ]
+print_r($zone->update(
+    ["id", "1"],
+    ["name" => "South"]
 ));
 
-print_r(deleteZone('2'));
+print_r($zone->delete(2));
 
-print_r(getZone(3)[1]);
+print_r($zone->find("id", "6")[1]);
 
-print_r(getZones([
-    ['name','like', 'East'],
-    ['id', '=', '3']
-])[1]);
+print_r($zone->get()[1]);                       <<--- Get all rows
+
+print_r($zone->get([ 
+    ["name", "like", "Ganatra"],
+])[1]);                                         <<---- Get queried data
 
 */
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
@@ -42,16 +44,20 @@ print_r(getZones([
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 /* 
 
-print_r(addRegion(['name'=>'My Region', 'zone_id'=>'3']));
+$region = new Region(); <<<<<<<<<<<<<<<<<------ Add before all Functions
 
-print_r(updateRegion(['id', '2'], ['name'=>'Demo Region', 'main_branch_id'=>'786']));
+print_r($region->add(["name" => "Jay", "zone_id" => 6])[1]);
 
-print_r(deleteRegion('4'));
+print_r($region->update(['id', '2'], ['name' => 'Demo Region', 'main_branch_id' => '786']));
 
-print_r(getRegion('2')[1]);
+print_r($region->delete(4));
 
-print_this(getRegions([
-    ['name','like', 'Region'],
+print_r($region->find('id', 2)[1]);
+
+print_r($region->get()[1]);
+
+print_r($region->get([
+    ['name', 'like', 'Region'],
 ])[1]);
 
 */

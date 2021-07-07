@@ -1,23 +1,12 @@
 <?php
-/* 
-function addRegion($data)
-{
-    global $conn;
-    $query = $conn->prepare("INSERT INTO `regions`(name, zone_id, main_branch_id) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name), zone_id=VALUES(zone_id), main_branch_id=VALUES(main_branch_id)");
-    if (!$query) return [false, "Please contact Admin!: " . $conn->error];
-    $query->bind_param("sii", $data['name'], $data['zone_id'], $data['main_branch_id']);
-    $query->execute();
-    if (!empty($query->error)) return [false, $query->error];
-    else return [true, "Region Added Successfully!"];
-}
- */
-class Region
+
+class Hub
 {
     protected $table = [
-        "name" => "regions",
-        "title" => "Region",
-        "all_fields" => ["name", "zone_id", "main_branch_id"],
-        "req_fields" => ["name", "zone_id"],
+        "name" => "hubs",
+        "title" => "Hub",
+        "all_fields" => ["name", "detailed_address", "town", "city", "branch_id"],
+        "req_fields" => ["name", "branch_id"],
     ];
 
     // DB Functions
