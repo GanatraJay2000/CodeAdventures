@@ -13,6 +13,8 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS users (
     name varchar(255) NOT NULL,
     username varchar(255) NOT NULL UNIQUE,
     access_level varchar(255) NOT NULL,
+    roles varchar(255) NOT NULL,
+    phone_no BIGINT(10),
     password TEXT NOT NULL,
     otp varchar(255) DEFAULT 0
 )");
@@ -115,6 +117,8 @@ if (!$create) {
 
 
 
+
+
 //vendors table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS vendors(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
@@ -174,24 +178,24 @@ if (!$create) {
 
 
 //transactions table
-$create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
-    id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    emp_id INT(6),
-    vehicle_id INT(6),
-    site_id INT(6),
-    transaction_date datetime ,
-    amt_transfered BIGINT(10) UNSIGNED,
-    vehicle_start_km varchar(255),
-    vehicle_end_km varchar(255),
-    total_time_taken varchar(255)
-    -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE,
-    -- FOREIGN KEY(`vehicle_id`) REFERENCES vehicles(`id`) ON DELETE CASCADE,
-    -- FOREIGN KEY(`site_id`) REFERENCES sites(`id`) ON DELETE CASCADE
-)");
-if (!$create) {
-    print_r($conn->error);
-    die();
-}
+// $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
+//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+//     emp_id INT(6),
+//     vehicle_id INT(6),
+//     site_id INT(6),
+//     transaction_date datetime ,
+//     amt_transfered BIGINT(10) UNSIGNED,
+//     vehicle_start_km varchar(255),
+//     vehicle_end_km varchar(255),
+//     total_time_taken varchar(255)
+//     -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE,
+//     -- FOREIGN KEY(`vehicle_id`) REFERENCES vehicles(`id`) ON DELETE CASCADE,
+//     -- FOREIGN KEY(`site_id`) REFERENCES sites(`id`) ON DELETE CASCADE
+// )");
+// if (!$create) {
+//     print_r($conn->error);
+//     die();
+// }
 
 
 
@@ -223,19 +227,19 @@ if (!$create) {
 
 
 // transactions - add cash
-$create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_addcash(
-    id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    loading_date date,
-    type_of_loading varchar(255),
-    zone_name varchar(255),
-    region varchar(255),
-    location varchar(255)
+// $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_addcash(
+//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+//     loading_date date,
+//     type_of_loading varchar(255),
+//     zone_name varchar(255),
+//     region varchar(255),
+//     location varchar(255)
    
-)");
-if (!$create) {
-    print_r($conn->error);
-    die();
-}
+// )");
+// if (!$create) {
+//     print_r($conn->error);
+//     die();
+// }
 
 
 
