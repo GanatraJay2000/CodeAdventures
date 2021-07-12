@@ -1,6 +1,6 @@
 <?php
 require('../../config/config.php');
-if (!isset($_POST['id'])) header('Location: ./region.php');
+if (!isset($_POST['id'])) header('Location: ./regions.php');
 $region = $region->find('id', $_POST['id']);
 if (!$region[0]) {
     $_SESSION['alert']['danger'] = $region[1];
@@ -43,7 +43,7 @@ $zones = $zone->get();
                             </div>
 
                             <div class="col-md-12">
-                                <label for="zoneName" class="form-label">Zone</label>
+                                <!-- <label for="zoneName" class="form-label">Zone</label> -->
                                 <label for="zoneId" class="form-label">Zone</label>
                                 <select name="zoneId" id="zoneId" class="form-control" id="zoneId">
                                     <?php

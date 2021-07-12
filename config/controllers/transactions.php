@@ -5,8 +5,8 @@ class Transaction
     protected $table = [
         "name" => "transactions",
         "title" => "Transaction",
-        "all_fields" => ["emp_id", "vehicle_id", "site_id", "date", "amt_transfered", "vehicle_start_km", "vehicle_end_km", "total_time_taken"],
-        "req_fields" => ["emp_id", "vehicle_id", "site_id", "date", "amt_transfered", "vehicle_start_km", "vehicle_end_km", "total_time_taken"],
+        "all_fields" => ["emp_id", "date", "vehicle_id", "region_id", "branch_id", "service_type", "start_time","end_time","opening_km","closing_km","total_km","km_allowances"],
+        "req_fields" => ["emp_id", "vehicle_id", "date"],
     ];
 
     // DB Functions

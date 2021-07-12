@@ -13,7 +13,7 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS users (
     name varchar(255) NOT NULL,
     username varchar(255) NOT NULL UNIQUE,
     access_level varchar(255) NOT NULL,
-    roles varchar(255) NOT NULL,
+    roles varchar(255),
     phone_no BIGINT(10),
     password TEXT NOT NULL,
     otp varchar(255) DEFAULT 0
@@ -24,7 +24,7 @@ if (!$create) {
 }
 
 $su = password_hash($_ENV['PASS_DEFAULT'], PASSWORD_DEFAULT);
-$create = $conn->query("INSERT IGNORE INTO users VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 3, '$su', 00);");
+$create = $conn->query("INSERT IGNORE INTO users(id,name,username,access_level,password,otp) VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 3, '$su', 00);");
 if (!$create) {
     print_r($conn->error);
     die();
@@ -113,12 +113,6 @@ if (!$create) {
 // }
 
 
-
-
-
-
-
-
 //vendors table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS vendors(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
@@ -163,11 +157,11 @@ if (!$create) {
 //vehicles table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS vehicles(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    registeration_id varchar(255) NOT NULL,
+    registration_id varchar(255) NOT NULL,
     vehicle_type varchar(255) NOT NULL,
     details text,
-    vendor_id INT(6) NOT NULL,
-    hub_id INT(6) NOT NULL
+    vendor_id INT(6)
+    -- hub_id INT(6) NOT NULL
     -- FOREIGN KEY(`vendor_id`) REFERENCES vendors(`id`) ON DELETE CASCADE,
     -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE
 )");
@@ -201,16 +195,16 @@ if (!$create) {
 
 // SIPL Gujarat
 // transactions employee -DCV
-$create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_employee(
+$create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     emp_id INT(6),
-    date timestamp,
-    vehicle_no INT(6),
-    region text,
-    branch text,
+    date date,
+    vehicle_id INT(6),
+    region_id INT(6),
+    branch_id INT(6),
     service_type text,
-    start_time datetime,
-    end_time datetime,
+    start_time time,
+    end_time time,
     opening_km BIGINT(10) UNSIGNED,
     closing_km BIGINT(10) UNSIGNED,
     total_km  INT(6),
