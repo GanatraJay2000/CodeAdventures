@@ -1,4 +1,3 @@
-
 $color:#283136;
 $color: #194D9E;
 $color-light:#5265f7;
@@ -19,64 +18,77 @@ $color-darker:#1a3170;
 @import "./partials/sidebar";
 @import url("https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css");
 
-*{
+* {
     box-sizing: border-box;
 }
-html, body{
-    height:100%;
-    width:100%; 
+
+html,
+body {
+    height: 100%;
+    width: 100%;
 }
-body{
+
+body {
     background-color: #fafafa !important;
 }
+
 body * {
     font-family: 'Poppins', sans-serif;
 }
-.sh{
-    box-shadow:0px 0px .5rem #33333311;
-}
-.sh-dark{
-    box-shadow:0px 0px .5rem #33333322;
-}
-.sh-darker{
-    box-shadow:0px 0px .5rem #33333333;
+
+.sh {
+    box-shadow: 0px 0px .5rem #33333311;
 }
 
-.rounded-sm{
-    border-radius:0.5rem;
-}
-.rounded-md{
-    border-radius:0.75rem;
-}
-.rounded-lg{
-    border-radius:1rem;
+.sh-dark {
+    box-shadow: 0px 0px .5rem #33333322;
 }
 
-.not-on-desktop{
-    display:none;
+.sh-darker {
+    box-shadow: 0px 0px .5rem #33333333;
 }
-.not-on-mobile{
+
+.rounded-sm {
+    border-radius: 0.5rem;
+}
+
+.rounded-md {
+    border-radius: 0.75rem;
+}
+
+.rounded-lg {
+    border-radius: 1rem;
+}
+
+.not-on-desktop {
+    display: none;
+}
+
+.not-on-mobile {
     display: block;
 }
 
-.table-responsive .col-sm-12{
-    padding:0 !important;
+.table-responsive .col-sm-12 {
+    padding: 0 !important;
 }
 
-td{
-vertical-align: middle;
+td {
+    vertical-align: middle;
 }
 
 
-@media screen and (max-width: 768px){
-    .not-on-desktop{
+@media screen and (max-width: 768px) {
+    .not-on-desktop {
         display: block;
     }
-    .not-on-mobile{
-        display:none;
+
+    .not-on-mobile {
+        display: none;
     }
-    .content>.sh-darker, .content>.sh-dark, .content>.sh {
-        box-shadow:none;
+
+    .content>.sh-darker,
+    .content>.sh-dark,
+    .content>.sh {
+        box-shadow: none;
     }
 }
-

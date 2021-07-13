@@ -1,0 +1,16 @@
+  {
+    "name": "Attendance Management System",
+    "short_name": "AMS",
+    "start_url": "index.php",
+    "theme_color":"#ffffff",
+    "background_color":"#ffffff",
+    "display":"standalone",
+    "description": "Attendance Mangament System",
+    "icons":[{"src":"img/Somaiya Logo.png",
+        "sizes":"192x192",
+        "type":"image/png"},
+        {"src":"img/Somaiya Logo.png",
+            "sizes":"512x512",
+            "type":"image/png"}]
+   
+  }

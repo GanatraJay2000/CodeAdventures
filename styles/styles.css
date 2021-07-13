@@ -8080,7 +8080,8 @@ fieldset:disabled .btn {
 * {
   box-sizing: border-box; }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%; }
 
@@ -8125,5 +8126,7 @@ td {
     display: block; }
   .not-on-mobile {
     display: none; }
-  .content > .sh-darker, .content > .sh-dark, .content > .sh {
+  .content > .sh-darker,
+  .content > .sh-dark,
+  .content > .sh {
     box-shadow: none; } }
