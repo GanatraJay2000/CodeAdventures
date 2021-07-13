@@ -25,6 +25,7 @@ $color-darker:#1a3170;
 html, body{
     height:100%;
     width:100%; 
+    overflow-y: scroll;
 }
 body{
     background-color: #fafafa !important;
@@ -79,4 +80,11 @@ vertical-align: middle;
         box-shadow:none;
     }
 }
+@media screen and (max-width: 767px){ div.dataTables_wrapper div.dataTables_length,
+        div.dataTables_wrapper div.dataTables_filter,
+        div.dataTables_wrapper div.dataTables_info,
+        div.dataTables_wrapper div.dataTables_paginate {
+            text-align: center;
+            margin-top: 1rem;
+        }}
 

@@ -30,11 +30,15 @@ if (!$create) {
 
 
 
+
+
 //zone table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) UNIQUE NOT NULL,   
+    name varchar(255) UNIQUE NOT NULL, 
+    zone_manager text,  
     main_branch_id INT(6)
+    
     -- FOREIGN KEY(`main_branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE
  )");
 if (!$create) {
@@ -48,6 +52,7 @@ if (!$create) {
 $create = $conn->query("CREATE TABLE IF NOT EXISTS regions(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
+    region_manager text,
     zone_id INT(6) NOT NULL,    
     detailed_address varchar(255),
     main_branch_id INT(6),
@@ -65,8 +70,8 @@ if (!$create) {
 $create = $conn->query("CREATE TABLE IF NOT EXISTS branches(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
+    branch_manager text,
     detailed_address varchar(255),
-    town varchar(255),
     city varchar(255),
     region_id INT(6) NOT NULL,
     -- FOREIGN KEY(`region_id`) REFERENCES regions(`id`) ON DELETE CASCADE,
@@ -82,7 +87,6 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS hubs(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     detailed_address varchar(255),
-    town varchar(255),
     city varchar(255),
     branch_id INT(6) NOT NULL,
     -- FOREIGN KEY(`branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE,
@@ -94,20 +98,20 @@ if (!$create) {
 }
 
 //atm sites
-$create = $conn->query("CREATE TABLE IF NOT EXISTS sites(
-    id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) NOT NULL,
-    detailed_address varchar(255),
-    town varchar(255),
-    city varchar(255),
-    hub_id INT(6) NOT NULL,
-    -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE,
-    CONSTRAINT unique_name UNIQUE (name, hub_id)
-)");
-if (!$create) {
-    print_r($conn->error);
-    die();
-}
+// $create = $conn->query("CREATE TABLE IF NOT EXISTS sites(
+//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+//     name varchar(255) NOT NULL,
+//     detailed_address varchar(255),
+//     town varchar(255),
+//     city varchar(255),
+//     hub_id INT(6) NOT NULL,
+//     -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE,
+//     CONSTRAINT unique_name UNIQUE (name, hub_id)
+// )");
+// if (!$create) {
+//     print_r($conn->error);
+//     die();
+// }
 
 
 
@@ -131,7 +135,7 @@ if (!$create) {
 }
 
 
-//employees table
+//employees table vendor
 $create = $conn->query("CREATE TABLE IF NOT EXISTS employees(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
@@ -186,6 +190,33 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
     -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE,
     -- FOREIGN KEY(`vehicle_id`) REFERENCES vehicles(`id`) ON DELETE CASCADE,
     -- FOREIGN KEY(`site_id`) REFERENCES sites(`id`) ON DELETE CASCADE
+)");
+if (!$create) {
+    print_r($conn->error);
+    die();
+}
+
+
+
+// SIPL Gujarat
+//transactions employee -DCV
+$create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_employee(
+    id INT(6) PRIMARY KEY AUTO_INCREMENT,
+    emp_id INT(6),
+    date timestamp,
+    vehicle_no INT(6),
+    region text,
+    branch text,
+    service_type text,
+    start_time datetime,
+    end_time datetime,
+    opening_km BIGINT(10) UNSIGNED,
+    closing_km BIGINT(10) UNSIGNED,
+    total_km  INT(6),
+    km_allowances FLOAT(6)
+    -- FOREIGN KEY(`vehicle_no`) REFERENCES vehicles(`id`) ON DELETE CASCADE
+    -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE
+   
 )");
 if (!$create) {
     print_r($conn->error);
