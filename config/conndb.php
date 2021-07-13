@@ -32,12 +32,19 @@ if (!$create) {
 
 
 
+<<<<<<< HEAD
+
+
+//zone table
+=======
 // //zone table
+>>>>>>> b9dfcc1f10cfd9ee1ea170dc41786684b6d0b322
 $create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) UNIQUE NOT NULL, 
     zone_manager text,  
     main_branch_id INT(6)
+    
     -- FOREIGN KEY(`main_branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE
  )");
 if (!$create) {
@@ -111,6 +118,13 @@ if (!$create) {
 //     print_r($conn->error);
 //     die();
 // }
+<<<<<<< HEAD
+
+
+
+
+=======
+>>>>>>> b9dfcc1f10cfd9ee1ea170dc41786684b6d0b322
 
 
 //vendors table
@@ -220,6 +234,32 @@ if (!$create) {
 
 
 
+<<<<<<< HEAD
+// SIPL Gujarat
+//transactions employee -DCV
+$create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_employee(
+    id INT(6) PRIMARY KEY AUTO_INCREMENT,
+    emp_id INT(6),
+    date timestamp,
+    vehicle_no INT(6),
+    region text,
+    branch text,
+    service_type text,
+    start_time datetime,
+    end_time datetime,
+    opening_km BIGINT(10) UNSIGNED,
+    closing_km BIGINT(10) UNSIGNED,
+    total_km  INT(6),
+    km_allowances FLOAT(6)
+    -- FOREIGN KEY(`vehicle_no`) REFERENCES vehicles(`id`) ON DELETE CASCADE
+    -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE
+   
+)");
+if (!$create) {
+    print_r($conn->error);
+    die();
+}
+=======
 // transactions - add cash
 // $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_addcash(
 //     id INT(6) PRIMARY KEY AUTO_INCREMENT,
@@ -240,3 +280,4 @@ if (!$create) {
 // conveyance 
 
 
+>>>>>>> b9dfcc1f10cfd9ee1ea170dc41786684b6d0b322

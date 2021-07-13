@@ -20,6 +20,7 @@ else {
     <title>AMS Portal | CMS</title>
     <link rel="stylesheet" href="<?= $preUrl ?>styles/styles.css" class="css">
 
+
 </head>
 
 <body>
@@ -57,33 +58,31 @@ else {
                             <tbody>
                                 <?php if ($hasBranches) {
                                     foreach ($branches as $branch) { ?>
-                                <tr>
-                                    <td><?= $branch['id'] ?></td>
-                                    <td>
-                                        <form action="./view-branch.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $branch['id'] ?>">
-                                            <button class="btn"><?= $branch['name'] ?></button>
-                                        </form>
-                                    </td>
-                                    <td><?= $branch['detailed_address'] ?></td>
-                                    <td><?= $branch['town'] ?></td>
-                                    <td><?= $branch['city'] ?></td>
-                                    <td><?= $branch['region_id'] ?></td>
-                                    <td>
-                                        <form action="./edit-branch.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $branch['id'] ?>">
-                                            <button class="btn btn-warning btn-sm">Edit</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="./actions/delete-branch.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $branch['id'] ?>">
-                                            <button
-                                                onclick="return confirm('Are you sure you want to delete this branch?')"
-                                                class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                        <tr>
+                                            <td><?= $branch['id'] ?></td>
+                                            <td>
+                                                <form action="./view-branch.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $branch['id'] ?>">
+                                                    <button class="btn"><?= $branch['name'] ?></button>
+                                                </form>
+                                            </td>
+                                            <td><?= $branch['detailed_address'] ?></td>
+                                            <td><?= $branch['town'] ?></td>
+                                            <td><?= $branch['city'] ?></td>
+                                            <td><?= $branch['region_id'] ?></td>
+                                            <td>
+                                                <form action="./edit-branch.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $branch['id'] ?>">
+                                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="./actions/delete-branch.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $branch['id'] ?>">
+                                                    <button onclick="return confirm('Are you sure you want to delete this branch?')" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                 <?php }
                                 } ?>
                             </tbody>
@@ -102,15 +101,15 @@ else {
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-    $(document).ready(function() {
-        $('#example').DataTable({
-            columnDefs: [{
-                orderable: false,
-                targets: [-1, -2]
-            }]
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $(document).ready(function() {
+            $('#example').DataTable({
+                columnDefs: [{
+                    orderable: false,
+                    targets: [-1, -2]
+                }]
+            });
         });
-    });
     </script>
 
     <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>

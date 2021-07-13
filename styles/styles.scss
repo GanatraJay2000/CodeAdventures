@@ -85,6 +85,15 @@ td {
     .not-on-mobile {
         display: none;
     }
+}
+@media screen and (max-width: 767px){ 
+    div.dataTables_wrapper div.dataTables_length,
+    div.dataTables_wrapper div.dataTables_filter,
+    div.dataTables_wrapper div.dataTables_info,
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: center;
+        margin-top: 1rem;
+    }
 
     .content>.sh-darker,
     .content>.sh-dark,
