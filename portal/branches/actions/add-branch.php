@@ -9,14 +9,12 @@ if (!isset($_POST['branchName'])) {
 
 $name = $_POST['branchName'];
 $detailed_address = $_POST['detailedAddress'];
-$town = $_POST['town'];
 $city = $_POST['city'];
 $region_id = $_POST['regionId'];
 
 $add = $branch->add([
       'name' => $name,
       'detailed_address' => $detailed_address,
-      'town' => $town,
       'city' => $city,
       'region_id' => $region_id
 ]);

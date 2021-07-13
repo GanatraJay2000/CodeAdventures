@@ -35,11 +35,8 @@ require_once('../../config/config.php');
                                 <input required type="text" name="detailedAddress" class="form-control"
                                     id="detailedAddress">
                             </div>
-                            <div class="col-md-6">
-                                <label for="town" class="form-label">Town</label>
-                                <input required type="text" name="town" class="form-control" id="town">
-                            </div>
-                            <div class="col-md-6">
+                           
+                            <div class="col-md-12">
                                 <label for="city" class="form-label">City</label>
                                 <input required type="text" name="city" class="form-control" id="city">
                             </div>

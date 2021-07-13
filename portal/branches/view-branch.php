@@ -3,8 +3,8 @@ require('../../config/config.php');
 if (!isset($_POST['id'])) header('Location: ./branches.php');
 $branch = $branch->find('id', $_POST['id']);
 if (!$branch[0]) {
-      $_SESSION['alert']['danger'] = $branch[1];
-      header('Location: ./branches.php');
+    $_SESSION['alert']['danger'] = $branch[1];
+    header('Location: ./branches.php');
 }
 $branch = $branch[1];
 
@@ -49,10 +49,7 @@ $branch = $branch[1];
                                 <td><b>Address</b></td>
                                 <td><?= $branch['detailed_address'] ?></td>
                             </tr>
-                            <tr>
-                                <td><b>Town</b></td>
-                                <td><?= $branch['town'] ?></td>
-                            </tr>
+
                             <tr>
                                 <td><b>City</b></td>
                                 <td><?= $branch['city'] ?></td>
@@ -80,7 +77,7 @@ $branch = $branch[1];
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     </script>
 </body>
 

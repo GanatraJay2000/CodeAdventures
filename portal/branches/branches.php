@@ -48,7 +48,6 @@ else {
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Address</th>
-                                    <th>Town</th>
                                     <th>City</th>
                                     <th>Region Id</th>
                                     <th width="1px">Edit</th>
@@ -67,7 +66,6 @@ else {
                                                 </form>
                                             </td>
                                             <td><?= $branch['detailed_address'] ?></td>
-                                            <td><?= $branch['town'] ?></td>
                                             <td><?= $branch['city'] ?></td>
                                             <td><?= $branch['region_id'] ?></td>
                                             <td>

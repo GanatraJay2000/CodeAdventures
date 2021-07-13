@@ -48,7 +48,6 @@ else {
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Address</th>
-                                    <th>Town</th>
                                     <th>City</th>
                                     <th>Branch Id</th>
                                     <th width="1px">Edit</th>
@@ -67,7 +66,6 @@ else {
                                         </form>
                                     </td>
                                     <td><?= $hub['detailed_address'] ?></td>
-                                    <td><?= $hub['town'] ?></td>
                                     <td><?= $hub['city'] ?></td>
                                     <td><?= $hub['branch_id'] ?></td>
                                     <td>

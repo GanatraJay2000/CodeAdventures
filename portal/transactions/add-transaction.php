@@ -38,7 +38,7 @@ require_once('../../config/config.php');
 
                             <div class="col-md-12">
                                 <label for="vehicleNo" class="form-label">Vehicle No</label>
-                                <input type="number" name="vehicleNo" class="form-control" id="vehicleNo">
+                                <input type="text" name="vehicleNo" class="form-control" id="vehicleNo">
                             </div>
 
                             <div class="col-md-12">
@@ -61,25 +61,25 @@ require_once('../../config/config.php');
                                 <input type="time" name="startTime" class="form-control" id="startTime">
                             </div>
 
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <label for="endTime" class="form-label">End Time</label>
                                 <input type="time" name="endTime" class="form-control" id="endTime">
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12">
                                 <label for="openingKm" class="form-label">Opening Km</label>
                                 <input type="number" name="openingKm" class="form-control" id="openingKm">
                             </div>
 
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <label for="closingKm" class="form-label">Closing Km</label>
                                 <input type="number" name="closingKm" class="form-control" id="closingKm">
-                            </div>
+                            </div> -->
 
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <label for="totalKm" class="form-label">Total Km</label>
                                 <input type="number" name="totalKm" class="form-control" id="totalKm">
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12">
                                 <label for="kmAllowances" class="form-label">Km Allowances</label>

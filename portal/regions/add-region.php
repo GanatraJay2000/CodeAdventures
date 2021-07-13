@@ -38,11 +38,11 @@ $zones = $zone->get()[1];
                                     <?php
                                     if ($zones[0]) {
                                         foreach ($zones as $zone) { ?>
-                                    <option value="<?= $zone['id'] ?>"><?php echo $zone['name']; ?></option>
+                                            <option value="<?= $zone['id'] ?>"><?php echo $zone['name']; ?></option>
 
-                                    <?php }
+                                        <?php }
                                     } else { ?>
-                                    <option value="">No zones available</option>
+                                        <option value="">No zones available</option>
                                     <?php  } ?>
 
                                 </select>
@@ -83,10 +83,10 @@ $zones = $zone->get()[1];
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
     </script>
 </body>
 

@@ -9,14 +9,12 @@ if (!isset($_POST['hubName'])) {
 
 $name = $_POST['hubName'];
 $detailed_address = $_POST['detailedAddress'];
-$town = $_POST['town'];
 $city = $_POST['city'];
 $branch_id = $_POST['branchId'];
 
 $add = $hub->add([
       'name' => $name,
       'detailed_address' => $detailed_address,
-      'town' => $town,
       'city' => $city,
       'branch_id' => $branch_id
 ]);

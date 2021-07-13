@@ -43,12 +43,8 @@ $hub = $hub[1];
                                 <input required type="text" value="<?= $hub['detailed_address']  ?>"
                                     name="detailedAddress" class="form-control" id="detailedAddress">
                             </div>
-                            <div class="col-md-6">
-                                <label for="town" class="form-label">Town</label>
-                                <input required type="text" value="<?= $hub['town'] ?>" name="town" class="form-control"
-                                    id="town">
-                            </div>
-                            <div class="col-md-6">
+                           
+                            <div class="col-md-12">
                                 <label for="city" class="form-label">City</label>
                                 <input required type="text" value="<?= $hub['city'] ?>" name="city" class="form-control"
                                     id="city">

@@ -9,7 +9,6 @@ if (!isset($_POST['id'])) {
 $id = $_POST['id'];
 $name = $_POST['branchName'];
 $detailed_address = $_POST['detailedAddress'];
-$town = $_POST['town'];
 $city = $_POST['city'];
 $region_id = $_POST['regionId'];
 
@@ -18,7 +17,6 @@ $edit = $branch->update(
       [
             'name' => $name,
             'detailed_address' => $detailed_address,
-            'town' => $town,
             'city' => $city,
             'region_id' => $region_id
       ]

@@ -23,9 +23,9 @@ $color-darker:#1a3170;
     box-sizing: border-box;
 }
 html, body{
-    height:100%;
+    min-height:100%;
     width:100%; 
-    overflow-y: scroll;
+    // overflow-y: scroll;
 }
 body{
     background-color: #fafafa !important;
@@ -66,6 +66,18 @@ body * {
 
 td{
 vertical-align: middle;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 

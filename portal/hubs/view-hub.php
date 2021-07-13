@@ -50,10 +50,6 @@ $hub = $hub[1];
                                 <td><?= $hub['detailed_address'] ?></td>
                             </tr>
                             <tr>
-                                <td><b>Town</b></td>
-                                <td><?= $hub['town'] ?></td>
-                            </tr>
-                            <tr>
                                 <td><b>City</b></td>
                                 <td><?= $hub['city'] ?></td>
                             </tr>
