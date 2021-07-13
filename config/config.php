@@ -68,3 +68,7 @@ $region = new Region();
 $branch = new Branch();
 $hub = new Hub();
 $site = new Site();
+$vendor = new Vendor();
+$vehicle = new Vehicle();
+$employee = new Employee();
+$transaction = new Transaction();

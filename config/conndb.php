@@ -13,6 +13,8 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS users (
     name varchar(255) NOT NULL,
     username varchar(255) NOT NULL UNIQUE,
     access_level varchar(255) NOT NULL,
+    roles varchar(255),
+    phone_no BIGINT(10),
     password TEXT NOT NULL,
     otp varchar(255) DEFAULT 0
 )");
@@ -22,7 +24,7 @@ if (!$create) {
 }
 
 $su = password_hash($_ENV['PASS_DEFAULT'], PASSWORD_DEFAULT);
-$create = $conn->query("INSERT IGNORE INTO users VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 3, '$su', 00);");
+$create = $conn->query("INSERT IGNORE INTO users(id,name,username,access_level,password,otp) VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 3, '$su', 00);");
 if (!$create) {
     print_r($conn->error);
     die();
@@ -30,9 +32,13 @@ if (!$create) {
 
 
 
+<<<<<<< HEAD
 
 
 //zone table
+=======
+// //zone table
+>>>>>>> b9dfcc1f10cfd9ee1ea170dc41786684b6d0b322
 $create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) UNIQUE NOT NULL, 
@@ -112,10 +118,13 @@ if (!$create) {
 //     print_r($conn->error);
 //     die();
 // }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> b9dfcc1f10cfd9ee1ea170dc41786684b6d0b322
 
 
 //vendors table
@@ -162,11 +171,11 @@ if (!$create) {
 //vehicles table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS vehicles(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    registeration_id varchar(255) NOT NULL,
+    registration_id varchar(255) NOT NULL,
     vehicle_type varchar(255) NOT NULL,
     details text,
-    vendor_id INT(6) NOT NULL,
-    hub_id INT(6) NOT NULL
+    vendor_id INT(6)
+    -- hub_id INT(6) NOT NULL
     -- FOREIGN KEY(`vendor_id`) REFERENCES vendors(`id`) ON DELETE CASCADE,
     -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE
 )");
@@ -177,19 +186,46 @@ if (!$create) {
 
 
 //transactions table
+// $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
+//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+//     emp_id INT(6),
+//     vehicle_id INT(6),
+//     site_id INT(6),
+//     transaction_date datetime ,
+//     amt_transfered BIGINT(10) UNSIGNED,
+//     vehicle_start_km varchar(255),
+//     vehicle_end_km varchar(255),
+//     total_time_taken varchar(255)
+//     -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE,
+//     -- FOREIGN KEY(`vehicle_id`) REFERENCES vehicles(`id`) ON DELETE CASCADE,
+//     -- FOREIGN KEY(`site_id`) REFERENCES sites(`id`) ON DELETE CASCADE
+// )");
+// if (!$create) {
+//     print_r($conn->error);
+//     die();
+// }
+
+
+
+// SIPL Gujarat
+// transactions employee -DCV
 $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     emp_id INT(6),
+    date date,
     vehicle_id INT(6),
-    site_id INT(6),
-    date datetime,
-    amt_transfered BIGINT(10) UNSIGNED,
-    vehicle_start_km varchar(255),
-    vehicle_end_km varchar(255),
-    total_time_taken varchar(255)
-    -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE,
-    -- FOREIGN KEY(`vehicle_id`) REFERENCES vehicles(`id`) ON DELETE CASCADE,
-    -- FOREIGN KEY(`site_id`) REFERENCES sites(`id`) ON DELETE CASCADE
+    region_id INT(6),
+    branch_id INT(6),
+    service_type text,
+    start_time time,
+    end_time time,
+    opening_km BIGINT(10) UNSIGNED,
+    closing_km BIGINT(10) UNSIGNED,
+    total_km  INT(6),
+    km_allowances FLOAT(6)
+    -- FOREIGN KEY(`vehicle_no`) REFERENCES vehicles(`id`) ON DELETE CASCADE
+    -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE
+   
 )");
 if (!$create) {
     print_r($conn->error);
@@ -198,6 +234,7 @@ if (!$create) {
 
 
 
+<<<<<<< HEAD
 // SIPL Gujarat
 //transactions employee -DCV
 $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_employee(
@@ -222,3 +259,25 @@ if (!$create) {
     print_r($conn->error);
     die();
 }
+=======
+// transactions - add cash
+// $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions_addcash(
+//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+//     loading_date date,
+//     type_of_loading varchar(255),
+//     zone_name varchar(255),
+//     region varchar(255),
+//     location varchar(255)
+   
+// )");
+// if (!$create) {
+//     print_r($conn->error);
+//     die();
+// }
+
+
+
+// conveyance 
+
+
+>>>>>>> b9dfcc1f10cfd9ee1ea170dc41786684b6d0b322

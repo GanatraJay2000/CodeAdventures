@@ -5,8 +5,8 @@ class Vehicle
     protected $table = [
         "name" => "vehicles",
         "title" => "Vehicle",
-        "all_fields" => ["registration_id", "vehicle_type", "details", "vendor_id", "hub_id"],
-        "req_fields" => ["registration_id", "vehicle_type", "vendor_id", "hub_id"],
+        "all_fields" => ["registration_id", "vehicle_type", "details", "vendor_id"],
+        "req_fields" => ["registration_id", "vehicle_type", "vendor_id"],
     ];
 
     // DB Functions

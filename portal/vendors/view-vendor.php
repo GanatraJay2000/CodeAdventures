@@ -1,14 +1,14 @@
 <?php
 require('../../config/config.php');
-if (!isset($_POST['id'])) header('Location: ./regions.php');
-$region = $region->find('id', $_POST['id']);
-if (!$region[0]) {
-      $_SESSION['alert']['danger'] = $region[1];
-      header('Location: ./regions.php');
+if (!isset($_POST['id'])) header('Location: ./vendors.php');
+$vendor = $vendor->find('id', $_POST['id']);
+if (!$vendor[0]) {
+      $_SESSION['alert']['danger'] = $vendor[1];
+      header('Location: ./vendors.php');
 } else {
+      $vendor = $vendor[1];
+      $region = $region->find('id', $vendor['region_id']);
       $region = $region[1];
-      $zone = $zone->find('id', $region['zone_id']);
-      $zone = $zone[1];
 }
 
 ?>
@@ -31,43 +31,43 @@ if (!$region[0]) {
         <div class="content-wrapper">
             <?php require($preUrl . 'layouts/header.php'); ?>
             <div class="content p-md-5 p-0">
-                <a href="./regions.php" class="btn btn-dark px-5 my-4">
+                <a href="./vendors.php" class="btn btn-dark px-5 my-4">
                     <i class="fas fa-chevron-left    me-2"></i>
                     Return
                 </a>
                 <div class="bg-white rounded-md p-md-5 p-3 sh-darker">
-                    <h4>Region Details</h4>
+                    <h4>Vendor Details</h4>
 
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
                                 <td width="15%"><b>Id</b></td>
-                                <td><?= $region['id'] ?></td>
+                                <td><?= $vendor['id'] ?></td>
                             </tr>
                             <tr>
                                 <td><b>Name</b></td>
+                                <td><?= $vendor['name'] ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>Email</b></td>
+                                <td><?= $vendor['email'] ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>Phone Number</b></td>
+                                <td><?= $vendor['phone_no'] ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>No of Employees</b></td>
+                                <td><?= $vendor['no_of_employees'] ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>Region</b></td>
                                 <td><?= $region['name'] ?></td>
-                            </tr>
-                            <tr>
-                                <td><b>Zone</b></td>
-                                <td><?= $zone['name'] ?></td>
-                            </tr>
-                            <tr>
-                                <td><b>Branch Id</b></td>
-                                <td><?= $region['main_branch_id'] ?></td>
-                            </tr>
-                            <tr>
-                                <td><b>Address</b></td>
-                                <td><?= $region['detailed_address'] ?></td>
-                            </tr>
-                            <tr>
-                                <td><b>Phone No</b></td>
-                                <td><?= $region['phone_no'] ?></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <a href="./regions.php" class="d-none btn btn-outline-dark px-5 my-4">
+                <a href="./vendors.php" class="d-none btn btn-outline-dark px-5 my-4">
                     <i class="fas fa-chevron-left    me-2"></i>
                     Return
                 </a>
