@@ -8080,8 +8080,9 @@ fieldset:disabled .btn {
 * {
   box-sizing: border-box; }
 
-html, body {
-  min-height: 100%;
+html,
+body {
+  height: 100%;
   width: 100%; }
 
 body {
@@ -8134,9 +8135,7 @@ input[type=number] {
   .not-on-desktop {
     display: block; }
   .not-on-mobile {
-    display: none; }
-  .content > .sh-darker, .content > .sh-dark, .content > .sh {
-    box-shadow: none; } }
+    display: none; } }
 
 @media screen and (max-width: 767px) {
   div.dataTables_wrapper div.dataTables_length,
@@ -8144,4 +8143,8 @@ input[type=number] {
   div.dataTables_wrapper div.dataTables_info,
   div.dataTables_wrapper div.dataTables_paginate {
     text-align: center;
-    margin-top: 1rem; } }
+    margin-top: 1rem; }
+  .content > .sh-darker,
+  .content > .sh-dark,
+  .content > .sh {
+    box-shadow: none; } }
