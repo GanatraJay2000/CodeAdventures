@@ -53,7 +53,7 @@ $employee = $employee[1];
                                                 <td><b>Phone Number</b></td>
                                                 <td><?= $employee['phone_no'] ?></td>
                                           </tr>
-                                    
+
                                           <tr>
                                                 <td><b>Type</b></td>
                                                 <td><?= $employee['type'] ?></td>
@@ -93,6 +93,12 @@ $employee = $employee[1];
                                           <tr>
                                                 <td><b>Sunday Working Amt</b></td>
                                                 <td><?= $employee['sunday_working_amt'] ?></td>
+
+                                          </tr>
+                                          <tr>
+                                                <td><b>QR Code</b></td>
+                                                <td><img src="../qr/generate.php?id=<?= $employee['id'] ?>" style="border:5px solid;width:100%" /></td>
+
                                           </tr>
                                     </tbody>
                               </table>
