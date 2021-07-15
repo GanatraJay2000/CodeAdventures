@@ -5,8 +5,8 @@ class Employee
     protected $table = [
         "name" => "employees",
         "title" => "Employee",
-        "all_fields" => ["name", "email", "phone_no", "type", "hub_id", "vendor_id", "man_days", "actual_rate", "extra_hours", "extra_hours_amt", "base_amt", "no_of_working_sundays", "sunday_working_amt"],
-        "req_fields" => ["name", "email", "phone_no", "type", "hub_id", "vendor_id"],
+        "all_fields" => ["name", "email", "phone_no", "type", "vendor_id", "man_days", "actual_rate", "extra_hours", "extra_hours_amt", "base_amt", "no_of_working_sundays", "sunday_working_amt"],
+        "req_fields" => ["name", "email", "phone_no", "type", "vendor_id"],
     ];
 
     // DB Functions

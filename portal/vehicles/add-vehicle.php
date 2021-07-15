@@ -12,6 +12,8 @@ require_once('../../config/config.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMS Portal | CMS</title>
     <link rel="stylesheet" href="<?= $preUrl ?>styles/styles.css" class="css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
 
 </head>
 
@@ -33,7 +35,10 @@ require_once('../../config/config.php');
                             
                             <div class="col-md-12">
                                 <label for="type" class="form-label">Vehicle  Type</label>
-                                <input required type="text" name="type" class="form-control" id="type">
+                                <select name="type" id="type" class="form-control">
+                                    <option value="two-wheeler">Two Wheeler</option>
+                                    <option value="four-wheeler">Four Wheeler</option>
+                                </select>
                             </div>
 
                             <div class="col-md-12">
@@ -65,8 +70,12 @@ require_once('../../config/config.php');
     <script src="<?= $bJs ?>"></script>
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
     </script>
 </body>
 

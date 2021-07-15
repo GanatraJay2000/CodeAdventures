@@ -40,7 +40,11 @@ $vehicle = $vehicle[1];
                             
                             <div class="col-md-12">
                                 <label for="type" class="form-label">Vehicle  Type</label>
-                                <input required type="text" name="type" class="form-control" id="type"value = "<?=$vehicle['vehicle_type']?>">
+                                <select name="type" id="type" class="form-control">
+                                    <option value="<?=$vehicle['vehicle_type']?>" selected="selected"><?=$vehicle['vehicle_type']?></option>
+                                    <option value="two-wheeler">Two Wheeler</option>
+                                    <option value="four-wheeler">Four Wheeler</option>
+                                </select>
                             </div>
 
                             <div class="col-md-12">
