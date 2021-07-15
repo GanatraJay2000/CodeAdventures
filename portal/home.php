@@ -1,5 +1,7 @@
 <?php
 require_once('../config/config.php');
+
+if($active_user['access_level'] == 1) header('Location: ./employees/view-employee.php?id='.$active_user['emp_id']);
 ?>
 <!-- <a href="../auth/logout.php">Logout</a>
 <a href="register.php">Register</a> -->

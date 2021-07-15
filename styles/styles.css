@@ -8147,4 +8147,8 @@ input[type=number] {
   .content > .sh-darker,
   .content > .sh-dark,
   .content > .sh {
-    box-shadow: none; } }
+    box-shadow: none; }
+  .mobile-no-brsh {
+    border-radius: 0;
+    box-shadow: none !important;
+    background-color: transparent !important; } }

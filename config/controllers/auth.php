@@ -15,6 +15,12 @@ function addUser($name, $email, $type, $password){
     if($add) return "true";
     else return($conn->error);
 }
+function addUserWithId($id, $name, $email, $type, $password){
+    global $conn;
+    $add = $conn->query("INSERT INTO users(emp_id, name, username, access_level, password) VALUES({$id}, '$name', '$email', '$type', '$password')");
+    if($add) return "true";
+    else return($conn->error);
+}
 
 function updateUser($id, $field, $value){
     global $conn;    

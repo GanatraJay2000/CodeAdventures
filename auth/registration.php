@@ -30,7 +30,10 @@ $password = password_hash($_ENV['PASS_DEFAULT'], PASSWORD_DEFAULT);
 function goBack(){     
     header('Location: ../portal/register.php'); 
 }
-function goForward(){ header('Location: ../portal/register.php'); }
+function goForward(){ 
+    if(isset($_POST['redirect'])) header('Location: ../portal/employees/employees.php');
+    else header('Location: ../portal/register.php');
+ }
 
 if(!$conn){ 
     $_SESSION["registerFeedback"]["is"] = "danger";
@@ -47,7 +50,12 @@ if(!$conn){
         ];        
         goBack();            
     }else{
-        $added = addUser($name, $username, $type, $password);
+        if(isset($_POST['id'])){
+            $id = $_POST['id'];
+            $added = addUserWithId($id, $name, $username, $type, $password);
+        }else{
+            $added = addUser($name, $username, $type, $password);
+        }
         if($added === "true") {
             $_SESSION["registerFeedback"]["is"]="success";
             $_SESSION["registerFeedback"]["data"]["alert"]="User registered successfully!";

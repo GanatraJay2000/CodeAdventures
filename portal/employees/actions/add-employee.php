@@ -42,6 +42,17 @@ if (!$add[0]) {
       $_SESSION['alert']['danger'] = $add[1];
       header('Location: ../add-employee.php');
 } else {
-      $_SESSION['alert']['success'] = $add[1];
-      header('Location: ../employees.php');
+      $_SESSION['alert']['success'] = $add[1];        
+      $id = $conn->insert_id;
+?>
+<form action="../../../auth/registration.php" method="POST" id="form">
+<input type="hidden" name="redirect" value="True">
+<input type="hidden" value="<?= $id ?>" name="id">
+      <input type="hidden" value="<?= $name ?>" name="name">                            
+      <input type="hidden" name="type" value="1">
+      <input type="hidden" name="username" value="<?= $email ?>">                
+</form>
+<script>document.getElementById("form").submit();</script>
+      
+      <?php   
 }

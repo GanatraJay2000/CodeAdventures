@@ -16,6 +16,6 @@ $("#sideOpener").on("click",()=>{
     $(".app").toggleClass("clicked");        
 })    
 $(".sidebar ul li a.sideToggler").click(()=>{
-  $(".app").toggleClass("side-min");
+  // $(".app").toggleClass("side-min");
   $(".app").toggleClass("clicked");
 })

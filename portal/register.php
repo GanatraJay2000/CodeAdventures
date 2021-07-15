@@ -1,25 +1,26 @@
 <?php
 require('../config/config.php');
-if(!isset($_SESSION["registerFeedback"])){
+if($active_user['access_level'] < 10) header('Location: ../auth/login.php');
+if (!isset($_SESSION["registerFeedback"])) {
     $_SESSION["registerFeedback"] = [
-        "is"=>"",
-        "data"=>[
-            "alert"=>"",
+        "is" => "",
+        "data" => [
+            "alert" => "",
             "username" => [
-                "value"=>"",
-                "class"=>"",
-                "message"=>"Please provide a valid Username.",
+                "value" => "",
+                "class" => "",
+                "message" => "Please provide a valid Username.",
             ],
-            "name"=>[
-                "value"=>"",
-                "class"=>"",
-                "message"=>"Please provide a valid Name.",
+            "name" => [
+                "value" => "",
+                "class" => "",
+                "message" => "Please provide a valid Name.",
             ],
-            "type"=>[
-                "value"=>"",
-                "class"=>"",
-                "message"=>"Please provide a valid Type.",
-            ],           
+            "type" => [
+                "value" => "",
+                "class" => "",
+                "message" => "Please provide a valid Type.",
+            ],
         ]
     ];
 }
@@ -38,22 +39,19 @@ if(!isset($_SESSION["registerFeedback"])){
 </head>
 
 <body class="bg-primary d-flex align-items-center">
-    <div class="container col-md-7 col-10 rounded-lg  sh px-md-5 pt-md-5 p-3 leftBorder">
-        <?php 
-                    $crumbs = [
-                        ["title"=>"Home", "link"=>$preUrl."portal"],
-                        ["title"=>"Add a User"]
-                    ];
-                    $c=["white"];                    
-                    require($preUrl.'layouts/breadcrumbs.php');
-                    ?>
+    <div class="container col-md-7 col-10 rounded-lg  px-md-5 pt-md-5 p-3 leftBorder">
+        <?php
+        $crumbs = [
+            ["title" => "Home", "link" => $preUrl . "portal"],
+            ["title" => "Add a User"]
+        ];
+        $c = ["white"];
+        require($preUrl . 'layouts/breadcrumbs.php');
+        ?>
         <div class="card shadow-sm px-5 pt-5 pb-3">
             <h1 class="">Register a new User</h1>
-            <form action="../auth/registration.php" method="POST" class=" needs-validation" novalidate>
-                <?php if($_SESSION['loggedIn']['user']['access_level'] !== 3){ ?>
-                <input type="hidden" name="type" value="1">
-                <?php } ?>
-                <?php if(strlen($_SESSION["registerFeedback"]["data"]["alert"]) > 0){ ?>
+            <form action="../auth/registration.php" method="POST" class=" needs-validation" novalidate>            
+                <?php if (strlen($_SESSION["registerFeedback"]["data"]["alert"]) > 0) { ?>
                 <div class="mt-3 alert alert-<?php echo $_SESSION["registerFeedback"]["is"] ?> alert-dismissible fade show"
                     role="alert">
                     <?php echo $_SESSION["registerFeedback"]["data"]["alert"]; ?>
@@ -69,8 +67,7 @@ if(!isset($_SESSION["registerFeedback"])){
                     <div id="nameFeedback" class="invalid-feedback">
                         <?php echo $_SESSION["registerFeedback"]["data"]["name"]["message"] ?>
                     </div>
-                </div>
-                <?php if($_SESSION['loggedIn']['user']['access_level'] === 3){ ?>
+                </div>               
                 <div class="mb-4 pt-2 ">
                     <label for="type" class="form-label">Type</label>
                     <select type="text" value="<?php echo $failure["link_type"] ?? ''; ?>"
@@ -78,19 +75,55 @@ if(!isset($_SESSION["registerFeedback"])){
                         name="type" aria-describedby="typeFeedback" required>
 
                         <option value=""></option>
-                        <?php $types = ["user", "admin"];foreach($types as $type){ 
-                        if($type === $failure["link_type"]){ ?>
-                        <option value="<?php echo $type; ?>" selected><?php echo ucwords($type); ?></option>
-                        <?php }else{ ?>
-                        <option value="<?php echo $type; ?>"><?php echo ucwords($type); ?></option>
-                        <?php }} ?>
+                        <?php $access_levels = [
+                            [
+                                "Custodian"=>1, "Arm Gaurd"=>1, "Vault Guy"=>1
+                            ],
+                            [
+                                "Hub Manager"=>10, "Hub Employee"=>10, 
+                            ],
+                            [
+                                "Branch Employee"=>20, "Branch Manager"=>20, "Vendor Manager"=>14, "Vendor Employee"=>14,
+                            ],
+                            [
+                                "Region Manager"=>30, "Region Employee"=>30,
+                            ],
+                            [
+                                "Zone Manager"=>40, "Zone Employee"=>40
+                            ],                            
+                        ];                            
+                        $acl = 0;
+                        switch($active_user['access_level']){
+                            case $active_user['access_level'] > 55:
+                                $acl = 5;
+                                break;  
+                            case $active_user['access_level'] > 45:
+                                $acl = 4;
+                                break;
+                            case $active_user['access_level'] > 35:
+                                $acl = 3;
+                                break;
+                            case $active_user['access_level'] > 25:
+                                $acl = 2;
+                                break;                                       
+                            case $active_user['access_level'] > 15:
+                                $acl = 1;
+                                break;                                                                                                              
+                            default:
+                                $acl = 0;                                
+                        }        
+                        
+                        print_r($acl);
+                        for($i=$acl;$i>=0;$i--) {
+                        foreach($access_levels[$i] as $key=>$t){?>
+                            <option value="<?php echo $t; ?>"><?php echo ucwords($key); ?></option>
+                        <?php } } ?>                                                                                                                          
 
                     </select>
                     <div id="typeFeedback" class="invalid-feedback">
                         <?php echo isset($failure['title']) ? "" : "Please provide a valid Type." ?>
                     </div>
-                </div>
-                <?php } ?>
+                </div>                
                 <div class="mb-4 pb-2 pt-2">
                     <label for="username" class="form-label">Username</label>
                     <input type="email"

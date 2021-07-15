@@ -11,6 +11,7 @@ $servername = $_ENV['DB_HOST'];
 $username = $_ENV['DB_USERNAME'];
 $password = $_ENV['DB_PASSWORD'];
 $dbname = $_ENV['DB_NAME'];
+// print_r($active_user);
 
 $allPages = [
     [
@@ -26,7 +27,7 @@ $allPages = [
         "class" => "zones",
         "icon" => "fas fa-globe-asia",
         "link" => $preUrl . "portal/zones/zones.php",
-        "access" => 1,
+        "access" => 45,
         "visible" => true,
     ],
     [
@@ -34,7 +35,7 @@ $allPages = [
         "class" => "regions",
         "icon" => "fas fa-map-marked-alt",
         "link" => $preUrl . "portal/regions/regions.php",
-        "access" => 1,
+        "access" => 35,
         "visible" => true,
     ],
     [
@@ -42,7 +43,7 @@ $allPages = [
         "class" => "branches",
         "icon" => "fas fa-sitemap",
         "link" => $preUrl . "portal/branches/branches.php",
-        "access" => 1,
+        "access" => 25,
         "visible" => true,
     ],
     [
@@ -50,7 +51,7 @@ $allPages = [
         "class" => "hubs",
         "icon" => "fas fa-university",
         "link" => $preUrl . "portal/hubs/hubs.php",
-        "access" => 1,
+        "access" => 15,
         "visible" => true,
     ],
     [
@@ -58,7 +59,7 @@ $allPages = [
         "class" => "vendors",
         "icon" => "fas fa-address-book",
         "link" => $preUrl . "portal/vendors/vendors.php",
-        "access" => 1,
+        "access" => 15,
         "visible" => true,
     ],
     [
@@ -68,31 +69,42 @@ $allPages = [
         "link" => $preUrl . "portal/vehicles/vehicles.php",
         "access" => 1,
         "visible" => true,
-    ],
-    [
-        "title" => "Employees",
-        "class" => "employees",
-        "icon" => "fas fa-user",
-        "link" => $preUrl . "portal/employees/employees.php",
-        "access" => 1,
-        "visible" => true,
-    ],
+    ],    
     [
         "title" => "Transactions",
         "class" => "transactions",
         "icon" => "fas fa-book",
         "link" => $preUrl . "portal/transactions/transactions.php",
-        "access" => 1,
-        "visible" => true,
-    ],
-    [
-        "title" => "Users",
-        "class" => "users",
-        "icon" => "fas fa-user",
-        "link" => $preUrl . "portal/home.php",
-        "access" => 1,
+        "access" => 15,
         "visible" => true,
     ],
 ];
+if(isset($active_user)){
+if($active_user['access_level'] > 1){
+    $arr = [
+        [
+            "title" => "Employees",
+            "class" => "employees",
+            "icon" => "fas fa-user",
+            "link" => $preUrl . "portal/employees/employees.php",
+            "access" => 1,
+            "visible" => true,
+        ]
+    ];    
+}
+else {
+    $arr = [
+        [
+            "title" => "Employees",
+            "class" => "employees",
+            "icon" => "fas fa-user",
+            "link" => $preUrl . "portal/employees/view-employee.php?id=".$active_user['emp_id'],
+            "access" => 1,
+            "visible" => true,
+        ]
+    ];
+}
+array_push($allPages, ...$arr);
+}
 $bJs = $preUrl . 'vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
 $jquery = $preUrl . 'vendor/components/jquery/jquery.min.js';

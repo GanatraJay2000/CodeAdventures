@@ -60,7 +60,8 @@ if(!$conn){
                     "username"=>$user["username"],
                     "name"=>$user["name"],
                     "access_level"=>$user["access_level"],
-                    "justLoggedIn"=>true
+                    "justLoggedIn"=>true,
+                    "emp_id"=>$user['emp_id'],
                 ]
             ]; 
             goForward($user["access_level"]);

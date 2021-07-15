@@ -10,10 +10,10 @@ if ($conn->connect_error) {
 //Users Table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS users (
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+    emp_id INT(6),
     name varchar(255) NOT NULL,
     username varchar(255) NOT NULL UNIQUE,
-    access_level varchar(255) NOT NULL,
-    roles varchar(255),
+    access_level varchar(255) NOT NULL,  
     phone_no BIGINT(10),
     password TEXT NOT NULL,
     otp varchar(255) DEFAULT 0
@@ -24,7 +24,7 @@ if (!$create) {
 }
 
 $su = password_hash($_ENV['PASS_DEFAULT'], PASSWORD_DEFAULT);
-$create = $conn->query("INSERT IGNORE INTO users(id,name,username,access_level,password,otp) VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 3, '$su', 00);");
+$create = $conn->query("INSERT IGNORE INTO users(id,name,username,access_level,password,otp) VALUES ('1', 'Super Admin', 'superadmin@ca.riidl', 100, '$su', 00);");
 if (!$create) {
     print_r($conn->error);
     die();
@@ -97,22 +97,6 @@ if (!$create) {
     die();
 }
 
-//atm sites
-// $create = $conn->query("CREATE TABLE IF NOT EXISTS sites(
-//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
-//     name varchar(255) NOT NULL,
-//     detailed_address varchar(255),
-//     town varchar(255),
-//     city varchar(255),
-//     hub_id INT(6) NOT NULL,
-//     -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE,
-//     CONSTRAINT unique_name UNIQUE (name, hub_id)
-// )");
-// if (!$create) {
-//     print_r($conn->error);
-//     die();
-// }
-
 
 //vendors table
 $create = $conn->query("CREATE TABLE IF NOT EXISTS vendors(
@@ -133,10 +117,10 @@ if (!$create) {
 
 //employees table vendor
 $create = $conn->query("CREATE TABLE IF NOT EXISTS employees(
-    id INT(6) PRIMARY KEY AUTO_INCREMENT,
+    id INT(6) PRIMARY KEY AUTO_INCREMENT,   
     name varchar(255) NOT NULL,
-    email varchar(255) NOT NULL UNIQUE,
-    phone_no BIGINT(10) NOT NULL UNIQUE,
+    email varchar(255) NOT NULL,
+    phone_no BIGINT(10) NOT NULL,
     type varchar(255) NOT NULL,
     hub_id INT(6) NOT NULL,
     vendor_id INT(6) NOT NULL,
@@ -146,7 +130,8 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS employees(
     extra_hours_amt BIGINT(10) UNSIGNED,
     base_amt BIGINT(10) UNSIGNED,
     no_of_working_sundays INT(6),
-    sunday_working_amt BIGINT(10) UNSIGNED
+    sunday_working_amt BIGINT(10) UNSIGNED,
+    CONSTRAINT unique_emailNo UNIQUE (email, phone_no)
     -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE,
     -- FOREIGN KEY(`vendor_id`) REFERENCES vendors(`id`) ON DELETE CASCADE
 )");
