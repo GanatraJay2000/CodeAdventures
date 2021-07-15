@@ -6,7 +6,7 @@ class Transaction
         "name" => "transactions",
         "title" => "Transaction",
         "all_fields" => ["emp_id", "date", "vehicle_id", "region_id", "branch_id", "service_type", "start_time","end_time","opening_km","closing_km","total_km","km_allowances"],
-        "req_fields" => ["emp_id", "vehicle_id", "date"],
+        "req_fields" => ["emp_id", "vehicle_id", "date","opening_km"],
     ];
 
     // DB Functions

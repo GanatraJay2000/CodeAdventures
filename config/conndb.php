@@ -138,7 +138,6 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS employees(
     email varchar(255) NOT NULL UNIQUE,
     phone_no BIGINT(10) NOT NULL UNIQUE,
     type varchar(255) NOT NULL,
-    hub_id INT(6) NOT NULL,
     vendor_id INT(6) NOT NULL,
     man_days INT(6) DEFAULT 0,
     actual_rate BIGINT(10) UNSIGNED,

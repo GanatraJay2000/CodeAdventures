@@ -6,12 +6,12 @@ if (!isset($_POST['id'])) {
       header('Location: ../edit-employee.php');
 }
 
+
 $id = $_POST['id'];
 $name = $_POST['name'];
 $email = $_POST['email'];
 $phoneNo = $_POST['phoneNo']; 
 $type = $_POST['type'];
-$hubId = $_POST['hubId'];
 $vendorId = $_POST['vendorId'];
 $manDays = empty($_POST['manDays']) ? null : $_POST['manDays'];
 $actualRate =empty($_POST['actualRate']) ? null :  $_POST['actualRate'];
@@ -29,7 +29,6 @@ $edit = $employee->update(
         'email' => $email,
         'phone_no'=>$phoneNo,
         'type'=>$type,
-        'hub_id'=>$hubId,
         'vendor_id'=>$vendorId,
         'man_days'=>$manDays,
         'actual_rate'=>$actualRate,

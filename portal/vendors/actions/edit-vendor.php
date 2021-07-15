@@ -6,6 +6,7 @@ if (!isset($_POST['id'])) {
       header('Location: ../edit-vendor.php');
 }
 
+
 $id = $_POST['id'];
 $name = $_POST['vendorName'];
 $email = $_POST['vendorEmail'];

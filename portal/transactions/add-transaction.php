@@ -67,7 +67,7 @@ require_once('../../config/config.php');
                             </div> -->
 
                             <div class="col-md-12">
-                                <label for="openingKm" class="form-label">Opening Km</label>
+                                <label for="openingKm" class="form-label" required>Opening Km</label>
                                 <input type="number" name="openingKm" class="form-control" id="openingKm">
                             </div>
 

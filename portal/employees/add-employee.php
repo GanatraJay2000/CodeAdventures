@@ -47,12 +47,7 @@ $zones = $zone->get()[1];
                                 <input required type="text" name="type" class="form-control" id="type">
                             </div>
 
-                            <div class="col-md-12">
-                                <label for="hubId" class="form-label">Hub ID</label>
-                                <input  type="number" name="hubId" class="form-control" id="hubId">
-                            </div>
-
-                            <div class="col-md-12">
+                                <div class="col-md-12">
                                 <label for="vendorId" class="form-label">Vendor Id</label>
                                 <input type="number" name="vendorId" class="form-control" id="vendorId">
                             </div>

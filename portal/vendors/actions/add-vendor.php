@@ -6,6 +6,7 @@ if (!isset($_POST['vendorName'])) {
       header('Location: ../add-vendor.php');
 }
 
+
 $name = $_POST['vendorName'];
 $email = $_POST['vendorEmail'];
 $phone_no = $_POST['phoneNo'];

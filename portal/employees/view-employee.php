@@ -59,10 +59,6 @@ $employee = $employee[1];
                                                 <td><?= $employee['type'] ?></td>
                                           </tr>
                                           <tr>
-                                                <td><b>Hub Id</b></td>
-                                                <td><?= $employee['hub_id'] ?></td>
-                                          </tr>
-                                          <tr>
                                                 <td><b>Vendor Id</b></td>
                                                 <td><?= $employee['vendor_id'] ?></td>
                                           </tr>
