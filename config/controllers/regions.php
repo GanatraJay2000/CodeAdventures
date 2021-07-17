@@ -4,8 +4,8 @@ class Region
     protected $table = [
         "name" => "regions",
         "title" => "Region",
-        "all_fields" => ["name", "zone_id", "detailed_address", "phone_no", "main_branch_id"],
-        "req_fields" => ["name", "zone_id"],
+        "all_fields" => ["name", "detailed_address", "phone_no", "main_branch_id"],
+        "req_fields" => ["name"],
     ];
 
     // DB Functions

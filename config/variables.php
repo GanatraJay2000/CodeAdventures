@@ -21,14 +21,14 @@ $allPages = [
         "access" => 1,
         "visible" => true,
     ],
-    [
-        "title" => "Zones",
-        "class" => "zones",
-        "icon" => "fas fa-globe-asia",
-        "link" => $preUrl . "portal/zones/zones.php",
-        "access" => 1,
-        "visible" => true,
-    ],
+    // [
+    //     "title" => "Zones",
+    //     "class" => "zones",
+    //     "icon" => "fas fa-globe-asia",
+    //     "link" => $preUrl . "portal/zones/zones.php",
+    //     "access" => 1,
+    //     "visible" => true,
+    // ],
     [
         "title" => "Regions",
         "class" => "regions",

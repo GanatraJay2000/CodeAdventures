@@ -1,21 +1,14 @@
 <?php
 require_once('../../config/config.php');
-$regions = select([
-    "select" => ["regions.id", "regions.name", "zones.name as zone"],
-    "from" => "regions",
-    "join" => [
-        [
-            "table" => "zones",
-            "on" => "zones.id = regions.zone_id",
-        ]
-    ],
-]);
+$regions = $region->get();
 $hasRegions = false;
 if (!$regions[0]) $_SESSION['alert']['danger'] = "No regions found!!";
 else {
     $regions = $regions[1];
     $hasRegions = true;
 }
+
+?>
 
 ?>
 
@@ -55,7 +48,6 @@ else {
                                 <tr>
                                     <th>Id</th>
                                     <th width="50%">Region</th>
-                                    <th>Zone</th>
                                     <th width="1px">Edit</th>
                                     <th width="1px">Delete</th>
                                 </tr>
@@ -63,32 +55,28 @@ else {
                             <tbody>
                                 <?php if ($hasRegions) {
                                     foreach ($regions as $region) { ?>
-                                <tr>
-                                    <td><?= $region['id'] ?></td>
-                                    <td>
-                                        <form action="./view-region.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $region['id'] ?>">
-                                            <button class="btn"><?= $region['name'] ?></button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <?= $region['zone']; ?>
-                                    </td>
-                                    <td>
-                                        <form action="./edit-region.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $region['id'] ?>">
-                                            <button class="btn btn-warning btn-sm">Edit</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="./actions/delete-region.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $region['id'] ?>">
-                                            <button
-                                                onclick="return confirm('Are you sure you want to delete this region?')"
-                                                class="btn btn-danger btn-sm">Delete</butto>
-                                        </form>
-                                    </td>
-                                </tr>
+                                        <tr>
+                                            <td><?= $region['id'] ?></td>
+                                            <td>
+                                                <form action="./view-region.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $region['id'] ?>">
+                                                    <button class="btn"><?= $region['name'] ?></button>
+                                                </form>
+                                            </td>
+                                           
+                                            <td>
+                                                <form action="./edit-region.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $region['id'] ?>">
+                                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="./actions/delete-region.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $region['id'] ?>">
+                                                    <button onclick="return confirm('Are you sure you want to delete this region?')" class="btn btn-danger btn-sm">Delete</butto>
+                                                </form>
+                                            </td>
+                                        </tr>
                                 <?php }
                                 } ?>
                             </tbody>
@@ -107,15 +95,15 @@ else {
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-    $(document).ready(function() {
-        $('#example').DataTable({
-            columnDefs: [{
-                orderable: false,
-                targets: [-1, -2]
-            }]
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $(document).ready(function() {
+            $('#example').DataTable({
+                columnDefs: [{
+                    orderable: false,
+                    targets: [-1, -2]
+                }]
+            });
         });
-    });
     </script>
 
     <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>

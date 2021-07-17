@@ -7,9 +7,7 @@ if (!$region[0]) {
     header('Location: ./regions.php');
 }
 $region = $region[1];
-$selectedZone = $zone->find('id', $region['zone_id']);
-$selectedZone = $selectedZone[1];
-$zones = $zone->get();
+
 ?>
 
 <!DOCTYPE html>
@@ -40,24 +38,6 @@ $zones = $zone->get();
                                 <label for="regionName" class="form-label">Region</label>
                                 <input required type="text" value="<?= $region['name'] ?>" name="regionName"
                                     class="form-control" id="regionName">
-                            </div>
-
-                            <div class="col-md-12">
-                                <!-- <label for="zoneName" class="form-label">Zone</label> -->
-                                <label for="zoneId" class="form-label">Zone</label>
-                                <select name="zoneId" id="zoneId" class="form-control" id="zoneId">
-                                    <?php
-                                    if ($zones[0]) {
-                                        $zones = $zones[1];
-                                        foreach ($zones as $zone) { ?>
-                                    <option value="<?= $zone['id'] ?>"><?php echo $zone['name']; ?></option>
-
-                                    <?php }
-                                    } else { ?>
-                                    <option value="">No zones available</option>
-                                    <?php  } ?>
-
-                                </select>
                             </div>
 
                             <div class="col-md-12">

@@ -7,14 +7,12 @@ if (!isset($_POST['regionName'])) {
 }
 
 $name = $_POST['regionName'];
-$zone_id = $_POST['zoneId'];
 $detailed_address = $_POST['address'];
 $phoneNo = $_POST['phoneNo'];
 $main_branch_id = empty($_POST['branchId']) ? null : $_POST['branchId'];
 
 $add = $region->add([
       'name' => $name,
-      'zone_id' => $zone_id,
       'detailed_address' => $detailed_address,
       'phone_no' => $phoneNo,
       'main_branch_id' => $main_branch_id
