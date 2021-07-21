@@ -67,44 +67,53 @@ $allPages = [
         "class" => "vehicles",
         "icon" => "fas fa-truck",
         "link" => $preUrl . "portal/vehicles/vehicles.php",
-        "access" => 1,
-        "visible" => true,
-    ],    
-    [
-        "title" => "Transactions",
-        "class" => "transactions",
-        "icon" => "fas fa-book",
-        "link" => $preUrl . "portal/transactions/transactions.php",
         "access" => 15,
         "visible" => true,
     ],
+
 ];
-if(isset($active_user)){
-if($active_user['access_level'] > 1){
-    $arr = [
-        [
-            "title" => "Employees",
-            "class" => "employees",
-            "icon" => "fas fa-user",
-            "link" => $preUrl . "portal/employees/employees.php",
-            "access" => 1,
-            "visible" => true,
-        ]
-    ];    
-}
-else {
-    $arr = [
-        [
-            "title" => "Employees",
-            "class" => "employees",
-            "icon" => "fas fa-user",
-            "link" => $preUrl . "portal/employees/view-employee.php?id=".$active_user['emp_id'],
-            "access" => 1,
-            "visible" => true,
-        ]
-    ];
-}
-array_push($allPages, ...$arr);
+if (isset($active_user)) {
+    if ($active_user['access_level'] > 1) {
+        $arr = [
+            [
+                "title" => "Employees",
+                "class" => "employees",
+                "icon" => "fas fa-user",
+                "link" => $preUrl . "portal/employees/employees.php",
+                "access" => 1,
+                "visible" => true,
+            ],
+            [
+                "title" => "Transactions",
+                "class" => "transactions",
+                "icon" => "fas fa-book",
+                "link" => $preUrl . "portal/transactions/transactions.php",
+                "access" => 15,
+                "visible" => true,
+            ],
+        ];
+    } else {
+        $arr = [
+            [
+                "title" => "QR",
+                "class" => "employees",
+                "icon" => "fas fa-user",
+                "link" => $preUrl . "portal/employees/view-employee.php?id=" . $active_user['emp_id'],
+                "access" => 1,
+                "visible" => true,
+            ],
+            [
+                "title" => "Transactions",
+                "class" => "transactions",
+                "icon" => "fas fa-book",
+                "link" => $preUrl .
+                    "portal/transactions/transactions.php",
+                "access" => 1,
+                "visible" => true,
+            ],
+        ];
+    }
+    array_push($allPages, ...$arr);
 }
 $bJs = $preUrl . 'vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
 $jquery = $preUrl . 'vendor/components/jquery/jquery.min.js';

@@ -1,11 +1,24 @@
 <?php
 require_once('../../config/config.php');
-$transactions =$transaction->get() ;
-$hasTransactions = false;
-if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Transactions found!!";
-else {
-    $transactions = $transactions[1];
-    $hasTransactions = true;
+$user_type = "admin";
+if ($active_user['access_level'] < 15) {
+    $user_type = "user";
+    $id = $active_user['emp_id'];
+    $transactions = $transaction->find("emp_id", $id);
+    $hasTransactions = false;
+    if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Transactions found!!";
+    else {
+        $transactions = $transactions[1];
+        $hasTransactions = true;
+    }
+} else {
+    $transactions = $transaction->get();
+    $hasTransactions = false;
+    if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Transactions found!!";
+    else {
+        $transactions = $transactions[1];
+        $hasTransactions = true;
+    }
 }
 
 ?>
@@ -32,12 +45,14 @@ else {
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h1 class="">Transactions</h1>
+                        <?php if ($user_type == "admin") { ?>
                         <div class="">
                             <a href="./add-transaction.php" class="btn btn-primary px-4">
                                 <i class="fas fa-plus me-2 "></i>
                                 Add Transaction
                             </a>
                         </div>
+                        <?php } ?>
                     </div>
                     <?php require('../../layouts/alert.php'); ?>
                     <div class="table-responsive">

@@ -5,8 +5,8 @@ class Transaction
     protected $table = [
         "name" => "transactions",
         "title" => "Transaction",
-        "all_fields" => ["emp_id", "date", "vehicle_id", "region_id", "branch_id", "service_type", "start_time","end_time","opening_km","closing_km","total_km","km_allowances"],
-        "req_fields" => ["emp_id", "vehicle_id", "date","opening_km"],
+        "all_fields" => ["emp_id", "date", "vehicle_id", "region_id", "branch_id", "service_type", "start_time", "end_time", "opening_km", "closing_km", "total_km", "km_allowances"],
+        "req_fields" => ["emp_id", "vehicle_id", "date", "opening_km"],
     ];
 
     // DB Functions
@@ -129,15 +129,21 @@ class Transaction
         else return [true, $batch];
     }
 
-    function get($conf = [])
+    function get($conf = [[], []])
     {
         global $conn;
         $data = [];
         $query = "SELECT * from `{$this->table['name']}`";
-        foreach ($conf as $key => $c) {
+        foreach ($conf[0] as $key => $c) {
             if (!$key) $query .= " WHERE " . $c[0] . ($c[1] == "like" ? " LIKE '%" : $c[1] . "'") . $c[2] . ($c[1] == "like" ? "%'" : "'");
             else $query .= " AND " . $c[0] . ($c[1] == "like" ? " LIKE '%" : $c[1] . "'") . $c[2] . ($c[1] == "like" ? "%'" : "'");
         }
+        if (gettype($conf[1]) !== null) {
+            foreach ($conf[1] as $x) {
+                $query .= " " . $x . " ";
+            }
+        }
+
         $query = $conn->query($query);
         if (!$query) return [false, "Please contact Admin!: " . $conn->error];
         if ($query->num_rows == 0) return [false, "No Such {$this->table['title']}"];
