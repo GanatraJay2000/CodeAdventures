@@ -7,8 +7,7 @@ if (!$region[0]) {
       header('Location: ./regions.php');
 } else {
       $region = $region[1];
-      $zone = $zone->find('id', $region['zone_id']);
-      $zone = $zone[1];
+     
 }
 
 ?>
@@ -48,11 +47,7 @@ if (!$region[0]) {
                                 <td><b>Name</b></td>
                                 <td><?= $region['name'] ?></td>
                             </tr>
-                            <tr>
-                                <td><b>Zone</b></td>
-                                <td><?= $zone['name'] ?></td>
-                            </tr>
-                            <tr>
+                                                        <tr>
                                 <td><b>Branch Id</b></td>
                                 <td><?= $region['main_branch_id'] ?></td>
                             </tr>

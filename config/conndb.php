@@ -33,18 +33,18 @@ if (!$create) {
 
 
 // //zone table
-$create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
-    id INT(6) PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) UNIQUE NOT NULL, 
-    zone_manager text,  
-    main_branch_id INT(6)
-    
-    -- FOREIGN KEY(`main_branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE
- )");
-if (!$create) {
-    print_r($conn->error);
-    die();
-}
+// $create = $conn->query("CREATE TABLE IF NOT EXISTS zones (
+//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+//     name varchar(255) UNIQUE NOT NULL, 
+//     zone_manager text,  
+//     main_branch_id INT(6)
+
+//     -- FOREIGN KEY(`main_branch_id`) REFERENCES branches(`id`) ON DELETE CASCADE
+//  )");
+// if (!$create) {
+//     print_r($conn->error);
+//     die();
+// }
 
 
 
@@ -52,8 +52,7 @@ if (!$create) {
 $create = $conn->query("CREATE TABLE IF NOT EXISTS regions(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
-    region_manager text,
-    zone_id INT(6) NOT NULL,    
+    region_manager text,    
     detailed_address varchar(255),
     main_branch_id INT(6),
     phone_no BIGINT(10) NOT NULL UNIQUE,
@@ -73,6 +72,8 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS branches(
     branch_manager text,
     detailed_address varchar(255),
     city varchar(255),
+    latitude varchar(255),
+    longitude varchar(255),
     region_id INT(6) NOT NULL,
     -- FOREIGN KEY(`region_id`) REFERENCES regions(`id`) ON DELETE CASCADE,
     CONSTRAINT unique_name UNIQUE (name, region_id) 
@@ -97,22 +98,39 @@ if (!$create) {
     die();
 }
 
-
-//vendors table
-$create = $conn->query("CREATE TABLE IF NOT EXISTS vendors(
+//atm sites
+$create = $conn->query("CREATE TABLE IF NOT EXISTS sites(
     id INT(6) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
-    email varchar(255) NOT NULL UNIQUE,
-    phone_no BIGINT(10) NOT NULL UNIQUE,
-    no_of_employees INT(6) NOT NULL,
-    region_id INT(6) NOT NULL,
-    -- FOREIGN KEY(`region_id`) REFERENCES regions(`id`) ON DELETE CASCADE,
-    CONSTRAINT unique_name UNIQUE (name, region_id)
+    detailed_address varchar(255),
+    city varchar(255),
+    latitude varchar(255),
+    longitude varchar(255)
+
+    -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE,
+    -- CONSTRAINT unique_name UNIQUE (name, hub_id)
 )");
 if (!$create) {
     print_r($conn->error);
     die();
 }
+
+
+//vendors table
+// $create = $conn->query("CREATE TABLE IF NOT EXISTS vendors(
+//     id INT(6) PRIMARY KEY AUTO_INCREMENT,
+//     name varchar(255) NOT NULL,
+//     email varchar(255) NOT NULL UNIQUE,
+//     phone_no BIGINT(10) NOT NULL UNIQUE,
+//     no_of_employees INT(6) NOT NULL,
+//     region_id INT(6) NOT NULL,
+//     -- FOREIGN KEY(`region_id`) REFERENCES regions(`id`) ON DELETE CASCADE,
+//     CONSTRAINT unique_name UNIQUE (name, region_id)
+// )");
+// if (!$create) {
+//     print_r($conn->error);
+//     die();
+// }
 
 
 //employees table vendor
@@ -193,7 +211,9 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
     opening_km BIGINT(10) UNSIGNED,
     closing_km BIGINT(10) UNSIGNED,
     total_km  INT(6),
-    km_allowances FLOAT(6)
+    km_allowances FLOAT(6),
+    expexted_km bigint(10)
+
     -- FOREIGN KEY(`vehicle_no`) REFERENCES vehicles(`id`) ON DELETE CASCADE
     -- FOREIGN KEY(`emp_id`) REFERENCES employees(`id`) ON DELETE CASCADE
    
