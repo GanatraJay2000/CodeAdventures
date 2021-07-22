@@ -2,6 +2,8 @@
 require_once('../../config/config.php');
 $zone = new Zone();
 $zones = $zone->get()[1];
+$vendor = new Vendor();
+$vendors = $vendor->get()[1];
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +33,7 @@ $zones = $zone->get()[1];
                                 <label for="name" class="form-label">Name</label>
                                 <input required type="text" name="name" class="form-control" id="name">
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input required type="email" name="email" class="form-control" id="email">
@@ -44,23 +46,29 @@ $zones = $zone->get()[1];
 
                             <div class="col-md-6">
                                 <label for="type" class="form-label">Type</label>
-                                <select class="form-select" required type="text" name="type"id="type">
+                                <select class="form-select" required type="text" name="type" id="type">
                                     <option value=""></option>
                                     <option value="Custodian">Custodian</option>
                                     <option value="Arm Guard">Arm Guard</option>
                                     <option value="Driver">Driver</option>
                                     <option value="Vault Guy">Vault Guy</option>
-                                </select>                                
+                                </select>
                             </div>
 
-                                <div class="col-md-12">
+                            <div class="col-md-12">
                                 <label for="vendorId" class="form-label">Vendor Id</label>
-                                <input type="number" name="vendorId" class="form-control" id="vendorId">
+                                <!-- <input type="number" name="vendorId" class="form-control" id="vendorId"> -->
+                                <select name="vendorId" class="form-select" id="vendorId">
+                                    <option value=""></option>
+                                    <?php foreach ($vendors as $v) { ?>
+                                    <option value="<?= $v['id'] ?>"><?= $v['name'] ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="manDays" class="form-label">Man Days</label>
-                                <input  type="number" name="manDays" class="form-control" id="manDays">
+                                <input type="number" name="manDays" class="form-control" id="manDays">
                             </div>
 
                             <div class="col-md-6">
@@ -68,29 +76,31 @@ $zones = $zone->get()[1];
                                 <input type="number" name="actualRate" class="form-control" id="actualRate">
                             </div>
 
-                             <div class="col-md-6">
+                            <div class="col-md-6">
                                 <label for="extraHours" class="form-label">Extra Hours</label>
-                                <input  type="number" name="extraHours" class="form-control" id="extraHours">
-                            </div> 
+                                <input type="number" name="extraHours" class="form-control" id="extraHours">
+                            </div>
 
                             <div class="col-md-6">
                                 <label for="extraHoursAmt" class="form-label">Extra Hours Amt</label>
                                 <input type="number" name="extraHoursAmt" class="form-control" id="extraHoursAmt">
-                            </div> 
+                            </div>
 
                             <div class="col-md-6">
                                 <label for="baseAmt" class="form-label">Base Amount</label>
-                                <input  type="number" name="baseAmt" class="form-control" id="baseAmt">
+                                <input type="number" name="baseAmt" class="form-control" id="baseAmt">
                             </div>
 
                             <div class="col-md-6">
                                 <label for="noOfWorkingSundays" class="form-label">No of Working Sundays</label>
-                                <input type="number" name="noOfWorkingSundays" class="form-control" id="noOfWorkingSundays">
-                            </div> 
+                                <input type="number" name="noOfWorkingSundays" class="form-control"
+                                    id="noOfWorkingSundays">
+                            </div>
 
                             <div class="col-md-6">
                                 <label for="sundaysWorkingAmt" class="form-label">Sundays Working Amount</label>
-                                <input  type="number" name="sundaysWorkingAmt" class="form-control" id="sundaysWorkingAmt">
+                                <input type="number" name="sundaysWorkingAmt" class="form-control"
+                                    id="sundaysWorkingAmt">
                             </div>
 
 

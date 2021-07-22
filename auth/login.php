@@ -28,6 +28,7 @@ if (!isset($_SESSION["loginFeedback"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | AMS</title>
+    <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="../styles/styles.css">
     </link>
     <style>
@@ -116,6 +117,27 @@ if (!isset($_SESSION["loginFeedback"])) {
                 }, false)
             })
     })()
+    </script>
+
+    <script type="module">
+    window.onload = () => {
+        'use strict';
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('sw.js');
+        }
+    }
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+        e.userChoice.then(function(choiceResult) {
+            console.log(choiceResult.outcome);
+            if (choiceResult.outcome == 'dismissed') {
+                console.log('User cancelled home screen install');
+            } else {
+                console.log('User added to home screen');
+            }
+        });
+    });
     </script>
 </body>
 

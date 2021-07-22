@@ -4,20 +4,45 @@ $user_type = "admin";
 if ($active_user['access_level'] < 15) {
     $user_type = "user";
     $id = $active_user['emp_id'];
-    $transactions = $transaction->find("emp_id", $id);
-    $hasTransactions = false;
-    if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Transactions found!!";
+    $conf = [
+        "select" => ["transactions.emp_id", "transactions.date", "employees.id as eid", "employees.name", "transactions.start_time", "transactions.end_time"],
+        "from" => "transactions",
+        "join" => [
+            [
+                "table" => "employees",
+                "on" => "transactions.emp_id = employees.id",
+            ]
+        ],
+        "conditions" => [
+            "transactions.emp_id =" . $id,
+        ]
+    ];
+    $transactions = select($conf);
+    $hasAttendance = false;
+    if (!$transactions[0]) $_SESSION['alert']['danger'] = $transactions[1];
     else {
         $transactions = $transactions[1];
-        $hasTransactions = true;
+        $hasAttendance = true;
     }
 } else {
-    $transactions = $transaction->get();
-    $hasTransactions = false;
-    if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Transactions found!!";
+    // $transactions = $transaction->get();
+    $conf = [
+        "select" => ["transactions.id", "transactions.emp_id", "transactions.date", "employees.id as eid", "employees.name", "transactions.start_time", "transactions.end_time"],
+        "from" => "transactions",
+        "join" => [
+            [
+                "table" => "employees",
+                "on" => "transactions.emp_id = employees.id",
+            ]
+        ],
+        "conditions" => []
+    ];
+    $transactions = select($conf);
+    $hasAttendance = false;
+    if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Attendance found!!";
     else {
         $transactions = $transactions[1];
-        $hasTransactions = true;
+        $hasAttendance = true;
     }
 }
 
@@ -32,6 +57,7 @@ if ($active_user['access_level'] < 15) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMS Portal | CMS</title>
     <link rel="stylesheet" href="<?= $preUrl ?>styles/styles.css" class="css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap5.min.css" class="css">
 
 </head>
 
@@ -44,12 +70,12 @@ if ($active_user['access_level'] < 15) {
                 <div class="rounded-md bg-white sh-darker border-0 p-md-5 p-3 ">
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h1 class="">Transactions</h1>
+                        <h1 class="">Attendance</h1>
                         <?php if ($user_type == "admin") { ?>
                         <div class="">
-                            <a href="./add-transaction.php" class="btn btn-primary px-4">
+                            <a href="<?= $link ?>" class="btn btn-primary px-4">
                                 <i class="fas fa-plus me-2 "></i>
-                                Add Transaction
+                                Add Attendance
                             </a>
                         </div>
                         <?php } ?>
@@ -59,27 +85,50 @@ if ($active_user['access_level'] < 15) {
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead class="table">
                                 <tr>
-                                    <th>Id</th>
-                                    <th width="50%">Employee Id</th>
+                                    <th>Sr. No.</th>
+                                    <th>Emp Id</th>
+                                    <th width="30%">Name</th>
+                                    <!-- <th>Site</th> -->
                                     <th>Date</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <?php if ($user_type != "user") { ?>
                                     <th width="1px">Edit</th>
                                     <th width="1px">Delete</th>
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($hasTransactions) {
-                                    foreach ($transactions as $transaction) { ?>
+                                <?php if ($hasAttendance) {
+                                    foreach ($transactions as $key => $transaction) { ?>
                                 <tr>
-                                    <td><?= $transaction['id'] ?></td>
-                                    <td>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $transaction['emp_id'] ?></td>
+                                    <?php if ($user_type != "user") { ?>
+                                    <!-- <td>
                                         <form action="./view-transaction.php" method="POST">
                                             <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
-                                            <button class="btn"><?= $transaction['emp_id'] ?></button>
+                                            <button class="btn"><?= $transaction['id'] ?></button>
                                         </form>
-                                    </td>
+                                    </td> -->
+                                    <?php } ?>
+                                    <td><?= $transaction['name'] ?></td>
+                                    <!-- <?php //} 
+                                                    ?> -->
+                                    <!-- <td>
+                                        <?= $transaction['site_id']; ?>
+                                    </td> -->
                                     <td>
                                         <?= $transaction['date']; ?>
                                     </td>
+                                    <td>
+                                        <?= $transaction['start_time']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $transaction['end_time']; ?>
+                                    </td>
+                                    <?php if ($user_type != "user") { ?>
+
                                     <td>
                                         <form action="./edit-transaction.php" method="POST">
                                             <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
@@ -94,6 +143,7 @@ if ($active_user['access_level'] < 15) {
                                                 class="btn btn-danger btn-sm">Delete</butto>
                                         </form>
                                     </td>
+                                    <?php } ?>
                                 </tr>
                                 <?php }
                                 } ?>
@@ -112,19 +162,55 @@ if ($active_user['access_level'] < 15) {
     <script src="<?= $bJs ?>"></script>
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
+    <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>
+
+
     <script>
     $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     $(document).ready(function() {
-        $('#example').DataTable({
+        var table = $('#example').DataTable({
             columnDefs: [{
                 orderable: false,
                 targets: [-1, -2]
-            }]
+            }],
+            "dom": 'Bfrtip',
+            buttons: [{
+                    extend: 'pdf',
+                    footer: true,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+
+
+                },
+                {
+                    extend: 'csv',
+                    footer: false,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+
+                },
+                {
+                    extend: 'excelHtml5',
+                    footer: false,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+                }
+            ],
         });
     });
     </script>
 
-    <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>
 </body>
 
 </html>

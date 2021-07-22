@@ -1,11 +1,11 @@
 <?php
 
-class Transaction
+class Attendance
 {
     protected $table = [
         "name" => "transactions",
-        "title" => "Transaction",
-        "all_fields" => ["emp_id", "date", "vehicle_id", "region_id", "branch_id", "service_type", "start_time", "end_time", "opening_km", "closing_km", "total_km", "km_allowances"],
+        "title" => "Attendance",
+        "all_fields" => ["emp_id", "date", "vehicle_id", "region_id", "branch_id", "site_id", "service_type", "start_time", "end_time", "opening_km", "closing_km", "total_km", "km_allowances"],
         "req_fields" => ["emp_id", "vehicle_id", "date", "opening_km"],
     ];
 
@@ -138,9 +138,13 @@ class Transaction
             if (!$key) $query .= " WHERE " . $c[0] . ($c[1] == "like" ? " LIKE '%" : $c[1] . "'") . $c[2] . ($c[1] == "like" ? "%'" : "'");
             else $query .= " AND " . $c[0] . ($c[1] == "like" ? " LIKE '%" : $c[1] . "'") . $c[2] . ($c[1] == "like" ? "%'" : "'");
         }
-        if (gettype($conf[1]) !== null) {
-            foreach ($conf[1] as $x) {
-                $query .= " " . $x . " ";
+        if (isset($conf[1])) {
+            if (gettype($conf[1]) !== null) {
+                if (count($conf[1]) > 0) {
+                    foreach ($conf[1] as $x) {
+                        $query .= " " . $x . " ";
+                    }
+                }
             }
         }
 

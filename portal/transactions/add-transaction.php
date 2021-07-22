@@ -1,5 +1,9 @@
 <?php
 require_once('../../config/config.php');
+$employee = new Employee();
+$emps = $employee->get()[1];
+$vehicle = new Vehicle();
+$ve = $vehicle->get()[1];
 ?>
 
 <!DOCTYPE html>
@@ -52,18 +56,24 @@ require_once('../../config/config.php');
                                     <input type="hidden" name="emp_start">
                                     <div class="col-md-12">
                                         <label for="empId" class="form-label">Employee Id</label>
-                                        <input required type="number" name="empId" class="form-control" id="empId">
+                                        <!-- <input required type="number" name="empId" class="form-control" id="empId"> -->
+                                        <select required name="empId" class="form-select" id="empId">
+                                            <option value=""></option>
+                                            <?php foreach ($emps as $emp) { ?>
+                                            <option value="<?= $emp['id'] ?>"><?= $emp['name'] ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
 
                                     <div class="col-md-12">
                                         <label for="date" class="form-label">Date</label>
                                         <input required type="date" name="date" class="form-control" id="date">
                                     </div>
-
+                                    <!-- 
                                     <div class="col-md-12">
-                                        <label for="serviceType" class="form-label">Service Type</label>
-                                        <input type="text" name="serviceType" class="form-control" id="serviceType">
-                                    </div>
+                                        <label for="serviceType" class="form-label">Site Id</label>
+                                        <input type="text" name="siteId" class="form-control" id="siteId">
+                                    </div> -->
 
                                     <div class="col-md-12">
                                         <label for="startTime" class="form-label">Start Time</label>
@@ -85,7 +95,13 @@ require_once('../../config/config.php');
                                     <input type="hidden" name="emp_end">
                                     <div class="col-md-12">
                                         <label for="empId" class="form-label">Employee Id</label>
-                                        <input required type="number" name="empId" class="form-control" id="empId">
+                                        <!-- <input required type="number" name="empId" class="form-control" id="empId"> -->
+                                        <select required name="empId" class="form-select" id="empId">
+                                            <option value=""></option>
+                                            <?php foreach ($emps as $emp) { ?>
+                                            <option value="<?= $emp['id'] ?>"><?= $emp['name'] ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
 
 
@@ -110,14 +126,21 @@ require_once('../../config/config.php');
                                 <form class="row g-3" action="./actions/add-transaction.php" method="POST">
                                     <input type="hidden" name="ve_start">
                                     <div class="col-md-12">
+                                        <label for="vehicleNo" class="form-label">Vehicle No</label>
+                                        <!-- <input type="text" name="vehicleNo" class="form-control" id="vehicleNo"> -->
+                                        <select required name="vehicleNo" class="form-select" id="vehicleNo">
+                                            <option value=""></option>
+                                            <?php foreach ($ve as $v) { ?>
+                                            <option value="<?= $v['id'] ?>"><?= $v['registration_id'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-12">
                                         <label for="date" class="form-label">Date</label>
                                         <input required type="date" name="date" class="form-control" id="date">
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <label for="vehicleNo" class="form-label">Vehicle No</label>
-                                        <input type="text" name="vehicleNo" class="form-control" id="vehicleNo">
-                                    </div>
 
                                     <div class="col-md-12">
                                         <label for="openingKm" class="form-label" required>Opening Km</label>
@@ -144,7 +167,13 @@ require_once('../../config/config.php');
                                     <input type="hidden" name="ve_end">
                                     <div class="col-md-12">
                                         <label for="vehicleNo" class="form-label">Vehicle No</label>
-                                        <input type="text" name="vehicleNo" class="form-control" id="vehicleNo">
+                                        <!-- <input type="text" name="vehicleNo" class="form-control" id="vehicleNo"> -->
+                                        <select required name="vehicleNo" class="form-select" id="vehicleNo">
+                                            <option value=""></option>
+                                            <?php foreach ($ve as $v) { ?>
+                                            <option value="<?= $v['id'] ?>"><?= $v['registration_id'] ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
 
 

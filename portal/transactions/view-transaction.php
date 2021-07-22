@@ -3,10 +3,10 @@ require('../../config/config.php');
 if (!isset($_POST['id'])) header('Location: ./transactions.php');
 $transaction = $transaction->find('id', $_POST['id']);
 if (!$transaction[0]) {
-      $_SESSION['alert']['danger'] = $transaction[1];
-      header('Location: ./transactions.php');
+    $_SESSION['alert']['danger'] = $transaction[1];
+    header('Location: ./transactions.php');
 } else {
-      $transaction = $transaction[1];
+    $transaction = $transaction[1];
 }
 
 ?>
@@ -34,12 +34,12 @@ if (!$transaction[0]) {
                     Return
                 </a>
                 <div class="bg-white rounded-md p-md-5 p-3 sh-darker">
-                    <h4>Transaction Details</h4>
+                    <h4>Attendance Details</h4>
 
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td width="15%"><b>Transaction ID</b></td>
+                                <td width="15%"><b>Attendance ID</b></td>
                                 <td><?= $transaction['id'] ?></td>
                             </tr>
                             <tr>
@@ -101,7 +101,7 @@ if (!$transaction[0]) {
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     </script>
 </body>
 

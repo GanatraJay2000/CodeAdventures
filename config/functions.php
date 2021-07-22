@@ -7,9 +7,9 @@ function sp($no = 1)
     }
 }
 
-function print_this($arr, $no = 1, $attr = "all")
+function print_this($arr, $no = 1, $attr = "all", $sort = true)
 {
-    ksort($arr);
+    if ($sort && gettype($arr) == "array") ksort($arr);
     foreach ($arr as $key => $a) {
         print_r($key);
         print_r(" ==> ");
@@ -18,6 +18,18 @@ function print_this($arr, $no = 1, $attr = "all")
         } else {
             print_r($a);
         }
+        for ($i = 0; $i < $no; $i++) {
+            echo "<br>";
+        }
+    }
+}
+function print_this_this($arr, $no = 2, $count = 1)
+{
+    ksort($arr);
+    foreach ($arr as $key => $a) {
+        print_r($key);
+        print_r(" ==> ");
+        print_this($a, $count, "all", false);
         for ($i = 0; $i < $no; $i++) {
             echo "<br>";
         }

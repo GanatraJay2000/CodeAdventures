@@ -11,6 +11,7 @@ $vehicleNo      = empty($_POST['vehicleNo']) ? null : $_POST['vehicleNo'];
 $date           = empty($_POST['date']) ? null : $_POST['date'];
 $regionId       = empty($_POST['regionId']) ? null : $_POST['regionId'];
 $branchId       = empty($_POST['branchId']) ? null :  $_POST['branchId'];
+$siteId        = empty($_POST['siteId']) ? null :  $_POST['siteId'];
 $serviceType    = empty($_POST['serviceType']) ? null :  $_POST['serviceType'];
 $startTime      = empty($_POST['startTime']) ? null : $_POST['startTime'];
 $endTime        = empty($_POST['endTime']) ? null : $_POST['endTime'];
@@ -27,6 +28,7 @@ if (isset($_POST['emp_start']) || isset($_POST['ve_start'])) {
             'vehicle_id' => $vehicleNo,
             'region_id' => $regionId,
             'branch_id' => $branchId,
+            'site_id' => $siteId,
             'service_type' => $serviceType,
             'start_time' => $startTime,
             'end_time' => $endTime,
@@ -89,7 +91,7 @@ if (!$add[0]) {
       $_SESSION['alert']['danger'] = $add[1];
       header('Location: ../add-transaction.php');
 } else {
-
       $_SESSION['alert']['success'] = $add[1];
-      header('Location: ../transactions.php');
+      if (isset($_POST['fromAuto'])) header('Location: ../../et');
+      else header('Location: ../transactions.php');
 }

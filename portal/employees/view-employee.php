@@ -1,16 +1,22 @@
 <?php
 require('../../config/config.php');
-if (!isset($_POST['id'])) {
-if (!isset($_GET['id'])) header('Location: ./employees.php');
+if ($active_user['access_level'] < 15) {
+    $id = $active_user['emp_id'];
+} else {
+    $id = $_POST['id'];
 }
-$id = $_POST['id']??$_GET['id'];
 $employee = $employee->find('id', $id);
 if (!$employee[0]) {
-      $_SESSION['alert']['danger'] = $employee[1];
-      header('Location: ./employees.php');
+    $_SESSION['alert']['danger'] = $employee[1];
+    // header('Location: ./employees.php');
 }
 $employee = $employee[1];
 
+if ($active_user['access_level'] < 15) {
+    $qr = $employee['otp'];
+} else {
+    $qr = $employee['id'];
+}
 ?>
 
 
@@ -39,7 +45,7 @@ $employee = $employee[1];
         <div class="content-wrapper">
             <?php require($preUrl . 'layouts/header.php'); ?>
             <div class="content p-md-5 p-0 pb-0 pb-md-0">
-                <?php if($active_user['access_level'] != 1){ ?>
+                <?php if ($active_user['access_level'] != 1) { ?>
                 <div class="text-center text-md-start">
                     <a href="./employees.php" class=" btn btn-outline-dark px-5 my-4">
                         <i class="fas fa-chevron-left    me-2"></i>
@@ -49,10 +55,10 @@ $employee = $employee[1];
                 <?php } ?>
                 <div class="col-md-6 col-12 mx-auto">
                     <div class="bg-white rounded-lg p-md-5  p-3  sh-darker mobile-no-brsh">
-                        <div class="col-md-8 col-12 mx-auto">                                                                                   
+                        <div class="col-md-8 col-12 mx-auto">
                             <a data-bs-toggle="collapse" href="#empDetails" role="button" aria-expanded="false"
-                                aria-controls="empDetails"><img src="../qr/generate.php?id=<?= $employee['id'] ?>"
-                                    alt="" id="qr"></a>
+                                aria-controls="empDetails"><img src="../qr/generate.php?id=<?= $qr ?>" alt=""
+                                    id="qr"></a>
                         </div>
                         <div class="collapse text-center" id="empDetails">
                             <div class="p-3"></div>
@@ -68,10 +74,6 @@ $employee = $employee[1];
                                         <tr>
                                             <td><b>Type</b></td>
                                             <td width="40%"><?= $employee['type'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Hub Id</b></td>
-                                            <td><?= $employee['hub_id'] ?></td>
                                         </tr>
                                         <tr>
                                             <td><b>Vendor Id</b></td>
@@ -126,10 +128,10 @@ $employee = $employee[1];
     </div>
 
 
-    
+
     <script>
     $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-    $("#qr").on("click", function(){
+    $("#qr").on("click", function() {
         $("#clickQr").toggleClass("d-none");
     })
     </script>

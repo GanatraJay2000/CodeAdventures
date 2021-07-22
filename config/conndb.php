@@ -148,6 +148,7 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS employees(
     base_amt BIGINT(10) UNSIGNED,
     no_of_working_sundays INT(6),
     sunday_working_amt BIGINT(10) UNSIGNED,
+    otp INT(10),
     CONSTRAINT unique_emailNo UNIQUE (email, phone_no)
     -- FOREIGN KEY(`hub_id`) REFERENCES hubs(`id`) ON DELETE CASCADE,
     -- FOREIGN KEY(`vendor_id`) REFERENCES vendors(`id`) ON DELETE CASCADE
@@ -205,6 +206,7 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS transactions(
     vehicle_id INT(6),
     region_id INT(6),
     branch_id INT(6),
+    site_id INT(6),
     service_type text,
     start_time time,
     end_time time,

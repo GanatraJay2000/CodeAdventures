@@ -1,4 +1,5 @@
 <?php
+header('Location: ./auth/login.php');
 require_once("./config/config.php");
 
 ?>

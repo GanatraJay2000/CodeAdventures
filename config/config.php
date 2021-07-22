@@ -71,4 +71,4 @@ $site = new Site();
 $vendor = new Vendor();
 $vehicle = new Vehicle();
 $employee = new Employee();
-$transaction = new Transaction();
+$transaction = new Attendance();

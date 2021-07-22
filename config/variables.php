@@ -54,14 +54,14 @@ $allPages = [
     //     "access" => 15,
     //     "visible" => true,
     // ],
-    // [
-    //     "title" => "Vendors",
-    //     "class" => "vendors",
-    //     "icon" => "fas fa-address-book",
-    //     "link" => $preUrl . "portal/vendors/vendors.php",
-    //     "access" => 15,
-    //     "visible" => true,
-    // ],
+    [
+        "title" => "Vendors",
+        "class" => "vendors",
+        "icon" => "fas fa-address-book",
+        "link" => $preUrl . "portal/vendors/vendors.php",
+        "access" => 15,
+        "visible" => true,
+    ],
     [
         "title" => "Vehicles",
         "class" => "vehicles",
@@ -84,7 +84,7 @@ if (isset($active_user)) {
                 "visible" => true,
             ],
             [
-                "title" => "Transactions",
+                "title" => "Attendance",
                 "class" => "transactions",
                 "icon" => "fas fa-book",
                 "link" => $preUrl . "portal/transactions/transactions.php",
@@ -94,16 +94,16 @@ if (isset($active_user)) {
         ];
     } else {
         $arr = [
+            // [
+            //     "title" => "QR",
+            //     "class" => "employees",
+            //     "icon" => "fas fa-user",
+            //     "link" => $preUrl . "portal/employees/view-employee.php",
+            //     "access" => 1,
+            //     "visible" => true,
+            // ],
             [
-                "title" => "QR",
-                "class" => "employees",
-                "icon" => "fas fa-user",
-                "link" => $preUrl . "portal/employees/view-employee.php?id=" . $active_user['emp_id'],
-                "access" => 1,
-                "visible" => true,
-            ],
-            [
-                "title" => "Transactions",
+                "title" => "Attendance",
                 "class" => "transactions",
                 "icon" => "fas fa-book",
                 "link" => $preUrl .

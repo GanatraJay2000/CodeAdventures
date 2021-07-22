@@ -1,11 +1,27 @@
 <?php
 require_once('../../config/config.php');
-$employees  = $employee->get(); 
+$vendor = new Vendor();
+$vendors = $vendor->get()[1];
+$employees  = $employee->get();
 $hasEmployees = false;
 if (!$employees[0]) $_SESSION['alert']['danger'] = "No employees found!!";
 else {
     $employees = $employees[1];
     $hasEmployees = true;
+}
+
+function vendorName($id)
+{
+    global $vendors;
+    $like = $id;
+    $result =  array_filter($vendors, function ($item) use ($like) {
+        if (stripos($item['id'], $like) !== false) {
+            return true;
+        }
+        return false;
+    });
+    $result = $result[0];
+    return $result['name'];
 }
 
 ?>
@@ -19,6 +35,7 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMS Portal | CMS</title>
     <link rel="stylesheet" href="<?= $preUrl ?>styles/styles.css" class="css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap5.min.css" class="css">
 
 </head>
 
@@ -47,6 +64,14 @@ else {
                                     <th>Id</th>
                                     <th width="50%">Employee</th>
                                     <th>Type</th>
+                                    <th>Vendor</th>
+                                    <th>Man Days</th>
+                                    <th>Actual Rate</th>
+                                    <th>Extra Hours</th>
+                                    <th>Extra Hours Amount</th>
+                                    <th>Base Amt</th>
+                                    <th>No of Working Sundays</th>
+                                    <th>Sunday Working Amount</th>
                                     <th width="1px">Edit</th>
                                     <th width="1px">Delete</th>
                                 </tr>
@@ -65,6 +90,17 @@ else {
                                     <td>
                                         <?= $employee['type']; ?>
                                     </td>
+                                    <!-- <?php //print_this($employee);
+                                                    //sp(); 
+                                                    ?> -->
+                                    <td><?= vendorName($employee['vendor_id']); ?></td>
+                                    <td><?= $employee['man_days']; ?></td>
+                                    <td><?= $employee['actual_rate']; ?></td>
+                                    <td><?= $employee['extra_hours']; ?></td>
+                                    <td><?= $employee['extra_hours_amt']; ?></td>
+                                    <td><?= $employee['base_amt']; ?></td>
+                                    <td><?= $employee['no_of_working_sundays']; ?></td>
+                                    <td><?= $employee['sunday_working_amt']; ?></td>
                                     <td>
                                         <form action="./edit-employee.php" method="POST">
                                             <input type="hidden" name="id" value="<?= $employee['id'] ?>">
@@ -97,19 +133,58 @@ else {
     <script src="<?= $bJs ?>"></script>
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
+    <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>
     <script>
     $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     $(document).ready(function() {
         $('#example').DataTable({
             columnDefs: [{
-                orderable: false,
-                targets: [-1, -2]
-            }]
+                    orderable: false,
+                    targets: [-1, -2]
+                },
+                {
+                    "targets": [3, 4, 5, 6, 7, 8, 9, 10],
+                    "visible": false,
+                },
+            ],
+            "dom": 'Bfrtip',
+            buttons: [{
+                    extend: 'pdf',
+                    footer: true,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                    }
+
+
+                },
+                {
+                    extend: 'csv',
+                    footer: false,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                    }
+
+                },
+                {
+                    extend: 'excelHtml5',
+                    footer: false,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                    }
+                }
+            ],
         });
     });
     </script>
 
-    <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>
 </body>
 
 </html>

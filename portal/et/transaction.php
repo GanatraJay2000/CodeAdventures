@@ -14,34 +14,33 @@ require_once('../../config/config.php');
 
 </head>
 
-<body>
-    <div class="app side-min">
-        
-        <div class="content-wrapper">
-            <div class="content p-md-5 p-0">
-                <div class="rounded-md bg-white sh-darker border-0 p-md-5 p-3 ">
-
-                    <div class="d-flex justify-content-center align-items-center mb-4 g-2">
-                        <div class="mx-4">
-                            <a href="./add-startTime.php" class="btn btn-primary" style="padding:2rem 10rem">
-                                Start Time
-                            </a>
-                        </div>
-
-                        <div class="mx-4">
-                            <a href="./add-endTime.php" class="btn btn-primary" style="padding:2rem 10rem">
-                                End Time
-                            </a>
-                        </div>
-                    </div>
-                    <?php require('../../layouts/alert.php'); ?>
-                    
+<body class="d-flex flex-column">
+    <div class="d-flex align-items-center h-100 justify-content-center">
+        <div class="">
+            <a class="m-3" href="../home.php">Go Back</a>
+            <div class="rounded-md bg-white sh-darker border-0 p-md-5 p-3 ">
+                <div class="pb-4">
                 </div>
-            </div>
-            <div class="mb-0 mt-auto">
-                <?php require($preUrl . 'layouts/footer.php'); ?>
+                <div class="d-flex justify-content-center align-items-center mb-4 g-2">
+                    <div class="mx-4">
+                        <a href="./add-startTime.php" class="btn btn-primary" style="padding:2rem 10rem">
+                            Start Time
+                        </a>
+                    </div>
+
+                    <div class="mx-4">
+                        <a href="./add-endTime.php" class="btn btn-primary" style="padding:2rem 10rem">
+                            End Time
+                        </a>
+                    </div>
+                </div>
+                <?php require('../../layouts/alert.php'); ?>
+
             </div>
         </div>
+    </div>
+    <div class="mb-0 mt-auto">
+        <?php require($preUrl . 'layouts/footer.php'); ?>
     </div>
 
 

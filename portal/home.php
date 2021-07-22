@@ -1,7 +1,7 @@
 <?php
 require_once('../config/config.php');
 
-if($active_user['access_level'] == 1) header('Location: ./employees/view-employee.php?id='.$active_user['emp_id']);
+if ($active_user['access_level'] == 1) header('Location: ./employees/view-employee.php');
 ?>
 <!-- <a href="../auth/logout.php">Logout</a>
 <a href="register.php">Register</a> -->
@@ -24,7 +24,8 @@ if($active_user['access_level'] == 1) header('Location: ./employees/view-employe
         <div class="content-wrapper">
             <?php require($preUrl . 'layouts/header.php'); ?>
             <div class="content p-md-5 p-0">
-
+                <a href="./et/transaction.php" class="btn btn-primary p-5 me-3">Automated Attendance</a>
+                <a href="./transactions/add-transaction.php" class="btn btn-outline-primary p-5">Manual Attendance</a>
             </div>
             <div class="mb-0 mt-auto">
                 <?php require($preUrl . 'layouts/footer.php'); ?>
@@ -37,7 +38,7 @@ if($active_user['access_level'] == 1) header('Location: ./employees/view-employe
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     </script>
 </body>
 
