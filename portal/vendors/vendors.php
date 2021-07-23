@@ -63,32 +63,30 @@ else {
                             <tbody>
                                 <?php if ($hasVendors) {
                                     foreach ($vendors as $vendor) { ?>
-                                <tr>
-                                    <td><?= $vendor['id'] ?></td>
-                                    <td>
-                                        <form action="./view-vendor.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $vendor['id'] ?>">
-                                            <button class="btn"><?= $vendor['name'] ?></button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <?= $vendor['region']; ?>
-                                    </td>
-                                    <td>
-                                        <form action="./edit-vendor.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $vendor['id'] ?>">
-                                            <button class="btn btn-warning btn-sm">Edit</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="./actions/delete-vendor.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $vendor['id'] ?>">
-                                            <button
-                                                onclick="return confirm('Are you sure you want to delete this vendor?')"
-                                                class="btn btn-danger btn-sm">Delete</butto>
-                                    </form>
-                                    </td>
-                                </tr>
+                                        <tr>
+                                            <td><?= $vendor['id'] ?></td>
+                                            <td>
+                                                <form action="./view-vendor.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $vendor['id'] ?>">
+                                                    <button class="btn"><?= $vendor['name'] ?></button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <?= $vendor['region']; ?>
+                                            </td>
+                                            <td>
+                                                <form action="./edit-vendor.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $vendor['id'] ?>">
+                                                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="./actions/delete-vendor.php" method="POST">
+                                                    <input type="hidden" name="id" value="<?= $vendor['id'] ?>">
+                                                    <button onclick="return confirm('Are you sure you want to delete this vendor?')" class="btn btn-danger btn-sm">Delete</butto>
+                                                </form>
+                                            </td>
+                                        </tr>
                                 <?php }
                                 } ?>
                             </tbody>
@@ -107,15 +105,15 @@ else {
     <script src="<?= $jquery ?>"></script>
     <script src="<?php echo $preUrl . "scripts/sidebar.js" ?>"></script>
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-    $(document).ready(function() {
-        $('#example').DataTable({
-            columnDefs: [{
-                orderable: false,
-                targets: [-1, -2]
-            }]
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $(document).ready(function() {
+            $('#example').DataTable({
+                columnDefs: [{
+                    orderable: false,
+                    targets: [-1, -2]
+                }]
+            });
         });
-    });
     </script>
 
     <script type="text/javascript" src="<?= $preUrl ?>scripts/datatables.min.js"></script>

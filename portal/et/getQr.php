@@ -20,7 +20,7 @@ function back($message)
 if (!$emp[0]) back("Scan Proper QR Code");
 $emp = $emp[1];
 
-if ($diff > 3600) back("Session Time Out");
+if ($diff > 30) back("Session Time Out");
 if (strval($qr) !== strval($emp['otp'])) back("Incorrect QR OTP");
 
 ?>

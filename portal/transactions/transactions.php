@@ -38,10 +38,23 @@ if ($active_user['access_level'] < 15) {
         "conditions" => []
     ];
     $transactions = select($conf);
+    $conf = [
+        "select" => ["transactions.id", "transactions.vehicle_id", "transactions.date", "vehicles.id as vid", "vehicles.registration_id", "transactions.opening_km", "transactions.closing_km", "transactions.total_km"],
+        "from" => "transactions",
+        "join" => [
+            [
+                "table" => "vehicles",
+                "on" => "transactions.vehicle_id = vehicles.id",
+            ]
+        ],
+        "conditions" => []
+    ];
+    $transactions2 = select($conf);
     $hasAttendance = false;
     if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Attendance found!!";
     else {
         $transactions = $transactions[1];
+        $transactions = array_merge($transactions, $transactions2[1]);
         $hasAttendance = true;
     }
 }
@@ -55,7 +68,7 @@ if ($active_user['access_level'] < 15) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMS Portal | CMS</title>
+    <title>Attendance Register | AMS Portal | CMS</title>
     <link rel="stylesheet" href="<?= $preUrl ?>styles/styles.css" class="css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap5.min.css" class="css">
 
@@ -73,7 +86,7 @@ if ($active_user['access_level'] < 15) {
                         <h1 class="">Attendance</h1>
                         <?php if ($user_type == "admin") { ?>
                         <div class="">
-                            <a href="<?= $link ?>" class="btn btn-primary px-4">
+                            <a href="./add-transaction.php" class="btn btn-primary px-4">
                                 <i class="fas fa-plus me-2 "></i>
                                 Add Attendance
                             </a>
@@ -86,9 +99,10 @@ if ($active_user['access_level'] < 15) {
                             <thead class="table">
                                 <tr>
                                     <th>Sr. No.</th>
-                                    <th>Emp Id</th>
-                                    <th width="30%">Name</th>
-                                    <!-- <th>Site</th> -->
+                                    <?php if ($user_type == "admin") { ?>
+                                    <th>Emp Id / Ve Id</th>
+                                    <th width="30%">Name / Registration No</th>
+                                    <?php } ?>
                                     <th>Date</th>
                                     <th>Start</th>
                                     <th>End</th>
@@ -103,36 +117,25 @@ if ($active_user['access_level'] < 15) {
                                     foreach ($transactions as $key => $transaction) { ?>
                                 <tr>
                                     <td><?= $key + 1 ?></td>
-                                    <td><?= $transaction['emp_id'] ?></td>
                                     <?php if ($user_type != "user") { ?>
-                                    <!-- <td>
-                                        <form action="./view-transaction.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
-                                            <button class="btn"><?= $transaction['id'] ?></button>
-                                        </form>
-                                    </td> -->
+                                    <td><?= $transaction['emp_id'] ?? $transaction['vehicle_id'] ?></td>
+                                    <td><?= $transaction['name'] ?? $transaction['registration_id'] ?></td>
                                     <?php } ?>
-                                    <td><?= $transaction['name'] ?></td>
-                                    <!-- <?php //} 
-                                                    ?> -->
-                                    <!-- <td>
-                                        <?= $transaction['site_id']; ?>
-                                    </td> -->
                                     <td>
                                         <?= $transaction['date']; ?>
                                     </td>
                                     <td>
-                                        <?= $transaction['start_time']; ?>
+                                        <?= $transaction['start_time'] ?? $transaction['opening_km']; ?>
                                     </td>
                                     <td>
-                                        <?= $transaction['end_time']; ?>
+                                        <?= $transaction['end_time'] ?? $transaction['closing_km'] ?? ""; ?>
                                     </td>
                                     <?php if ($user_type != "user") { ?>
 
                                     <td>
                                         <form action="./edit-transaction.php" method="POST">
                                             <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
-                                            <button class="btn btn-warning btn-sm">Edit</button>
+                                            <button class="btn btn-outline-primary btn-sm">Edit</button>
                                         </form>
                                     </td>
                                     <td>
@@ -176,6 +179,7 @@ if ($active_user['access_level'] < 15) {
     <script>
     $("." + "<?php echo $active_page; ?>").addClass("currentPage");
     $(document).ready(function() {
+        <?php if ($user_type == "admin") { ?>
         var table = $('#example').DataTable({
             columnDefs: [{
                 orderable: false,
@@ -188,8 +192,6 @@ if ($active_user['access_level'] < 15) {
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5]
                     }
-
-
                 },
                 {
                     extend: 'csv',
@@ -208,6 +210,14 @@ if ($active_user['access_level'] < 15) {
                 }
             ],
         });
+        <?php } else { ?>
+        var table = $('#example').DataTable({
+            columnDefs: [{
+                orderable: false,
+                targets: [-1, -2]
+            }],
+        });
+        <?php } ?>
     });
     </script>
 

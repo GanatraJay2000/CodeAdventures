@@ -71,7 +71,7 @@ else {
                                             <td>
                                                 <form action="./edit-branch.php" method="POST">
                                                     <input type="hidden" name="id" value="<?= $branch['id'] ?>">
-                                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                                    <button class="btn btn-outline-primary btn-sm">Edit</button>
                                                 </form>
                                             </td>
                                             <td>

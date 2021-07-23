@@ -65,6 +65,21 @@ class Employee
             return [true, "{$this->table['title']} Added Successfully!"];
     }
 
+    function updateBasic($qry, $data)
+    {
+        global $conn;
+        $cond = $qry[0] . "=" . $qry[1];
+        $qr = "";
+        foreach ($data as $key => $d) {
+            $qr .= " $key=$d, ";
+        }
+        $qr = substr($qr, 0, -2);
+        $subQuery = "UPDATE `{$this->table['name']}` SET {$qr} WHERE {$cond}";
+        $query = $conn->query($subQuery);
+        if (!$query) return [false, $conn->error];
+        else return [true, "success"];
+    }
+
     function update($qry, $data)
     {
         //Connection to DB
@@ -85,7 +100,6 @@ class Employee
         array_push($types, getBindString($qry[1]));
         $types = implode("", $types);
         $subQuery = substr($subQuery, 0, -2);
-
         //Calling-Executing the prepared statement
         $query = $conn->prepare("UPDATE `{$this->table['name']}` SET {$subQuery} WHERE {$qry[0]}=?");
         if (!$query) return [false, "Please contact Admin!: " . $conn->error];

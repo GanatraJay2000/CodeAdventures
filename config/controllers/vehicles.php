@@ -65,6 +65,23 @@ class Vehicle
             return [true, "{$this->table['title']} Added Successfully!"];
     }
 
+
+    function updateBasic($qry, $data)
+    {
+        global $conn;
+        $cond = $qry[0] . "=" . $qry[1];
+        $qr = "";
+        foreach ($data as $key => $d) {
+            $qr .= " $key=$d, ";
+        }
+        $qr = substr($qr, 0, -2);
+        $subQuery = "UPDATE `{$this->table['name']}` SET {$qr} WHERE {$cond}";
+        $query = $conn->query($subQuery);
+        if (!$query) return [false, $conn->error];
+        else return [true, "success"];
+    }
+
+
     function update($qry, $data)
     {
         //Connection to DB

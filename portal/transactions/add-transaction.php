@@ -55,7 +55,7 @@ $ve = $vehicle->get()[1];
                                 <form class="row g-3" action="./actions/add-transaction.php" method="POST">
                                     <input type="hidden" name="emp_start">
                                     <div class="col-md-12">
-                                        <label for="empId" class="form-label">Employee Id</label>
+                                        <label for="empId" class="form-label">Employee</label>
                                         <!-- <input required type="number" name="empId" class="form-control" id="empId"> -->
                                         <select required name="empId" class="form-select" id="empId">
                                             <option value=""></option>
@@ -147,10 +147,10 @@ $ve = $vehicle->get()[1];
                                         <input type="number" name="openingKm" class="form-control" id="openingKm">
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <label for="kmAllowances" class="form-label">Km Allowances</label>
                                         <input type="number" name="kmAllowances" class="form-control" id="kmAllowances">
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 ">
                                         <button type="submit" class="btn btn-primary px-5">Add</button>
                                     </div>
@@ -182,10 +182,10 @@ $ve = $vehicle->get()[1];
                                         <input type="number" name="closingKm" class="form-control" id="closingKm">
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <label for="totalKm" class="form-label">Total Km</label>
                                         <input type="number" name="totalKm" class="form-control" id="totalKm">
-                                    </div>
+                                    </div> -->
 
 
 

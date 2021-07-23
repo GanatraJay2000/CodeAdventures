@@ -56,7 +56,7 @@ $vendors = $vendor->get()[1];
                             </div>
 
                             <div class="col-md-12">
-                                <label for="vendorId" class="form-label">Vendor Id</label>
+                                <label for="vendorId" class="form-label">Vendor</label>
                                 <!-- <input type="number" name="vendorId" class="form-control" id="vendorId"> -->
                                 <select name="vendorId" class="form-select" id="vendorId">
                                     <option value=""></option>
@@ -68,7 +68,7 @@ $vendors = $vendor->get()[1];
 
                             <div class="col-md-6">
                                 <label for="manDays" class="form-label">Man Days</label>
-                                <input type="number" name="manDays" class="form-control" id="manDays">
+                                <input type="number" name="manDays" class="form-control" id="manDays" value="0">
                             </div>
 
                             <div class="col-md-6">
@@ -78,7 +78,7 @@ $vendors = $vendor->get()[1];
 
                             <div class="col-md-6">
                                 <label for="extraHours" class="form-label">Extra Hours</label>
-                                <input type="number" name="extraHours" class="form-control" id="extraHours">
+                                <input type="number" name="extraHours" class="form-control" id="extraHours" value="0">
                             </div>
 
                             <div class="col-md-6">
@@ -87,14 +87,9 @@ $vendors = $vendor->get()[1];
                             </div>
 
                             <div class="col-md-6">
-                                <label for="baseAmt" class="form-label">Base Amount</label>
-                                <input type="number" name="baseAmt" class="form-control" id="baseAmt">
-                            </div>
-
-                            <div class="col-md-6">
                                 <label for="noOfWorkingSundays" class="form-label">No of Working Sundays</label>
                                 <input type="number" name="noOfWorkingSundays" class="form-control"
-                                    id="noOfWorkingSundays">
+                                    id="noOfWorkingSundays" value="0">
                             </div>
 
                             <div class="col-md-6">
@@ -102,7 +97,10 @@ $vendors = $vendor->get()[1];
                                 <input type="number" name="sundaysWorkingAmt" class="form-control"
                                     id="sundaysWorkingAmt">
                             </div>
-
+                            <div class="col-md-6">
+                                <label for="baseAmt" class="form-label">Base Amount</label>
+                                <input type="number" name="baseAmt" class="form-control" id="baseAmt">
+                            </div>
 
                             <div class="col-12 ">
                                 <button type="submit" class="btn btn-primary px-5">Add</button>

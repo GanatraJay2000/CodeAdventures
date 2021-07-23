@@ -85,7 +85,6 @@ class Attendance
         array_push($types, getBindString($qry[1]));
         $types = implode("", $types);
         $subQuery = substr($subQuery, 0, -2);
-
         //Calling-Executing the prepared statement
         $query = $conn->prepare("UPDATE `{$this->table['name']}` SET {$subQuery} WHERE {$qry[0]}=?");
         if (!$query) return [false, "Please contact Admin!: " . $conn->error];

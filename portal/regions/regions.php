@@ -63,11 +63,11 @@ else {
                                                     <button class="btn"><?= $region['name'] ?></button>
                                                 </form>
                                             </td>
-                                           
+
                                             <td>
                                                 <form action="./edit-region.php" method="POST">
                                                     <input type="hidden" name="id" value="<?= $region['id'] ?>">
-                                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                                    <button class="btn btn-outline-primary btn-sm">Edit</button>
                                                 </form>
                                             </td>
                                             <td>
