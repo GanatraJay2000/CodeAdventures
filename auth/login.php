@@ -45,7 +45,7 @@ if (!isset($_SESSION["loginFeedback"])) {
             ["title" => "Home", "link" => $preUrl],
             ["title" => "Login"]
         ];
-        $c = ["white"];
+        $c = ["white", "white", "white"];
         require($preUrl . 'layouts/breadcrumbs.php');
         ?>
         <div class="card px-5 pt-5 pb-4 shadow-sm">
