@@ -57,6 +57,14 @@ if (isset($_POST['emp_start']) || isset($_POST['ve_start'])) {
             header('Location: ../add-transaction.php');
       } else {
             $tran = $tr[1][0];
+            $add = $transaction->update(
+                  [
+                        "id", $tran['id']
+                  ],
+                  [
+                        'end_time' => $endTime,
+                  ]
+            );
             // $extra_hours = $tran['start_time'];
             $date1 = date_create($endTime);
             $date2 = date_create($tran['start_time']);
@@ -69,25 +77,19 @@ if (isset($_POST['emp_start']) || isset($_POST['ve_start'])) {
                         "man_days" => "man_days + 1",
                         "extra_hours" => "extra_hours + " . $extra_hours,
                   ];
-            }
-            if ($isSunday) {
-                  $data_array['no_of_working_sundays'] = "no_of_working_sundays + 1";
-            }
-            $add = $transaction->update(
-                  [
-                        "id", $tran['id']
-                  ],
-                  [
-                        'end_time' => $endTime,
-                  ]
-            );
-            if ($add[0]) {
-                  $add = $employee->updateBasic(
-                        [
-                              "id", $empId
-                        ],
-                        $data_array
-                  );
+
+                  if ($isSunday) {
+                        $data_array['no_of_working_sundays'] = "no_of_working_sundays + 1";
+                  }
+
+                  if ($add[0]) {
+                        $add = $employee->updateBasic(
+                              [
+                                    "id", $empId
+                              ],
+                              $data_array
+                        );
+                  }
             }
       }
 } else if (isset($_POST['ve_end'])) {
@@ -129,12 +131,12 @@ if (isset($_POST['emp_start']) || isset($_POST['ve_start'])) {
             }
       }
 }
-
+print_r($add[1]);
 if (!$add[0]) {
       $_SESSION['alert']['danger'] = $add[1];
       header('Location: ../add-transaction.php');
 } else {
       $_SESSION['alert']['success'] = $add[1];
       if (isset($_POST['fromAuto'])) header('Location: ../../et');
-      else header('Location: ../transactions.php');
+      else header('Location: ../transactionees.php');
 }

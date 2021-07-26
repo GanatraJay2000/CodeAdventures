@@ -1,28 +1,28 @@
 <?php
 require('../config/config.php');
-if(isset($_POST['oldPass'])){
+if (isset($_POST['oldPass'])) {
     changePassword($_POST['oldPass'], $_POST['newPass'], $_POST['confPass']);
 }
-if(!isset($_SESSION["cpFeedback"])){
+if (!isset($_SESSION["cpFeedback"])) {
     $_SESSION["cpFeedback"] = [
-        "is"=>"",
-        "data"=>[
-            "alert"=>"",
+        "is" => "",
+        "data" => [
+            "alert" => "",
             "oldPass" => [
-                "value"=>"",
-                "class"=>"",
-                "message"=>"Please provide a valid Passwrod.",
+                "value" => "",
+                "class" => "",
+                "message" => "Please provide a valid Passwrod.",
             ],
-            "newPass"=>[
-                "value"=>"",
-                "class"=>"",
-                "message"=>"Please provide a valid Passwrod.",
+            "newPass" => [
+                "value" => "",
+                "class" => "",
+                "message" => "Please provide a valid Passwrod.",
             ],
-            "confPass"=>[
-                "value"=>"",
-                "class"=>"",
-                "message"=>"Please provide a valid Passwrod.",
-            ],           
+            "confPass" => [
+                "value" => "",
+                "class" => "",
+                "message" => "Please provide a valid Passwrod.",
+            ],
         ]
     ];
 }
@@ -44,17 +44,17 @@ if(!isset($_SESSION["cpFeedback"])){
 <body class="d-flex align-items-center bg-primary">
     <div class="container col-md-4 col-12">
         <?php
-            $crumbs = [
-                ["title"=>"Home", "link"=>$preUrl."portal"],
-                ["title"=>"Change Password"]
-            ];
-            $c = ["white", "white"];
-            require('../layouts/breadcrumbs.php'); ?>
+        $crumbs = [
+            ["title" => "Home", "link" => $preUrl . "portal"],
+            ["title" => "Change Password"]
+        ];
+        $c = ["white", "white", "white"];
+        require('../layouts/breadcrumbs.php'); ?>
         <div class=" card shadow-sm p-md-5 pb-md-0 p-3">
             <h3 class="text-center fw-light">Change Password</h3>
             <form action="" method="POST" class=" needs-validation" novalidate>
 
-                <?php if(strlen($_SESSION["cpFeedback"]["data"]["alert"]) > 0){ ?>
+                <?php if (strlen($_SESSION["cpFeedback"]["data"]["alert"]) > 0) { ?>
                 <div class="alert alert-<?php echo $_SESSION["cpFeedback"]["is"] ?> alert-dismissible fade show"
                     role="alert">
                     <?php echo $_SESSION["cpFeedback"]["data"]["alert"]; ?>

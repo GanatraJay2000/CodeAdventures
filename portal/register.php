@@ -1,6 +1,6 @@
 <?php
 require('../config/config.php');
-if($active_user['access_level'] < 10) header('Location: ../auth/login.php');
+if ($active_user['access_level'] < 10) header('Location: ../auth/login.php');
 if (!isset($_SESSION["registerFeedback"])) {
     $_SESSION["registerFeedback"] = [
         "is" => "",
@@ -45,12 +45,12 @@ if (!isset($_SESSION["registerFeedback"])) {
             ["title" => "Home", "link" => $preUrl . "portal"],
             ["title" => "Add a User"]
         ];
-        $c = ["white"];
+        $c = ["white", "white", "white"];
         require($preUrl . 'layouts/breadcrumbs.php');
         ?>
         <div class="card shadow-sm px-5 pt-5 pb-3">
             <h1 class="">Register a new User</h1>
-            <form action="../auth/registration.php" method="POST" class=" needs-validation" novalidate>            
+            <form action="../auth/registration.php" method="POST" class=" needs-validation" novalidate>
                 <?php if (strlen($_SESSION["registerFeedback"]["data"]["alert"]) > 0) { ?>
                 <div class="mt-3 alert alert-<?php echo $_SESSION["registerFeedback"]["is"] ?> alert-dismissible fade show"
                     role="alert">
@@ -67,7 +67,7 @@ if (!isset($_SESSION["registerFeedback"])) {
                     <div id="nameFeedback" class="invalid-feedback">
                         <?php echo $_SESSION["registerFeedback"]["data"]["name"]["message"] ?>
                     </div>
-                </div>               
+                </div>
                 <div class="mb-4 pt-2 ">
                     <label for="type" class="form-label">Type</label>
                     <select type="text" value="<?php echo $failure["link_type"] ?? ''; ?>"
@@ -77,26 +77,26 @@ if (!isset($_SESSION["registerFeedback"])) {
                         <option value=""></option>
                         <?php $access_levels = [
                             [
-                                "Custodian"=>1, "Arm Gaurd"=>1, "Vault Guy"=>1
+                                "Custodian" => 1, "Arm Gaurd" => 1, "Vault Guy" => 1
                             ],
                             [
-                                "Hub Manager"=>10, "Hub Employee"=>10, 
+                                "Hub Manager" => 10, "Hub Employee" => 10,
                             ],
                             [
-                                "Branch Employee"=>20, "Branch Manager"=>20, "Vendor Manager"=>14, "Vendor Employee"=>14,
+                                "Branch Employee" => 20, "Branch Manager" => 20, "Vendor Manager" => 14, "Vendor Employee" => 14,
                             ],
                             [
-                                "Region Manager"=>30, "Region Employee"=>30,
+                                "Region Manager" => 30, "Region Employee" => 30,
                             ],
                             [
-                                "Zone Manager"=>40, "Zone Employee"=>40
-                            ],                            
-                        ];                            
+                                "Zone Manager" => 40, "Zone Employee" => 40
+                            ],
+                        ];
                         $acl = 0;
-                        switch($active_user['access_level']){
+                        switch ($active_user['access_level']) {
                             case $active_user['access_level'] > 55:
                                 $acl = 5;
-                                break;  
+                                break;
                             case $active_user['access_level'] > 45:
                                 $acl = 4;
                                 break;
@@ -105,25 +105,26 @@ if (!isset($_SESSION["registerFeedback"])) {
                                 break;
                             case $active_user['access_level'] > 25:
                                 $acl = 2;
-                                break;                                       
+                                break;
                             case $active_user['access_level'] > 15:
                                 $acl = 1;
-                                break;                                                                                                              
+                                break;
                             default:
-                                $acl = 0;                                
-                        }        
-                        
+                                $acl = 0;
+                        }
+
                         print_r($acl);
-                        for($i=$acl;$i>=0;$i--) {
-                        foreach($access_levels[$i] as $key=>$t){?>
-                            <option value="<?php echo $t; ?>"><?php echo ucwords($key); ?></option>
-                        <?php } } ?>                                                                                                                          
+                        for ($i = $acl; $i >= 0; $i--) {
+                            foreach ($access_levels[$i] as $key => $t) { ?>
+                        <option value="<?php echo $t; ?>"><?php echo ucwords($key); ?></option>
+                        <?php }
+                        } ?>
 
                     </select>
                     <div id="typeFeedback" class="invalid-feedback">
                         <?php echo isset($failure['title']) ? "" : "Please provide a valid Type." ?>
                     </div>
-                </div>                
+                </div>
                 <div class="mb-4 pb-2 pt-2">
                     <label for="username" class="form-label">Username</label>
                     <input type="email"
