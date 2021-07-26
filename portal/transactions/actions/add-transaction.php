@@ -138,5 +138,5 @@ if (!$add[0]) {
 } else {
       $_SESSION['alert']['success'] = $add[1];
       if (isset($_POST['fromAuto'])) header('Location: ../../et');
-      else header('Location: ../transactionees.php');
+      else header('Location: ../transactions.php');
 }
