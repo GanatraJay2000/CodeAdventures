@@ -54,7 +54,9 @@ if ($active_user['access_level'] < 15) {
     if (!$transactions[0]) $_SESSION['alert']['danger'] = "No Attendance found!!";
     else {
         $transactions = $transactions[1];
-        $transactions = array_merge($transactions, $transactions2[1]);
+        $transactions = array_merge(
+            $transactions, $transactions2[1]
+        );
         $hasAttendance = true;
     }
 }
@@ -85,12 +87,12 @@ if ($active_user['access_level'] < 15) {
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h1 class="">Attendance</h1>
                         <?php if ($user_type == "admin") { ?>
-                        <div class="">
-                            <a href="./add-transaction.php" class="btn btn-primary px-4">
-                                <i class="fas fa-plus me-2 "></i>
-                                Add Attendance
-                            </a>
-                        </div>
+                            <div class="">
+                                <a href="./add-transaction.php" class="btn btn-primary px-4">
+                                    <i class="fas fa-plus me-2 "></i>
+                                    Add Attendance
+                                </a>
+                            </div>
                         <?php } ?>
                     </div>
                     <?php require('../../layouts/alert.php'); ?>
@@ -100,54 +102,53 @@ if ($active_user['access_level'] < 15) {
                                 <tr>
                                     <th>Sr. No.</th>
                                     <?php if ($user_type == "admin") { ?>
-                                    <th>Emp Id / Ve Id</th>
-                                    <th width="30%">Name / Registration No</th>
+                                        <th>Emp Id / Ve Id</th>
+                                        <th width="30%">Name / Registration No</th>
                                     <?php } ?>
                                     <th>Date</th>
                                     <th>Start</th>
                                     <th>End</th>
                                     <?php if ($user_type != "user") { ?>
-                                    <th width="1px">Edit</th>
-                                    <th width="1px">Delete</th>
+                                        <th width="1px">Edit</th>
+                                        <th width="1px">Delete</th>
                                     <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php if ($hasAttendance) {
                                     foreach ($transactions as $key => $transaction) { ?>
-                                <tr>
-                                    <td><?= $key + 1 ?></td>
-                                    <?php if ($user_type != "user") { ?>
-                                    <td><?= $transaction['emp_id'] ?? $transaction['vehicle_id'] ?></td>
-                                    <td><?= $transaction['name'] ?? $transaction['registration_id'] ?></td>
-                                    <?php } ?>
-                                    <td>
-                                        <?= $transaction['date']; ?>
-                                    </td>
-                                    <td>
-                                        <?= $transaction['start_time'] ?? $transaction['opening_km']; ?>
-                                    </td>
-                                    <td>
-                                        <?= $transaction['end_time'] ?? $transaction['closing_km'] ?? ""; ?>
-                                    </td>
-                                    <?php if ($user_type != "user") { ?>
+                                        <tr>
+                                            <td><?= $key + 1 ?></td>
+                                            <?php if ($user_type != "user") { ?>
+                                                <td><?= $transaction['emp_id'] ?? $transaction['vehicle_id'] ?></td>
+                                                <td><?= $transaction['name'] ?? $transaction['registration_id'] ?></td>
+                                            <?php } ?>
+                                            <td>
+                                                <?= $transaction['date']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $transaction['start_time'] ?? $transaction['opening_km']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $transaction['end_time'] ?? $transaction['closing_km'] ?? ""; ?>
+                                            </td>
+                                            <?php if ($user_type != "user") { ?>
 
-                                    <td>
-                                        <form action="./edit-transaction.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
-                                            <button class="btn btn-outline-primary btn-sm">Edit</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="./actions/delete-transaction.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
-                                            <button
-                                                onclick="return confirm('Are you sure you want to delete this transaction?')"
-                                                class="btn btn-danger btn-sm">Delete</butto>
-                                        </form>
-                                    </td>
-                                    <?php } ?>
-                                </tr>
+                                                <td>
+                                                    <form action="./edit-transaction.php" method="POST">
+                                                        <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
+                                                        <button class="btn btn-outline-primary btn-sm">Edit</button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form action="./actions/delete-transaction.php" method="POST">
+                                                        <input type="hidden" name="id" value="<?= $transaction['id'] ?>">
+                                                        <button onclick="return confirm('Are you sure you want to delete this transaction?')" class="btn btn-danger btn-sm">Delete</butto>
+                                                    </form>
+                                                </td>
+                                            <?php } ?>
+                                        </tr>
                                 <?php }
                                 } ?>
                             </tbody>
@@ -177,48 +178,48 @@ if ($active_user['access_level'] < 15) {
 
 
     <script>
-    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-    $(document).ready(function() {
-        <?php if ($user_type == "admin") { ?>
-        var table = $('#example').DataTable({
-            columnDefs: [{
-                orderable: false,
-                targets: [-1, -2]
-            }],
-            "dom": 'Bfrtip',
-            buttons: [{
-                    extend: 'pdf',
-                    footer: true,
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
-                    }
-                },
-                {
-                    extend: 'csv',
-                    footer: false,
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
-                    }
+        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+        $(document).ready(function() {
+            <?php if ($user_type == "admin") { ?>
+                var table = $('#example').DataTable({
+                    columnDefs: [{
+                        orderable: false,
+                        targets: [-1, -2]
+                    }],
+                    "dom": 'Bfrtip',
+                    buttons: [{
+                            extend: 'pdf',
+                            footer: true,
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4, 5]
+                            }
+                        },
+                        {
+                            extend: 'csv',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4, 5]
+                            }
 
-                },
-                {
-                    extend: 'excelHtml5',
-                    footer: false,
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
-                    }
-                }
-            ],
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4, 5]
+                            }
+                        }
+                    ],
+                });
+            <?php } else { ?>
+                var table = $('#example').DataTable({
+                    columnDefs: [{
+                        orderable: false,
+                        targets: [-1, -2]
+                    }],
+                });
+            <?php } ?>
         });
-        <?php } else { ?>
-        var table = $('#example').DataTable({
-            columnDefs: [{
-                orderable: false,
-                targets: [-1, -2]
-            }],
-        });
-        <?php } ?>
-    });
     </script>
 
 </body>
