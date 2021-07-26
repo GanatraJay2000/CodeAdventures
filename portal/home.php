@@ -23,9 +23,12 @@ if ($active_user['access_level'] == 1) header('Location: ./employees/view-employ
         <?php require($preUrl . 'layouts/sidebar.php'); ?>
         <div class="content-wrapper">
             <?php require($preUrl . 'layouts/header.php'); ?>
-            <div class="content p-md-5 p-0">
-                <a href="./et/transaction.php" class="btn btn-primary p-5 me-3">Automated Attendance</a>
-                <a href="./transactions/add-transaction.php" class="btn btn-outline-primary p-5">Manual Attendance</a>
+            <div class="content p-md-5 p-3">
+                <a href="./et/transaction.php"
+                    class="btn btn-primary p-5 me-md-5 me-0  col-12 col-md-4 mb-3 mb-md-0">Automated
+                    Attendance</a>
+                <a href="./transactions/add-transaction.php" class="btn btn-outline-primary p-5 col-12 col-md-4">Manual
+                    Attendance</a>
             </div>
             <div class="mb-0 mt-auto">
                 <?php require($preUrl . 'layouts/footer.php'); ?>

@@ -122,10 +122,9 @@ $create = $conn->query("CREATE TABLE IF NOT EXISTS vendors(
     name varchar(255) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
     phone_no BIGINT(10) NOT NULL UNIQUE,
-    no_of_employees INT(6) NOT NULL,
-    region_id INT(6) NOT NULL,
+    no_of_employees INT(6) NOT NULL,    
     -- FOREIGN KEY(`region_id`) REFERENCES regions(`id`) ON DELETE CASCADE,
-    CONSTRAINT unique_name UNIQUE (name, region_id)
+    CONSTRAINT unique_name UNIQUE (name)
 )");
 if (!$create) {
     print_r($conn->error);

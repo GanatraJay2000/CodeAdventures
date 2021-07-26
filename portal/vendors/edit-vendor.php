@@ -7,9 +7,6 @@ if (!$vendor[0]) {
     header('Location: ./vendors.php');
 }
 $vendor = $vendor[1];
-$selectedRegion = $region->find('id', $vendor['region_id']);
-$selectedRegion = $selectedRegion[1];
-$regions = $region->get();
 ?>
 
 <!DOCTYPE html>
@@ -56,26 +53,8 @@ $regions = $region->get();
 
                             <div class="col-md-12">
                                 <label for="noOfEmployees" class="form-label">No of Employees</label>
-                                <input required type="text" value="<?= $vendor['no_of_employees'] ?>" name="noOfEmployees"
-                                    class="form-control" id="noOfEmployees">
-                            </div>
-
-                            <div class="col-md-12">
-                                <label for="region" class="form-label">Region</label>
-                                <select name="regionId" id="regionId" class="form-control">
-                                    <option value="<?= $selectedRegion['id'] ?>" selected="selected"><?php echo $selectedRegion['name']; ?></option>
-                                    <?php
-                                    if ($regions[0]) {
-                                        $regions = $regions[1];
-                                        foreach ($regions as $region) { ?>
-                                    <option value="<?= $region['id'] ?>"><?php echo $region['name']; ?></option>
-
-                                    <?php }
-                                    } else { ?>
-                                    <option value="">No regions available</option>
-                                    <?php  } ?>
-
-                                </select>
+                                <input required type="text" value="<?= $vendor['no_of_employees'] ?>"
+                                    name="noOfEmployees" class="form-control" id="noOfEmployees">
                             </div>
 
                             <div class="col-12 ">

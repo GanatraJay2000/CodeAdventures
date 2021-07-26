@@ -1,2 +1,2 @@
 <?php
-header('Location: ./et/transaction.php');
+header('Location: ./transaction.php');

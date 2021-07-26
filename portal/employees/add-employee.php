@@ -1,7 +1,5 @@
 <?php
 require_once('../../config/config.php');
-$zone = new Zone();
-$zones = $zone->get()[1];
 $vendor = new Vendor();
 $vendors = $vendor->get()[1];
 ?>

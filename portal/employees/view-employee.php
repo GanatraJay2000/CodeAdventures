@@ -13,7 +13,8 @@ if (!$employee[0]) {
 $employee = $employee[1];
 
 if ($active_user['access_level'] < 15) {
-    $qr = $employee['otp'];
+    $qr = $employee['otp'] ??
+        $employee['id'];
 } else {
     $qr = $employee['id'];
 }

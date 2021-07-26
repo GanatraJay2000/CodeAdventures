@@ -12,16 +12,15 @@ $name = $_POST['vendorName'];
 $email = $_POST['vendorEmail'];
 $phone_no = $_POST['phoneNo'];
 $no_of_employees = $_POST['noOfEmployees'];
-$region_id = $_POST['regionId'];
+
 
 $edit = $vendor->update(
       ['id', $id],
       [
             'name' => $name,
-            'email'=>$email,
+            'email' => $email,
             'phone_no' => $phone_no,
-            'no_of_employees'=>$no_of_employees,
-            'region_id' => $region_id,
+            'no_of_employees' => $no_of_employees,
       ]
 );
 if (!$edit[0]) {

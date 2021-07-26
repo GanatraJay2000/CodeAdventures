@@ -12,10 +12,33 @@ require_once("./config/config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
     <title>AMS</title>
+    <style>
+    html,
+    body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+    }
+    </style>
 </head>
 
 <body>
-    <a href="./auth/login.php">Login</a>
+    <div class="">
+        <div class="img-container">
+            <img src="./img//ams.png" alt="AMS" height="300px">
+        </div>
+        <div class="" style="text-align:center">
+            <a style="text-decoration:none; color:black;font-family:sans-serif;border:1px solid; border-radius:10px;padding:1rem 2rem;"
+                href="./auth/login.php">Login</a>
+        </div>
+    </div>
 
     <script type="module">
     window.onload = () => {

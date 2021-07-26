@@ -57,9 +57,6 @@ $update = $employee->update(
 </head>
 
 <body>
-    <div class="otp">
-        <?php print_r($otp); ?>
-    </div>
     <form action="./getQr.php" method="POST" id="form">
         <input type="hidden" name="back" value="<?= $_POST['back']; ?>">
         <input type="hidden" name="id" value="<?= $_POST['id']; ?>">

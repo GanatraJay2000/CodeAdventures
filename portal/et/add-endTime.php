@@ -42,7 +42,9 @@ $employees = $employee->get()[1];
                             <form action="./scan.php" method="POST">
                                 <input type="hidden" name="id" value="<?= $emp['id'] ?>">
                                 <input type="hidden" name="back" value="end">
-                                <button class="btn btn-primary">Mark Attendance</button>
+                                <button class="btn btn-primary">Mark
+                                    <div class="not-on-mobile d-md-inline-block">Attendance</div>
+                                </button>
                             </form>
                         </td>
                     </tr>

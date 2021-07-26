@@ -63,11 +63,11 @@ if ($active_link[3] === 'portal') {
     }
 }
 
-$zone = new Zone();
-$region = new Region();
-$branch = new Branch();
-$hub = new Hub();
-$site = new Site();
+// $zone = new Zone();
+// $region = new Region();
+// $branch = new Branch();
+// $hub = new Hub();
+// $site = new Site();
 $vendor = new Vendor();
 $vehicle = new Vehicle();
 $employee = new Employee();

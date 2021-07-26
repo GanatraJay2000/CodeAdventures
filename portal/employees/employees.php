@@ -50,9 +50,9 @@ function vendorName($id)
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h1 class="">Employees</h1>
                         <div class="">
-                            <a href="./add-employee.php" class="btn btn-primary px-4">
-                                <i class="fas fa-plus me-2 "></i>
-                                Add Employee
+                            <a href="./add-employee.php" class="btn btn-primary px-md-4">
+                                <i class="fas fa-plus me-0 me-md-2 "></i>
+                                <div class="not-on-mobile d-md-inline-block">Add Employee</div>
                             </a>
                         </div>
                     </div>
@@ -79,41 +79,43 @@ function vendorName($id)
                             <tbody>
                                 <?php if ($hasEmployees) {
                                     foreach ($employees as $employee) { ?>
-                                        <tr>
-                                            <td><?= $employee['id'] ?></td>
-                                            <td>
-                                                <form action="./view-employee.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $employee['id'] ?>">
-                                                    <button class="btn"><?= $employee['name'] ?></button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <?= $employee['type']; ?>
-                                            </td>
-                                            <!-- <?php //print_this($employee);
+                                <tr>
+                                    <td><?= $employee['id'] ?></td>
+                                    <td>
+                                        <form action="./view-employee.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $employee['id'] ?>">
+                                            <button class="btn"><?= $employee['name'] ?></button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <?= $employee['type']; ?>
+                                    </td>
+                                    <!-- <?php //print_this($employee);
                                                     //sp(); 
                                                     ?> -->
-                                            <td><?= vendorName($employee['vendor_id']); ?></td>
-                                            <td><?= $employee['man_days']; ?></td>
-                                            <td><?= $employee['actual_rate']; ?></td>
-                                            <td><?= $employee['extra_hours']; ?></td>
-                                            <td><?= $employee['extra_hours_amt']; ?></td>
-                                            <td><?= $employee['base_amt']; ?></td>
-                                            <td><?= $employee['no_of_working_sundays']; ?></td>
-                                            <td><?= $employee['sunday_working_amt']; ?></td>
-                                            <td>
-                                                <form action="./edit-employee.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $employee['id'] ?>">
-                                                    <button class="btn btn-outline-primary btn-sm">Edit</button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form action="./actions/delete-employee.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $employee['id'] ?>">
-                                                    <button onclick="return confirm('Are you sure you want to delete this employee?')" class="btn btn-danger btn-sm">Delete</butto>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                    <td><?= vendorName($employee['vendor_id']); ?></td>
+                                    <td><?= $employee['man_days']; ?></td>
+                                    <td><?= $employee['actual_rate']; ?></td>
+                                    <td><?= $employee['extra_hours']; ?></td>
+                                    <td><?= $employee['extra_hours_amt']; ?></td>
+                                    <td><?= $employee['base_amt']; ?></td>
+                                    <td><?= $employee['no_of_working_sundays']; ?></td>
+                                    <td><?= $employee['sunday_working_amt']; ?></td>
+                                    <td>
+                                        <form action="./edit-employee.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $employee['id'] ?>">
+                                            <button class="btn btn-outline-primary btn-sm">Edit</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="./actions/delete-employee.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $employee['id'] ?>">
+                                            <button
+                                                onclick="return confirm('Are you sure you want to delete this employee?')"
+                                                class="btn btn-danger btn-sm">Delete</butto>
+                                        </form>
+                                    </td>
+                                </tr>
                                 <?php }
                                 } ?>
                             </tbody>
@@ -141,46 +143,46 @@ function vendorName($id)
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>
     <script>
-        $("." + "<?php echo $active_page; ?>").addClass("currentPage");
-        $(document).ready(function() {
-            $('#example').DataTable({
-                columnDefs: [{
-                        orderable: false,
-                        targets: [-1, -2]
-                    },
-                    {
-                        "targets": [3, 4, 5, 6, 7, 8, 9, 10],
-                        "visible": false,
-                    },
-                ],
-                "dom": 'Bfrtip',
-                buttons: [{
-                        extend: 'pdf',
-                        footer: true,
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                        }
-
-
-                    },
-                    {
-                        extend: 'csv',
-                        footer: false,
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                        }
-
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        footer: false,
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                        }
+    $("." + "<?php echo $active_page; ?>").addClass("currentPage");
+    $(document).ready(function() {
+        $('#example').DataTable({
+            columnDefs: [{
+                    orderable: false,
+                    targets: [-1, -2]
+                },
+                {
+                    "targets": [3, 4, 5, 6, 7, 8, 9, 10],
+                    "visible": false,
+                },
+            ],
+            "dom": 'Bfrtip',
+            buttons: [{
+                    extend: 'pdf',
+                    footer: true,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
                     }
-                ],
-            });
+
+
+                },
+                {
+                    extend: 'csv',
+                    footer: false,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                    }
+
+                },
+                {
+                    extend: 'excelHtml5',
+                    footer: false,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                    }
+                }
+            ],
         });
+    });
     </script>
 
 </body>

@@ -1,7 +1,5 @@
 <?php
 require_once('../../config/config.php');
-$region = new Region();
-$regions = $region->get()[1];
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +34,7 @@ $regions = $region->get()[1];
                                 <label for="vendorEmail" class="form-label">Email</label>
                                 <input required type="text" name="vendorEmail" class="form-control" id="vendorEmail">
                             </div>
-                            
+
 
                             <div class="col-md-12">
                                 <label for="phoneNo" class="form-label">Phone Number</label>
@@ -45,25 +43,10 @@ $regions = $region->get()[1];
 
                             <div class="col-md-12">
                                 <label for="noOfEmployees" class="form-label">No of Employees</label>
-                                <input required type="number" name="noOfEmployees" class="form-control" id="noOfEmployees">
+                                <input required type="number" name="noOfEmployees" class="form-control"
+                                    id="noOfEmployees">
                             </div>
 
-                            <div class="col-md-12">
-                            <label for="regionId" class="form-label">Region</label>
-                                <select name="regionId" id="regionId" class="form-control" id="regionId">
-                                    <option value=""></option>
-                                    <?php
-                                    if ($regions[0]) {
-                                        foreach ($regions as $region) { ?>
-                                    <option value="<?= $region['id'] ?>"><?php echo $region['name']; ?></option>
-
-                                    <?php }
-                                    } else { ?>
-                                    <option value="">No regions available</option>
-                                    <?php  } ?>
-
-                                </select>
-                            </div>
 
                             <div class="col-12 ">
                                 <button type="submit" class="btn btn-primary px-5">Add</button>

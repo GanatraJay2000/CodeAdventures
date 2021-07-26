@@ -29,7 +29,7 @@ require_once('../../config/config.php');
                     </div>
 
                     <div class="mx-4">
-                        <a href="./add-endTime.php" class="btn btn-primary p-md-5 p-3">
+                        <a href="./add-endTime.php" class="btn btn-primary p-md-5 p-3 mb-4 ">
                             End Time
                         </a>
                     </div>

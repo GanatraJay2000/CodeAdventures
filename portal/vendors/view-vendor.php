@@ -3,12 +3,10 @@ require('../../config/config.php');
 if (!isset($_POST['id'])) header('Location: ./vendors.php');
 $vendor = $vendor->find('id', $_POST['id']);
 if (!$vendor[0]) {
-      $_SESSION['alert']['danger'] = $vendor[1];
-      header('Location: ./vendors.php');
+    $_SESSION['alert']['danger'] = $vendor[1];
+    header('Location: ./vendors.php');
 } else {
-      $vendor = $vendor[1];
-      $region = $region->find('id', $vendor['region_id']);
-      $region = $region[1];
+    $vendor = $vendor[1];
 }
 
 ?>
@@ -59,10 +57,6 @@ if (!$vendor[0]) {
                             <tr>
                                 <td><b>No of Employees</b></td>
                                 <td><?= $vendor['no_of_employees'] ?></td>
-                            </tr>
-                            <tr>
-                                <td><b>Region</b></td>
-                                <td><?= $region['name'] ?></td>
                             </tr>
                         </tbody>
                     </table>

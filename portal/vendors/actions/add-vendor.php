@@ -11,14 +11,12 @@ $name = $_POST['vendorName'];
 $email = $_POST['vendorEmail'];
 $phone_no = $_POST['phoneNo'];
 $no_of_employees = $_POST['noOfEmployees'];
-$region_id = empty($_POST['regionId']) ? null : $_POST['regionId'];
 
 $add = $vendor->add([
       'name' => $name,
       'email' => $email,
       'phone_no' => $phone_no,
       'no_of_employees' => $no_of_employees,
-      'region_id' => $region_id
 ]);
 
 if (!$add[0]) {

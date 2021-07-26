@@ -5,8 +5,8 @@ class Vendor
     protected $table = [
         "name" => "vendors",
         "title" => "Vendor",
-        "all_fields" => ["name", "email", "phone_no", "no_of_employees", "region_id"],
-        "req_fields" => ["name", "email", "phone_no", "no_of_employees", "region_id"],
+        "all_fields" => ["name", "email", "phone_no", "no_of_employees"],
+        "req_fields" => ["name", "email", "phone_no", "no_of_employees"],
     ];
 
     // DB Functions

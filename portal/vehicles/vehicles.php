@@ -19,6 +19,11 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicles Register | AMS Portal | CMS</title>
     <link rel="stylesheet" href="<?= $preUrl ?>styles/styles.css" class="css">
+    <style>
+    .dt-buttons {
+        width: 100% !important;
+    }
+    </style>
 
 </head>
 
@@ -33,9 +38,9 @@ else {
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h1 class="">Vehicles</h1>
                         <div class="">
-                            <a href="./add-vehicle.php" class="btn btn-primary px-4">
-                                <i class="fas fa-plus me-2 "></i>
-                                Add Vehicle
+                            <a href="./add-vehicle.php" class="btn btn-primary px-md-4">
+                                <i class="fas fa-plus me-0 me-md-2 "></i>
+                                <div class="not-on-mobile d-md-inline-block">Add Vehicle</div>
                             </a>
                         </div>
                     </div>
